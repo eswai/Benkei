@@ -1,0 +1,837 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bsemu</key>
+	<integer>1</integer>
+	<key>cshift</key>
+	<integer>0</integer>
+	<key>enabled</key>
+	<integer>0</integer>
+	<key>escemu</key>
+	<integer>1</integer>
+	<key>firstIgnoredSingleThumbL</key>
+	<integer>0</integer>
+	<key>firstIgnoredSingleThumbR</key>
+	<integer>0</integer>
+	<key>koyubi</key>
+	<integer>0</integer>
+	<key>layout</key>
+	<array>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>AP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAD/</data>
+			<key>No shift</key>
+			<data>IP//</data>
+			<key>With left shift</key>
+			<data>DR//</data>
+			<key>With modifier key</key>
+			<data>AP//</data>
+			<key>With outer shift</key>
+			<data>OAD/</data>
+			<key>With right shift</key>
+			<data>CSD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Af//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAH/</data>
+			<key>No shift</key>
+			<data>ASL/</data>
+			<key>With left shift</key>
+			<data>AP//</data>
+			<key>With modifier key</key>
+			<data>Af//</data>
+			<key>With outer shift</key>
+			<data>OAH/</data>
+			<key>With right shift</key>
+			<data>BiL/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Av//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAL/</data>
+			<key>No shift</key>
+			<data>EQ7/</data>
+			<key>With left shift</key>
+			<data>LQD/</data>
+			<key>With modifier key</key>
+			<data>Av//</data>
+			<key>With outer shift</key>
+			<data>OAL/</data>
+			<key>With right shift</key>
+			<data>Ag7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>A///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAP/</data>
+			<key>No shift</key>
+			<data>KA7/</data>
+			<key>With left shift</key>
+			<data>BxAg</data>
+			<key>With modifier key</key>
+			<data>A///</data>
+			<key>With outer shift</key>
+			<data>OAP/</data>
+			<key>With right shift</key>
+			<data>BQ7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>BP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAT/</data>
+			<key>No shift</key>
+			<data>BAD/</data>
+			<key>With left shift</key>
+			<data>CwD/</data>
+			<key>With modifier key</key>
+			<data>BP//</data>
+			<key>With outer shift</key>
+			<data>IwD/</data>
+			<key>With right shift</key>
+			<data>LiL/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Bf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAX/</data>
+			<key>No shift</key>
+			<data>AQ7/</data>
+			<key>With left shift</key>
+			<data>Lh//</data>
+			<key>With modifier key</key>
+			<data>Bf//</data>
+			<key>With outer shift</key>
+			<data>OAX/</data>
+			<key>With right shift</key>
+			<data>Bg7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Bv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAb/</data>
+			<key>No shift</key>
+			<data>Oi//</data>
+			<key>With left shift</key>
+			<data>ByD/</data>
+			<key>With modifier key</key>
+			<data>Bv//</data>
+			<key>With outer shift</key>
+			<data>OAb/</data>
+			<key>With right shift</key>
+			<data>DRAO</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>B///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAf/</data>
+			<key>No shift</key>
+			<data>BCL/</data>
+			<key>With left shift</key>
+			<data>G///</data>
+			<key>With modifier key</key>
+			<data>B///</data>
+			<key>With outer shift</key>
+			<data>IyL/</data>
+			<key>With right shift</key>
+			<data>CyL/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>CP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAj/</data>
+			<key>No shift</key>
+			<data>ASD/</data>
+			<key>With left shift</key>
+			<data>Dx//</data>
+			<key>With modifier key</key>
+			<data>CP//</data>
+			<key>With outer shift</key>
+			<data>OAj/</data>
+			<key>With right shift</key>
+			<data>BiD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Cf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAn/</data>
+			<key>No shift</key>
+			<data>BCD/</data>
+			<key>With left shift</key>
+			<data>EAD/</data>
+			<key>With modifier key</key>
+			<data>Cf//</data>
+			<key>With outer shift</key>
+			<data>IyD/</data>
+			<key>With right shift</key>
+			<data>CyD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Cv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAr/</data>
+			<key>No shift</key>
+			<data>////</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>Cv//</data>
+			<key>With outer shift</key>
+			<data>OAr/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>C///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAv/</data>
+			<key>No shift</key>
+			<data>BA7/</data>
+			<key>With left shift</key>
+			<data>ByL/</data>
+			<key>With modifier key</key>
+			<data>C///</data>
+			<key>With outer shift</key>
+			<data>Iw7/</data>
+			<key>With right shift</key>
+			<data>Cw7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>DP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OAz/</data>
+			<key>No shift</key>
+			<data>L///</data>
+			<key>With left shift</key>
+			<data>BwD/</data>
+			<key>With modifier key</key>
+			<data>DP//</data>
+			<key>With outer shift</key>
+			<data>OAz/</data>
+			<key>With right shift</key>
+			<data>DRAi</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Df//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OA3/</data>
+			<key>No shift</key>
+			<data>KAD/</data>
+			<key>With left shift</key>
+			<data>Dv//</data>
+			<key>With modifier key</key>
+			<data>Df//</data>
+			<key>With outer shift</key>
+			<data>OA3/</data>
+			<key>With right shift</key>
+			<data>BQD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Dv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OA7/</data>
+			<key>No shift</key>
+			<data>EQD/</data>
+			<key>With left shift</key>
+			<data>DyL/</data>
+			<key>With modifier key</key>
+			<data>Dv//</data>
+			<key>With outer shift</key>
+			<data>OA7/</data>
+			<key>With right shift</key>
+			<data>AgD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>D///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OA//</data>
+			<key>No shift</key>
+			<data>KB//</data>
+			<key>With left shift</key>
+			<data>BxAA</data>
+			<key>With modifier key</key>
+			<data>D///</data>
+			<key>With outer shift</key>
+			<data>OA//</data>
+			<key>With right shift</key>
+			<data>BR//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>EP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBD/</data>
+			<key>No shift</key>
+			<data>DwD/</data>
+			<key>With left shift</key>
+			<data>IwD/</data>
+			<key>With modifier key</key>
+			<data>EP//</data>
+			<key>With outer shift</key>
+			<data>OBD/</data>
+			<key>With right shift</key>
+			<data>EB//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Ef//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBH/</data>
+			<key>No shift</key>
+			<data>AQD/</data>
+			<key>With left shift</key>
+			<data>Dw7/</data>
+			<key>With modifier key</key>
+			<data>Ef//</data>
+			<key>With outer shift</key>
+			<data>OBH/</data>
+			<key>With right shift</key>
+			<data>BgD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Ev//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBL/</data>
+			<key>No shift</key>
+			<data>Ev//</data>
+			<key>With left shift</key>
+			<data>OCz/</data>
+			<key>With modifier key</key>
+			<data>Ev//</data>
+			<key>With outer shift</key>
+			<data>OBL/</data>
+			<key>With right shift</key>
+			<data>OCz/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>E///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBP/</data>
+			<key>No shift</key>
+			<data>E///</data>
+			<key>With left shift</key>
+			<data>Oiz/</data>
+			<key>With modifier key</key>
+			<data>E///</data>
+			<key>With outer shift</key>
+			<data>OBP/</data>
+			<key>With right shift</key>
+			<data>Oiz/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>FP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBT/</data>
+			<key>No shift</key>
+			<data>FP//</data>
+			<key>With left shift</key>
+			<data>OBj/</data>
+			<key>With modifier key</key>
+			<data>FP//</data>
+			<key>With outer shift</key>
+			<data>OBT/</data>
+			<key>With right shift</key>
+			<data>OBj/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Ff//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBX/</data>
+			<key>No shift</key>
+			<data>Ff//</data>
+			<key>With left shift</key>
+			<data>Hv//</data>
+			<key>With modifier key</key>
+			<data>Ff//</data>
+			<key>With outer shift</key>
+			<data>OBX/</data>
+			<key>With right shift</key>
+			<data>Hv//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Fv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBb/</data>
+			<key>No shift</key>
+			<data>Fv//</data>
+			<key>With left shift</key>
+			<data>Oh7/</data>
+			<key>With modifier key</key>
+			<data>Fv//</data>
+			<key>With outer shift</key>
+			<data>OBb/</data>
+			<key>With right shift</key>
+			<data>Oh7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>F///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBf/</data>
+			<key>No shift</key>
+			<data>F///</data>
+			<key>With left shift</key>
+			<data>Kv//</data>
+			<key>With modifier key</key>
+			<data>F///</data>
+			<key>With outer shift</key>
+			<data>OBf/</data>
+			<key>With right shift</key>
+			<data>Kv//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>GP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBj/</data>
+			<key>No shift</key>
+			<data>GP//</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>GP//</data>
+			<key>With outer shift</key>
+			<data>OBj/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Gf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBn/</data>
+			<key>No shift</key>
+			<data>Gf//</data>
+			<key>With left shift</key>
+			<data>OBn/</data>
+			<key>With modifier key</key>
+			<data>Gf//</data>
+			<key>With outer shift</key>
+			<data>OBn/</data>
+			<key>With right shift</key>
+			<data>OBn/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Gv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBr/</data>
+			<key>No shift</key>
+			<data>Gv//</data>
+			<key>With left shift</key>
+			<data>Oir/</data>
+			<key>With modifier key</key>
+			<data>Gv//</data>
+			<key>With outer shift</key>
+			<data>OBr/</data>
+			<key>With right shift</key>
+			<data>Oir/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>G///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBv/</data>
+			<key>No shift</key>
+			<data>G///</data>
+			<key>With left shift</key>
+			<data>OCr/</data>
+			<key>With modifier key</key>
+			<data>G///</data>
+			<key>With outer shift</key>
+			<data>OBv/</data>
+			<key>With right shift</key>
+			<data>OCr/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>HP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OBz/</data>
+			<key>No shift</key>
+			<data>HP//</data>
+			<key>With left shift</key>
+			<data>OBz/</data>
+			<key>With modifier key</key>
+			<data>HP//</data>
+			<key>With outer shift</key>
+			<data>OBz/</data>
+			<key>With right shift</key>
+			<data>OBz/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Hf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OB3/</data>
+			<key>No shift</key>
+			<data>Hf//</data>
+			<key>With left shift</key>
+			<data>OB7/</data>
+			<key>With modifier key</key>
+			<data>Hf//</data>
+			<key>With outer shift</key>
+			<data>OB3/</data>
+			<key>With right shift</key>
+			<data>OB7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Hv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OB7/</data>
+			<key>No shift</key>
+			<data>////</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>Hv//</data>
+			<key>With outer shift</key>
+			<data>OB7/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>H///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OB//</data>
+			<key>No shift</key>
+			<data>ESD/</data>
+			<key>With left shift</key>
+			<data>AiD/</data>
+			<key>With modifier key</key>
+			<data>H///</data>
+			<key>With outer shift</key>
+			<data>OB//</data>
+			<key>With right shift</key>
+			<data>LgD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>IP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCD/</data>
+			<key>No shift</key>
+			<data>ESL/</data>
+			<key>With left shift</key>
+			<data>AiL/</data>
+			<key>With modifier key</key>
+			<data>IP//</data>
+			<key>With outer shift</key>
+			<data>OCD/</data>
+			<key>With right shift</key>
+			<data>LSL/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>If//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCH/</data>
+			<key>No shift</key>
+			<data>K///</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>If//</data>
+			<key>With outer shift</key>
+			<data>OCH/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Iv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCL/</data>
+			<key>No shift</key>
+			<data>KCD/</data>
+			<key>With left shift</key>
+			<data>BSD/</data>
+			<key>With modifier key</key>
+			<data>Iv//</data>
+			<key>With outer shift</key>
+			<data>OCL/</data>
+			<key>With right shift</key>
+			<data>DyD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>I///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCP/</data>
+			<key>No shift</key>
+			<data>Oiv/</data>
+			<key>With left shift</key>
+			<data>IyL/</data>
+			<key>With modifier key</key>
+			<data>I///</data>
+			<key>With outer shift</key>
+			<data>OCP/</data>
+			<key>With right shift</key>
+			<data>Bw7/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>JP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCT/</data>
+			<key>No shift</key>
+			<data>////</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>JP//</data>
+			<key>With outer shift</key>
+			<data>OCT/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Jf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCX/</data>
+			<key>No shift</key>
+			<data>Iv//</data>
+			<key>With left shift</key>
+			<data>Ix//</data>
+			<key>With modifier key</key>
+			<data>Jf//</data>
+			<key>With outer shift</key>
+			<data>OCX/</data>
+			<key>With right shift</key>
+			<data>BxAf</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Jv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCb/</data>
+			<key>No shift</key>
+			<data>ER//</data>
+			<key>With left shift</key>
+			<data>Ah//</data>
+			<key>With modifier key</key>
+			<data>Jv//</data>
+			<key>With outer shift</key>
+			<data>OCb/</data>
+			<key>With right shift</key>
+			<data>H///</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>J///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCf/</data>
+			<key>No shift</key>
+			<data>M///</data>
+			<key>With left shift</key>
+			<data>M///</data>
+			<key>With modifier key</key>
+			<data>J///</data>
+			<key>With outer shift</key>
+			<data>M///</data>
+			<key>With right shift</key>
+			<data>M///</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>KP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCj/</data>
+			<key>No shift</key>
+			<data>KCL/</data>
+			<key>With left shift</key>
+			<data>BSL/</data>
+			<key>With modifier key</key>
+			<data>KP//</data>
+			<key>With outer shift</key>
+			<data>OCj/</data>
+			<key>With right shift</key>
+			<data>LR//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Kf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCn/</data>
+			<key>No shift</key>
+			<data>LS3/</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>Kf//</data>
+			<key>With outer shift</key>
+			<data>OCn/</data>
+			<key>With right shift</key>
+			<data>BxEg</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Kv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCr/</data>
+			<key>No shift</key>
+			<data>Nf//</data>
+			<key>With left shift</key>
+			<data>Nf//</data>
+			<key>With modifier key</key>
+			<data>Kv//</data>
+			<key>With outer shift</key>
+			<data>Nf//</data>
+			<key>With right shift</key>
+			<data>Nf//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>K///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCv/</data>
+			<key>No shift</key>
+			<data>LQ7/</data>
+			<key>With left shift</key>
+			<data>Iw7/</data>
+			<key>With modifier key</key>
+			<data>K///</data>
+			<key>With outer shift</key>
+			<data>OCv/</data>
+			<key>With right shift</key>
+			<data>LiD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>LP//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OCz/</data>
+			<key>No shift</key>
+			<data>LP//</data>
+			<key>With left shift</key>
+			<data>Bw0A</data>
+			<key>With modifier key</key>
+			<data>LP//</data>
+			<key>With outer shift</key>
+			<data>OCz/</data>
+			<key>With right shift</key>
+			<data>Bx//</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Lf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OC3/</data>
+			<key>No shift</key>
+			<data>Lg7/</data>
+			<key>With left shift</key>
+			<data>IyD/</data>
+			<key>With modifier key</key>
+			<data>Lf//</data>
+			<key>With outer shift</key>
+			<data>OC3/</data>
+			<key>With right shift</key>
+			<data>LSD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Lv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OC7/</data>
+			<key>No shift</key>
+			<data>AR//</data>
+			<key>With left shift</key>
+			<data>Bh//</data>
+			<key>With modifier key</key>
+			<data>Lv//</data>
+			<key>With outer shift</key>
+			<data>OC7/</data>
+			<key>With right shift</key>
+			<data>ECD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>L///</data>
+			<key>ASCII - With outer shift</key>
+			<data>OC//</data>
+			<key>No shift</key>
+			<data>BB//</data>
+			<key>With left shift</key>
+			<data>Cx//</data>
+			<key>With modifier key</key>
+			<data>L///</data>
+			<key>With outer shift</key>
+			<data>Ix//</data>
+			<key>With right shift</key>
+			<data>DQD/</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Xf//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OF3/</data>
+			<key>No shift</key>
+			<data>Xf//</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>Xf//</data>
+			<key>With outer shift</key>
+			<data>OF3/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+		<dict>
+			<key>ASCII - No shift</key>
+			<data>Xv//</data>
+			<key>ASCII - With outer shift</key>
+			<data>OF7/</data>
+			<key>No shift</key>
+			<data>Xv//</data>
+			<key>With left shift</key>
+			<data>////</data>
+			<key>With modifier key</key>
+			<data>Xv//</data>
+			<key>With outer shift</key>
+			<data>OF7/</data>
+			<key>With right shift</key>
+			<data>////</data>
+		</dict>
+	</array>
+	<key>mode</key>
+	<integer>0</integer>
+	<key>pinky</key>
+	<integer>1</integer>
+	<key>returnemu</key>
+	<integer>0</integer>
+	<key>spaceemu</key>
+	<integer>0</integer>
+	<key>thumbL</key>
+	<integer>102</integer>
+	<key>thumbR</key>
+	<integer>104</integer>
+	<key>twait</key>
+	<real>0.06</real>
+</dict>
+</plist>

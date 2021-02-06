@@ -1,0 +1,63 @@
+/* 
+  Localizable.strings
+  Lacaille
+
+  Created by kkadowaki on 2014.04.26.
+  Copyright (c) 2014-2016 kkadowaki. All rights reserved.
+
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+"Lacaille" = "Lacaille";
+"version_string" = "バージョン %@ (%@)";
+
+"key_thumbL"   = "親指左";
+"key_thumbR"   = "親指右";
+"key_kana"     = "[かな]";
+"key_eisu"     = "[英数]";
+"key_hiragana" = "[ひらがな]"; /* Deprecated */
+
+"nicola_no_shift"         = "単独打鍵";
+"nicola_with_left_shift"  = "親指左";
+"nicola_with_right_shift" = "親指右";
+"nicola_with_outer_shift" = "小指シフト";
+"ascii_no_shift" = "単独打鍵（英）";
+"ascii_with_outer_shift" = "シフト（英）";
+"ascii_with_modifier_key" = "修飾キー";
+
+"import_error_message" = "設定ファイルの読み込みに失敗しました";
+"import_error_text"    = "キー配列は変更されていません。";
+"import_error_ok"      = "OK";
+
+"welcome_message" = "Lacaille へようこそ！";
+"welcome_text"    = "Lacaille 環境設定で NICOLA エミュレーションを有効にしてください。";
+"welcome_ok"      = "OK";
+
+"set_mode_message"        = "キー配列定義ファイルを読み込んでください"; /* Deprecated */
+"set_mode_text"           = "かな入力を有効化するには、Lacaille 環境設定でかな入力に対応した設定ファイルを読み込んでください。"; /* Deprecated */
+"set_mode_ok"             = "OK"; /* Deprecated */
+"set_mode_cancel"         = "キャンセル"; /* Deprecated */
+"set_mode_cancel_message" = "キャンセルされました"; /* Deprecated */
+"set_mode_cancel_text_e"  = "かな入力は無効のままです。"; /* Deprecated */
+"set_mode_cancel_text_d"  = "かな入力は有効のままです。"; /* Deprecated */
+
+"no_layout_message" = "NICOLA エミュレーションの有効化に失敗しました";
+"no_layout_text"    = "キー配列が読み込まれていません。Lacaille 環境設定で設定ファイルを読み込んでください。";
+"no_layout_ok"      = "OK"; /* Deprecated */
+
+"eventTap_error_message" = "NICOLA エミュレーションの有効化に失敗しました";
+"eventTap_error_text108" = "“アクセシビリティ”システム環境設定で、“補助装置にアクセスできるようにする”を有効化してください。";
+"eventTap_error_text"    = "“セキュリティとプライバシー”システム環境設定の“アクセシビリティ”で、Lacaille を有効化してください。";
+"eventTap_error_ok"      = "OK";
