@@ -21,6 +21,7 @@
 //
 
 #import "AppDelegate.h"
+#import "Naginata.h"
 
 @implementation AppDelegate
 
@@ -40,10 +41,10 @@ NSImage *imgDisabled;
 
 BOOL oyaSheetIsActive;
 BOOL keySheetIsActive;
-BOOL volatile gKanaMethod;
-unsigned char gBuff;
-unsigned char gOya;
-unsigned char gPrevOya;
+BOOL volatile gKanaMethod; // 日本語入力モード trueで日本語
+unsigned char gBuff; // 文字入力バッファ
+unsigned char gOya; // 左親指なら1、右親指なら2、それ以外0
+unsigned char gPrevOya; // １ステップ前の親指状態
 unsigned char gPressedOya;
 int64_t gKeyDownAutorepeat;
 CGEventFlags gEventMasks = 0;
@@ -58,7 +59,6 @@ NSFileHandle *debugOutFile = nil;
 #define debugOut(...) \
 // [((debugOutFile == nil) ? (debugOutFile = [NSFileHandle fileHandleWithStandardOutput]) : debugOutFile) \
 //  writeData:[[NSString stringWithFormat:__VA_ARGS__] dataUsingEncoding:NSUTF8StringEncoding]]
-
 
 #define LAYOUT_KEY_COUNT    50      // キーの個数
 
@@ -80,6 +80,8 @@ CGKeyCode prefThumbL = kVK_JIS_Eisu;    // 親指左 = 英数
 CGKeyCode prefThumbR = kVK_JIS_Kana;    // 親指右 = かな
 NSTimeInterval prefTwait = 0.06;    // 同時判定時間
 
+Naginata *naginata;
+
 NSString *const LacailleErrorDomain = @"org.jpn.lacaille.Lacaille.LacailleErrorDomain";
 typedef NS_ENUM(NSInteger, LacailleErrorCode) {
     LacailleErrorLayoutNotLoad,
@@ -89,6 +91,8 @@ typedef NS_ENUM(NSInteger, LacailleErrorCode) {
 
 - (BOOL)startAtLogin {
     NSURL *itemURL = [NSURL fileURLWithPath:[NSBundle mainBundle].bundlePath];
+    
+    naginata = [Naginata new];
     
     Boolean foundIt = false;
     LSSharedFileListRef loginItems = LSSharedFileListCreate(NULL, kLSSharedFileListSessionLoginItems, NULL);
@@ -1177,6 +1181,8 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     }
     
     // 同時判定時間を過ぎていたら親指キーを戻す
+    // 薙刀式　連続シフトは常時オンなのでここは削除する
+    /*
     if (!prefCshift && (gBuff == prefThumbL || gBuff == prefThumbR) &&
         [[NSDate date] timeIntervalSinceDate:gOyaKeyDownTimeStamp] > prefTwait) {
         unsigned char prevBuff = gBuff;
@@ -1198,6 +1204,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
             [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05f]];
         }
     }
+    */ // ここまで削除
     gTargetPid = targetPid;
     
     // remove thumb keys from event flags
@@ -1233,7 +1240,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         return returnPt(event, source);
     }
     
-    if (!gKanaMethod) {
+    if (!gKanaMethod) { // 日本語入力でない
         gOya = 0;
         gPrevOya = 0;
         
@@ -1336,6 +1343,18 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore || keycode == prefThumbL || keycode == prefThumbR) { // see viewTable
         
         if (type == kCGEventKeyDown) {
+            [naginata pressKey:keycode];
+        } else if (type == kCGEventKeyUp) {
+            NSArray *kana = [naginata releaseKey:keycode];
+            for (NSNumber *k in kana) {
+                NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){[k intValue]} length:1];
+                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+            }
+        }
+        
+        /*
+        if (type == kCGEventKeyDown) {
+            // 連続シフトで親指を押した
             if (prefCshift && (keycode == prefThumbL || keycode == prefThumbR)) {
                 if (!(keycode == prefThumbL && gOya == 1) && !(keycode == prefThumbR && gOya == 2)) { // Autorepeat
                     gPrevOya = gOya;
@@ -1410,6 +1429,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
                 }
             }
         }
+         */
         if(source != NULL) {
             CFRelease(source);
         }

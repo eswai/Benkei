@@ -21,6 +21,7 @@ NSMutableSet * keyset;
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
+        keyset = [NSMutableSet new];
 
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_I], nil],
