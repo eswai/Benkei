@@ -76,7 +76,7 @@ BOOL prefReturnemu = NO;            // 無変換キーのエミュレーショ�
 BOOL prefSpaceemu = NO;             // 変換キーのエミュレーション
 BOOL prefFirstIgnoredSingleThumbL = NO;     // 左親指キーの初回単独打鍵は無視
 BOOL prefFirstIgnoredSingleThumbR = NO;     // 右親指キーの初回単独打鍵は無視
-CGKeyCode prefThumbL = kVK_JIS_Eisu;    // 親指左 = 英数
+CGKeyCode prefThumbL = kVK_Space;    // 親指左 = 英数
 CGKeyCode prefThumbR = kVK_JIS_Kana;    // 親指右 = かな
 NSTimeInterval prefTwait = 0.06;    // 同時判定時間
 
