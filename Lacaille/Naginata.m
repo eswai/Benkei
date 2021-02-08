@@ -12,33 +12,27 @@
 
 @implementation Naginata
 
-int ng_chrcount = 0;
-int keycomb = 0;
-
 NSMutableArray *ngbuf;
-NSDictionary *ng_key;
 NSDictionary *ng_keymap;
+NSMutableSet * keyset;
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
-        
-        ng_key = [NSDictionary dictionaryWithObjectsAndKeys:
-            @B_Q, [NSNumber numberWithInt:kVK_ANSI_Q],
-            [NSNumber numberWithInt:B_W], [NSNumber numberWithInt:kVK_ANSI_W],
-            [NSNumber numberWithInt:B_E], [NSNumber numberWithInt:kVK_ANSI_E],
-            [NSNumber numberWithInt:B_R], [NSNumber numberWithInt:kVK_ANSI_R],
-            [NSNumber numberWithInt:B_T], [NSNumber numberWithInt:kVK_ANSI_T],
-        nil];
 
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
-                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSNumber numberWithInt:B_W],
-                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSNumber numberWithInt:B_E],
-                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSNumber numberWithInt:B_R],
-                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_DownArrow], nil], [NSNumber numberWithInt:B_T],
-                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSNumber numberWithInt:B_Q | B_W],
+                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_I], nil],
+                     [NSSet setWithObjects:[NSNumber numberWithInt:kVK_ANSI_W], nil],
+                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_E], nil],
+                     [NSSet setWithObjects:[NSNumber numberWithInt:kVK_ANSI_E], nil],
+                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_I], nil],
+                     [NSSet setWithObjects:[NSNumber numberWithInt:kVK_ANSI_R], nil],
+                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_DownArrow], nil],
+                     [NSSet setWithObjects:[NSNumber numberWithInt:kVK_ANSI_T], nil],
+                     [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_I], nil],
+                     [NSSet setWithObjects:[NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_W], nil],
         nil];
     }
     return self;
@@ -47,15 +41,15 @@ NSDictionary *ng_keymap;
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
     [ngbuf addObject: [NSNumber numberWithInt: keycode]];
-    id bkey = [ng_key objectForKey: [NSNumber numberWithInt:keycode]];
-    int c = [(NSNumber *)bkey intValue];
-    keycomb |= c;
+    [keyset addObject: [NSNumber numberWithInt: keycode]];
     return NULL;
 }
 
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    return (NSArray *)[ng_keymap objectForKey:[NSNumber numberWithInt:keycomb]];
+    NSArray *kana = (NSArray *)[ng_keymap objectForKey:keyset];
+    [keyset removeAllObjects];
+    return kana;
 }
 
 @end
