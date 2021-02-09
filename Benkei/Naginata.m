@@ -25,14 +25,16 @@
 
 @implementation Naginata
 
-NSMutableArray *ngbuf;
-NSDictionary *ng_keymap;
+NSMutableArray *ngbuf; // 同時押しキーのバッファ
+NSDictionary *ng_keymap; // かな変換テーブル
+NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは一致しない場合あり。
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
+        pressed = [NSMutableSet new];
 
         // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -336,14 +338,35 @@ NSDictionary *ng_keymap;
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
     [ngbuf addObject:[NSNumber numberWithInt:keycode]];
+    [pressed addObject:[NSNumber numberWithInt:keycode]];
     return NULL;
 }
 
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:ngbuf];
-    NSArray *kana = (NSArray *)[ng_keymap objectForKey:ks];
-    [ngbuf removeAllObjects];
+    [pressed removeObject:[NSNumber numberWithInt:keycode]];
+    NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf];
+    NSArray *kana;
+    while ([workbuf count] > 0) {
+        NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
+        kana = (NSArray *)[ng_keymap objectForKey:ks];
+        if (kana == NULL) {
+            // かなテーブルに候補がない場合は、最後のキーをのぞいて再検索する
+            [workbuf removeLastObject];
+        } else {
+            // 検索ヒットしたら、そのキーはバッファから除去
+            [ngbuf removeObjectsInArray: workbuf];
+            break;
+        }
+    }
+    // どの組み合わせも候補がないときは、先頭のキーを除去する
+    if ([workbuf count] == 0) {
+        [ngbuf removeObjectAtIndex:@0];
+    }
+    // キーが反応しなくなる場合の対策。キーを何も押していない場合はバッファをクリアする。
+    if ([pressed count] == 0) {
+        [ngbuf removeAllObjects];
+    }
     return kana;
 }
 
