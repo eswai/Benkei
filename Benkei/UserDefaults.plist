@@ -831,6 +831,15 @@
 	<integer>102</integer>
 	<key>thumbR</key>
 	<integer>104</integer>
+	<key>layout2</key>
+	<array>
+		<dict>
+			<key>kana</key>
+			<string></string>
+			<key>keys</key>
+			<integer>0</integer>
+		</dict>
+	</array>
 	<key>twait</key>
 	<real>0.06</real>
 </dict>

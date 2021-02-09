@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Lacaille.xcodeproj">
+      location = "self:/Users/sakamoto/Downloads/Benkei/Benkei.xcodeproj">
    </FileRef>
 </Workspace>
