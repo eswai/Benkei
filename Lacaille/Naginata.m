@@ -36,10 +36,16 @@ NSMutableSet * keyset;
         ngbuf = [NSMutableArray new];
         keyset = [NSMutableSet new];
 
+        // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_JIS_Eisu], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_G], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_JIS_Kana], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_J], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_LeftArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_RightArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], nil],
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Space], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Delete], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_U], nil],
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_Space], nil],
                      [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
 
