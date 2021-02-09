@@ -20,7 +20,7 @@
   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-"Lacaille" = "Lacaille";
+"Benkei" = "Benkei";
 "version_string" = "バージョン %@ (%@)";
 
 "key_thumbL"   = "親指左";
@@ -41,23 +41,23 @@
 "import_error_text"    = "キー配列は変更されていません。";
 "import_error_ok"      = "OK";
 
-"welcome_message" = "Lacaille へようこそ！";
-"welcome_text"    = "Lacaille 環境設定で NICOLA エミュレーションを有効にしてください。";
+"welcome_message" = "Benkei へようこそ！";
+"welcome_text"    = "Benkei 環境設定で NICOLA エミュレーションを有効にしてください。";
 "welcome_ok"      = "OK";
 
 "set_mode_message"        = "キー配列定義ファイルを読み込んでください"; /* Deprecated */
-"set_mode_text"           = "かな入力を有効化するには、Lacaille 環境設定でかな入力に対応した設定ファイルを読み込んでください。"; /* Deprecated */
+"set_mode_text"           = "かな入力を有効化するには、Benkei 環境設定でかな入力に対応した設定ファイルを読み込んでください。"; /* Deprecated */
 "set_mode_ok"             = "OK"; /* Deprecated */
 "set_mode_cancel"         = "キャンセル"; /* Deprecated */
 "set_mode_cancel_message" = "キャンセルされました"; /* Deprecated */
 "set_mode_cancel_text_e"  = "かな入力は無効のままです。"; /* Deprecated */
 "set_mode_cancel_text_d"  = "かな入力は有効のままです。"; /* Deprecated */
 
-"no_layout_message" = "NICOLA エミュレーションの有効化に失敗しました";
-"no_layout_text"    = "キー配列が読み込まれていません。Lacaille 環境設定で設定ファイルを読み込んでください。";
+"no_layout_message" = "薙刀式エミュレーションの有効化に失敗しました";
+"no_layout_text"    = "キー配列が読み込まれていません。Benkei 環境設定で設定ファイルを読み込んでください。";
 "no_layout_ok"      = "OK"; /* Deprecated */
 
-"eventTap_error_message" = "NICOLA エミュレーションの有効化に失敗しました";
+"eventTap_error_message" = "薙刀式エミュレーションの有効化に失敗しました";
 "eventTap_error_text108" = "“アクセシビリティ”システム環境設定で、“補助装置にアクセスできるようにする”を有効化してください。";
-"eventTap_error_text"    = "“セキュリティとプライバシー”システム環境設定の“アクセシビリティ”で、Lacaille を有効化してください。";
+"eventTap_error_text"    = "“セキュリティとプライバシー”システム環境設定の“アクセシビリティ”で、Benkei を有効化してください。";
 "eventTap_error_ok"      = "OK";

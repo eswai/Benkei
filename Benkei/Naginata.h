@@ -1,6 +1,6 @@
 //
 //  Naginata.m
-//  Lacaille
+//  Benkei
 //
 //  Created by eswai on 2021/02/07.
 //
