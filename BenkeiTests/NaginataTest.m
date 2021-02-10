@@ -1,9 +1,8 @@
 //
 //  NaginataTest.m
-//  LacailleTests
+//  NaginataTests
 //
-//  Created by Yuki Sakamoto on 2021/02/07.
-//  Copyright © 2021 kkadowaki. All rights reserved.
+//  Created by eswai on 2021/02/07.
 //
 
 #import <XCTest/XCTest.h>

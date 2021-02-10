@@ -4,6 +4,7 @@
 //
 //  Created by kkadowaki on 2014.04.26.
 //  Copyright (c) 2014-2018 kkadowaki. All rights reserved.
+//  Modified by eswai on 2021/02/07 for Naginata style.
 //
 //  This program is free software; you can redistribute it and/or
 //  modify it under the terms of the GNU General Public License
