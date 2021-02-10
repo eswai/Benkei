@@ -55,6 +55,8 @@ NSMutableData *gKeySheetValue;
 int gKeySheetValueLength;   // N.B. 10.9 or lower does not support NSMutableData.length
 unsigned char gFirstIgnoredSingleThumbMask = 0;    // 親指キーの初回単独打鍵を無視するためのマスク
 
+CGKeyCode hjbuf = 0;
+
 NSFileHandle *debugOutFile = nil;
 #define debugOut(...) \
 // [((debugOutFile == nil) ? (debugOutFile = [NSFileHandle fileHandleWithStandardOutput]) : debugOutFile) \
@@ -1243,6 +1245,41 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     if (!gKanaMethod) { // 日本語入力でない
         gOya = 0;
         gPrevOya = 0;
+
+        // 薙刀式処理
+        /*
+         hjbuf keycode   press             release
+         空     H/J     next               H/J出力+continue
+         空     HJ以外   continue           continue
+         H/J    H/J     kVK_JIS_Kana+next  continue
+         H/J    HJ以外   H/J出力+continue    continue
+        */
+        if (type == kCGEventKeyDown) {
+            if (hjbuf == 0) {
+                if (keycode == kVK_ANSI_H || keycode == kVK_ANSI_J) {
+                    hjbuf = keycode;
+                    return NULL;
+                }
+            } else {
+                if (hjbuf + keycode == kVK_ANSI_H + kVK_ANSI_J) {
+                    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
+                    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                    hjbuf = 0;
+                    return NULL;
+                } else {
+                    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf, keycode} length:2];
+                    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                    hjbuf = 0;
+                    return NULL;
+                }
+            }
+        } else if (type == kCGEventKeyUp) {
+            if (hjbuf > 0 && hjbuf == keycode) {
+                NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf} length:1];
+                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                hjbuf = 0;
+            }
+        }
         
         if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore) {
             
@@ -1341,7 +1378,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     
     
     if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore || keycode == prefThumbL || keycode == prefThumbR) { // see viewTable
-        
+        // 薙刀式処理
         if (type == kCGEventKeyDown) {
             [naginata pressKey:keycode];
         } else if (type == kCGEventKeyUp) {
