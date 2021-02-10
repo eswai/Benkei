@@ -28,6 +28,7 @@
 NSMutableArray *ngbuf; // 同時押しキーのバッファ
 NSDictionary *ng_keymap; // かな変換テーブル
 NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは一致しない場合あり。
+NSArray *shiftkeys;
 
 - (instancetype)init
 {
@@ -35,6 +36,7 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
     if (self) {
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
+        shiftkeys = @[[NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M]];
 
         // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -352,8 +354,15 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
+    // 連続シフト
+    for (NSNumber *s in shiftkeys) {
+        if ([pressed containsObject:s] && ![ngbuf containsObject:s]) {
+            [ngbuf insertObject:s atIndex:0];
+        }
+    }
     NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf];
     NSArray *kana;
+ 
     while ([workbuf count] > 0) {
         NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
         kana = (NSArray *)[ng_keymap objectForKey:ks];
@@ -363,10 +372,6 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
         } else {
             // 検索ヒットしたら、そのキーはバッファから除去
             [ngbuf removeObjectsInArray: workbuf];
-            if ([pressed containsObject:[NSNumber numberWithInt:kVK_Space]]
-                && ![ngbuf containsObject:[NSNumber numberWithInt:kVK_Space]]) {
-                [ngbuf insertObject:[NSNumber numberWithInt:kVK_Space] atIndex:0];
-            }
             break;
         }
     }
