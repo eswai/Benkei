@@ -342,6 +342,13 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
     return NULL;
 }
 
+/* TODO
+ 連続シフト
+ 前置シフト
+ 縦書き横書きの切り替え
+ 編集モード
+ 
+ */
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
@@ -361,7 +368,7 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
     }
     // どの組み合わせも候補がないときは、先頭のキーを除去する
     if ([workbuf count] == 0) {
-        [ngbuf removeObjectAtIndex:@0];
+        [ngbuf removeObjectAtIndex:(NSUInteger)0];
     }
     // キーが反応しなくなる場合の対策。キーを何も押していない場合はバッファをクリアする。
     if ([pressed count] == 0) {

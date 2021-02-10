@@ -42,7 +42,7 @@
 "import_error_ok"      = "OK";
 
 "welcome_message" = "Benkei へようこそ！";
-"welcome_text"    = "Benkei 環境設定で NICOLA エミュレーションを有効にしてください。";
+"welcome_text"    = "Benkei 環境設定で 薙刀式エミュレーションを有効にしてください。";
 "welcome_ok"      = "OK";
 
 "set_mode_message"        = "キー配列定義ファイルを読み込んでください"; /* Deprecated */
