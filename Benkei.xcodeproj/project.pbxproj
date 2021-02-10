@@ -15,7 +15,6 @@
 		A4A8F83518E6D94B00571DD5 /* UserDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = A4A8F83418E6D94B00571DD5 /* UserDefaults.plist */; };
 		A4A8F83E18E7A4A600571DD5 /* KeyTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = A4A8F83D18E7A4A600571DD5 /* KeyTransformer.m */; };
 		A4B43A781D9046F200D9EAE4 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4B43A771D9046F200D9EAE4 /* Quartz.framework */; };
-		A4B43A7C1D9047D800D9EAE4 /* menubar.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A4B43A7B1D9047D800D9EAE4 /* menubar.pdf */; };
 		A4B5C5ED18F00F87008234B1 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = A4B5C5EB18F00F87008234B1 /* MainMenu.xib */; };
 		A4DDAE1318EFA0E0003E2BCA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A4DDAE1518EFA0E0003E2BCA /* InfoPlist.strings */; };
 		A4F5EF0518BA293000A2F984 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4F5EF0418BA293000A2F984 /* Cocoa.framework */; };
@@ -53,7 +52,6 @@
 		A4A8F83C18E7A4A600571DD5 /* KeyTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyTransformer.h; sourceTree = "<group>"; };
 		A4A8F83D18E7A4A600571DD5 /* KeyTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyTransformer.m; sourceTree = "<group>"; };
 		A4B43A771D9046F200D9EAE4 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
-		A4B43A7B1D9047D800D9EAE4 /* menubar.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = menubar.pdf; sourceTree = "<group>"; };
 		A4B5C5EC18F00F87008234B1 /* ja */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ja; path = ja.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		A4DDAE1118EFA0D6003E2BCA /* BenkeiTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "BenkeiTests-Info.plist"; sourceTree = "<group>"; };
 		A4F5EF0118BA293000A2F984 /* Benkei.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Benkei.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +157,6 @@
 			isa = PBXGroup;
 			children = (
 				A41064AC18F0109700323B12 /* License.rtf */,
-				A4B43A7B1D9047D800D9EAE4 /* menubar.pdf */,
 				A4A8F83418E6D94B00571DD5 /* UserDefaults.plist */,
 				A4F5EF0C18BA293000A2F984 /* Benkei-Info.plist */,
 				A4F5EF0D18BA293000A2F984 /* InfoPlist.strings */,
@@ -273,7 +270,6 @@
 				A4F5EF0F18BA293000A2F984 /* InfoPlist.strings in Resources */,
 				A4F5EF1D18BA293000A2F984 /* Images.xcassets in Resources */,
 				A4B5C5ED18F00F87008234B1 /* MainMenu.xib in Resources */,
-				A4B43A7C1D9047D800D9EAE4 /* menubar.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

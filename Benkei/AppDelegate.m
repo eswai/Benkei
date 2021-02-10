@@ -839,13 +839,10 @@ static NSData *convTraditionalKeyData(NSData *in) {
     ProcessSerialNumber psn = {0, kCurrentProcess};
     TransformProcessType(&psn, kProcessTransformToUIElementApplication);
     
-    NSString *pdfFilePath = [[NSBundle mainBundle] pathForResource:@"menubar" ofType:@"pdf"];
-    PDFDocument *pdfDocument = [[PDFDocument alloc] initWithURL:[NSURL fileURLWithPath:pdfFilePath]];
-    
-    imgActive = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:0] dataRepresentation]];
-    imgInactive = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:1] dataRepresentation]];
-    imgDisabled = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:2] dataRepresentation]];
-    
+    imgActive = [NSImage imageNamed:@"nagi_active"];
+    imgInactive = [NSImage imageNamed:@"nagi_inactive"];
+    imgDisabled = [NSImage imageNamed:@"nagi_inactive"];
+
     NSString *rtfFilePath = [[NSBundle mainBundle] pathForResource:@"License" ofType:@"rtf"];
     [_aboutBox readRTFDFromFile:rtfFilePath];
     _copyrightBox.stringValue = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"NSHumanReadableCopyright"];
@@ -854,8 +851,9 @@ static NSData *convTraditionalKeyData(NSData *in) {
                                [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
     
     sbItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSSquareStatusItemLength];
-    sbItem.image = imgDisabled;
-    sbItem.alternateImage = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:3] dataRepresentation]];
+    sbItem.button.image = imgDisabled;
+//    sbItem.button.alternateImage = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:3] dataRepresentation]];
+    sbItem.button.alternateImage = [NSImage imageNamed:@"nagi_active"];
     [sbItem setToolTip: NSLocalizedString(@"Lacaille", nil)];
     [sbItem setHighlightMode: YES];
     sbItem.menu = _sbMenu;
@@ -1611,13 +1609,13 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
 - (void)updateSbIcon {
     if (!self.propEnabled) {
         debugOut(@"Disabled\n");
-        sbItem.image = imgDisabled;
+        sbItem.button.image = imgDisabled;
     } else if (gKanaMethod) {
         debugOut(@"Japanese\n");
-        sbItem.image = imgActive;
+        sbItem.button.image = imgActive;
     } else {
         debugOut(@"Non-Japanese\n");
-        sbItem.image = imgInactive;
+        sbItem.button.image = imgInactive;
     }
 }
 
