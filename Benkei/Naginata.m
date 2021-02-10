@@ -363,6 +363,10 @@ NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは
         } else {
             // 検索ヒットしたら、そのキーはバッファから除去
             [ngbuf removeObjectsInArray: workbuf];
+            if ([pressed containsObject:[NSNumber numberWithInt:kVK_Space]]
+                && ![ngbuf containsObject:[NSNumber numberWithInt:kVK_Space]]) {
+                [ngbuf insertObject:[NSNumber numberWithInt:kVK_Space] atIndex:0];
+            }
             break;
         }
     }
