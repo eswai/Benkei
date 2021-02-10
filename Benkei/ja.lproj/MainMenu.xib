@@ -532,7 +532,7 @@
                                             <rect key="frame" x="17" y="27" width="444" height="226"/>
                                             <clipView key="contentView" drawsBackground="NO" id="2yP-00-eUE">
                                                 <rect key="frame" x="1" y="1" width="442" height="224"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="41Y-KL-Ddr">
                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="224"/>
@@ -574,7 +574,7 @@
                                             <rect key="frame" x="17" y="276" width="444" height="12"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qXt-YG-gDC">
                                                 <rect key="frame" x="0.0" y="0.0" width="444" height="12"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="qb6-FT-ZU2">
                                                         <rect key="frame" x="0.0" y="0.0" width="444" height="14"/>
@@ -584,11 +584,11 @@
                                                         <size key="minSize" width="444" height="12"/>
                                                         <size key="maxSize" width="444" height="42"/>
                                                         <attributedString key="textStorage">
-                                                            <fragment content="http://lacaille.jpn.org/">
+                                                            <fragment content="http://github.com/">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <font key="NSFont" size="9" name="AquaKana"/>
-                                                                    <url key="NSLink" string="http://lacaille.jpn.org/"/>
+                                                                    <url key="NSLink" string="http://github.com/"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                     <integer key="NSUnderline" value="1"/>
                                                                     <color key="NSUnderlineColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
