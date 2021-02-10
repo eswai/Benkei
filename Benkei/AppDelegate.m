@@ -852,9 +852,8 @@ static NSData *convTraditionalKeyData(NSData *in) {
     
     sbItem = [[NSStatusBar systemStatusBar] statusItemWithLength: NSSquareStatusItemLength];
     sbItem.button.image = imgDisabled;
-//    sbItem.button.alternateImage = [[NSImage alloc] initWithData:[[pdfDocument pageAtIndex:3] dataRepresentation]];
     sbItem.button.alternateImage = [NSImage imageNamed:@"nagi_active"];
-    [sbItem setToolTip: NSLocalizedString(@"Lacaille", nil)];
+    sbItem.button.toolTip = @"Benkei";
     [sbItem setHighlightMode: YES];
     sbItem.menu = _sbMenu;
     
