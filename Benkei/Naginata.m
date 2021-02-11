@@ -346,7 +346,7 @@ NSArray *shiftkeys;
 
 /* TODO
  連続シフト done
- 前置シフト
+ 前置シフト done
  縦書き横書きの切り替え
  編集モード
  
@@ -354,16 +354,30 @@ NSArray *shiftkeys;
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
+    
+    NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf]; // 作業用のバッファ
+    NSArray *kana; // 変換後のかな
+    bool searchHit = false; // かな変換にヒットしたらtrue
+    
     // 連続シフト
+    // スペース、濁点、半濁点はバッファになくても、プレス状態にあったらバッファに追加する
     for (NSNumber *s in shiftkeys) {
         if ([pressed containsObject:s] && ![ngbuf containsObject:s]) {
-            [ngbuf insertObject:s atIndex:0];
+            [workbuf insertObject:s atIndex:0];
         }
     }
-    NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf];
-    NSArray *kana;
-    bool searchHit = false;
+
+    // 前置シフト
+    // スペースキーの前までを処理する
+    NSInteger ps = [workbuf indexOfObject:[NSNumber numberWithInt:kVK_Space]];
+    if (ps > 0) {
+        while ([workbuf count] > ps) {
+            [workbuf removeLastObject];
+        }
+    }
  
+    // かな変換テーブルを検索する
+    // ヒットするまでバッファの最後から１文字ずつ消していく
     while ([workbuf count] > 0) {
         NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
         kana = (NSArray *)[ng_keymap objectForKey:ks];
