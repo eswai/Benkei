@@ -85,11 +85,11 @@ NSTimeInterval prefTwait = 0.06;    // 同時判定時間
 
 Naginata *naginata;
 
-NSString *const LacailleErrorDomain = @"org.jpn.lacaille.Lacaille.LacailleErrorDomain";
-typedef NS_ENUM(NSInteger, LacailleErrorCode) {
-    LacailleErrorLayoutNotLoad,
-    LacailleErrorNoEventTap,
-    LacailleErrorSetModeCancelled DEPRECATED_ATTRIBUTE
+NSString *const BenkeiErrorDomain = @"org.jpn.benkei.Benkei.BenkeiErrorDomain";
+typedef NS_ENUM(NSInteger, BenkeiErrorCode) {
+    BenkeiErrorLayoutNotLoad,
+    BenkeiErrorNoEventTap,
+    BenkeiErrorSetModeCancelled DEPRECATED_ATTRIBUTE
 };
 
 - (BOOL)startAtLogin {
@@ -221,9 +221,9 @@ typedef NS_ENUM(NSInteger, LacailleErrorCode) {
     prefCshift = value;
 }
 
-static NSCellStateValue getRadioButtonState(BOOL value) {
+static NSControlStateValue getRadioButtonState(BOOL value) {
     // N.B. 10.10 and above: NSControlStateValue, NSControlStateValueOn, NSControlStateValueOff
-    return value ? NSOnState : NSOffState;
+    return value ? NSControlStateValueOn : NSControlStateValueOff;
 }
 
 - (void)updateRadioButtonsForSingleThumbL {
@@ -501,7 +501,7 @@ static int getOyaByIdentifier(NSString *identifier) {
         [btcell setTarget:self];
         [btcell setAction:@selector(clickButton:)];
         
-        [btcell setBezelStyle:NSRoundRectBezelStyle];   // NSRecessedBezelStyle, NSInlineBezelStyle
+        [btcell setBezelStyle:NSBezelStyleRoundRect];   // NSRecessedBezelStyle, NSInlineBezelStyle
         [btcell setTitle:keyCodeToString([(ViewDataModel *)prefLayout[viewTable[row]] getKeyData:oya])];
         
         return btcell;
@@ -732,7 +732,7 @@ static NSData *convTraditionalKeyData(NSData *in) {
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     openPanel.allowedFileTypes = @[@"plist"];
     [openPanel beginSheetModalForWindow:[sender window] completionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
+        if (result == NSModalResponseOK) {
             NSURL *openURL = openPanel.URLs[0];
             
             if (![self loadPreferences:[NSDictionary dictionaryWithContentsOfURL:openURL] ignoreEnabled:NO]) {
@@ -741,7 +741,7 @@ static NSData *convTraditionalKeyData(NSData *in) {
                                                alternateButton:nil
                                                    otherButton:nil
                                      informativeTextWithFormat:NSLocalizedString(@"import_error_text", nil)];
-                alert.alertStyle = NSCriticalAlertStyle;
+                alert.alertStyle = NSAlertStyleCritical;
                 [alert runModal];
             }
             
@@ -885,7 +885,7 @@ static NSData *convTraditionalKeyData(NSData *in) {
                                        alternateButton:nil
                                            otherButton:nil
                              informativeTextWithFormat:NSLocalizedString(@"welcome_text", nil)];
-        alert.alertStyle = NSInformationalAlertStyle;
+        alert.alertStyle = NSAlertStyleInformational;
         [alert runModal];
         [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05f]];
     }
@@ -948,8 +948,8 @@ BOOL checkLayout(NSError *__autoreleasing *outError) {
     if (prefLayout == nil) {
         if (outError != NULL) {
             *outError = [[NSError alloc]
-                         initWithDomain:LacailleErrorDomain
-                         code:LacailleErrorLayoutNotLoad
+                         initWithDomain:BenkeiErrorDomain
+                         code:BenkeiErrorLayoutNotLoad
                          userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"no_layout_message", nil),
                                     NSLocalizedRecoverySuggestionErrorKey:NSLocalizedString(@"no_layout_text", nil)}
                          ];
@@ -966,8 +966,8 @@ BOOL checkEventTap(NSError *__autoreleasing *outError) {
         if (!AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options)) {
             if (outError != NULL) {
                 *outError = [[NSError alloc]
-                             initWithDomain:LacailleErrorDomain
-                             code:LacailleErrorNoEventTap
+                             initWithDomain:BenkeiErrorDomain
+                             code:BenkeiErrorNoEventTap
                              userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"eventTap_error_message", nil),
                                         NSLocalizedRecoverySuggestionErrorKey:NSLocalizedString(@"eventTap_error_text", nil)}
                              ];
@@ -982,8 +982,8 @@ BOOL checkEventTap(NSError *__autoreleasing *outError) {
     if (!eventTapTest) {
         if (outError != NULL) {
             *outError = [[NSError alloc]
-                         initWithDomain:LacailleErrorDomain
-                         code:LacailleErrorNoEventTap
+                         initWithDomain:BenkeiErrorDomain
+                         code:BenkeiErrorNoEventTap
                          userInfo:@{NSLocalizedDescriptionKey:NSLocalizedString(@"eventTap_error_message", nil),
                                     NSLocalizedRecoverySuggestionErrorKey:((AXIsProcessTrustedWithOptions != NULL) ?
                                                                            NSLocalizedString(@"eventTap_error_text", nil) :
@@ -1009,7 +1009,7 @@ BOOL enableEventTap() {
                                            alternateButton:nil
                                                otherButton:nil
                                  informativeTextWithFormat:@"%@", outError.localizedRecoverySuggestion];
-            alert.alertStyle = NSCriticalAlertStyle;
+            alert.alertStyle = NSAlertStyleCritical;
             [alert runModal];
         }
         return NO;
@@ -1323,39 +1323,39 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         return returnPt(event, source);
     }
     
-    if (myCGEventGetFlags(event) & kCGEventFlagMaskShift) {
-        if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore) {
-            
-            NSData *newkey = getKeyDataForOya(keycode, 3);
-            
-            if (newkey.length == 3 && (CGKeyCode)(*(unsigned char *)(newkey.bytes) & 0xff) == kVK_Shift && (CGKeyCode)(*(unsigned char *)(newkey.bytes + 2) & 0xff) == 0xff) {
-                // backward compatibility: 小指シフトのキー定義がデフォルト or 1文字のときは returnPt を使う
-                if (! [newkey isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){kVK_Shift, keycode, 0xff} length:3]]) {
-                    CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode,
-                                                (CGKeyCode)(*(unsigned char *)(newkey.bytes + 1) & 0xff));
-                }
-                return returnPt(event, source);
-            }
-            
-            if (type == kCGEventKeyDown) {
-                fireTimer();
-                
-                myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, kVK_Shift, NO));    // Shift
-                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-                myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, kVK_Shift, YES));   // Shift
-            }
-            if(source != NULL) {
-                CFRelease(source);
-            }
-            return NULL;
-            
-        } else if (prefReturnemu && keycode == prefThumbL) {
-            CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (CGKeyCode)kVK_Return);
-        } else if (prefSpaceemu && keycode == prefThumbR) {
-            CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (CGKeyCode)kVK_Space);
-        }
-        return returnPt(event, source);
-    }
+//    if (myCGEventGetFlags(event) & kCGEventFlagMaskShift) {
+//        if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore) {
+//
+//            NSData *newkey = getKeyDataForOya(keycode, 3);
+//
+//            if (newkey.length == 3 && (CGKeyCode)(*(unsigned char *)(newkey.bytes) & 0xff) == kVK_Shift && (CGKeyCode)(*(unsigned char *)(newkey.bytes + 2) & 0xff) == 0xff) {
+//                // backward compatibility: 小指シフトのキー定義がデフォルト or 1文字のときは returnPt を使う
+//                if (! [newkey isEqualToData:[[NSData alloc] initWithBytes:(unsigned char[]){kVK_Shift, keycode, 0xff} length:3]]) {
+//                    CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode,
+//                                                (CGKeyCode)(*(unsigned char *)(newkey.bytes + 1) & 0xff));
+//                }
+//                return returnPt(event, source);
+//            }
+//
+//            if (type == kCGEventKeyDown) {
+//                fireTimer();
+//
+//                myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, kVK_Shift, NO));    // Shift
+//                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+//                myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, kVK_Shift, YES));   // Shift
+//            }
+//            if(source != NULL) {
+//                CFRelease(source);
+//            }
+//            return NULL;
+//
+//        } else if (prefReturnemu && keycode == prefThumbL) {
+//            CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (CGKeyCode)kVK_Return);
+//        } else if (prefSpaceemu && keycode == prefThumbR) {
+//            CGEventSetIntegerValueField(event, kCGKeyboardEventKeycode, (CGKeyCode)kVK_Space);
+//        }
+//        return returnPt(event, source);
+//    }
     
     // backward compatibility: 後退／取消キーのエミュレーションでは returnPt を使う
 //    BOOL is_bs = YES;
@@ -1475,17 +1475,17 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     return returnPt(event, source);
 }
 
-static inline void startTimer(NSTimeInterval negativeInterval) {
-    [gLock lock];
-    [gTimer invalidate];
-    NSTimeInterval interval = prefTwait - negativeInterval;
-    gTimer = [NSTimer scheduledTimerWithTimeInterval:(interval >= 0 ? interval : 0)
-                                              target:self_
-                                            selector:@selector(timerFired:)
-                                            userInfo:(__bridge id)nil
-                                             repeats:NO];
-    [gLock unlock];
-}
+//static inline void startTimer(NSTimeInterval negativeInterval) {
+//    [gLock lock];
+//    [gTimer invalidate];
+//    NSTimeInterval interval = prefTwait - negativeInterval;
+//    gTimer = [NSTimer scheduledTimerWithTimeInterval:(interval >= 0 ? interval : 0)
+//                                              target:self_
+//                                            selector:@selector(timerFired:)
+//                                            userInfo:(__bridge id)nil
+//                                             repeats:NO];
+//    [gLock unlock];
+//}
 
 static inline void fireTimer() {
     [gTimer invalidate];
