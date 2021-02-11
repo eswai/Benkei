@@ -393,7 +393,9 @@ NSArray *shiftkeys;
     }
     // どの組み合わせも候補がないときは、先頭のキーを除去する
     if (!searchHit) {
-        [ngbuf removeObjectAtIndex:(NSUInteger)0];
+        NSArray *a = [NSArray arrayWithObject:[ngbuf objectAtIndex:0]];
+        [ngbuf removeObjectAtIndex:0];
+        return a;
     }
     // キーが反応しなくなる場合の対策。キーを何も押していない場合はバッファをクリアする。
     if ([pressed count] == 0) {
