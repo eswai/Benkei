@@ -345,7 +345,7 @@ NSArray *shiftkeys;
 }
 
 /* TODO
- 連続シフト
+ 連続シフト done
  前置シフト
  縦書き横書きの切り替え
  編集モード
@@ -362,6 +362,7 @@ NSArray *shiftkeys;
     }
     NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf];
     NSArray *kana;
+    bool searchHit = false;
  
     while ([workbuf count] > 0) {
         NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
@@ -372,11 +373,12 @@ NSArray *shiftkeys;
         } else {
             // 検索ヒットしたら、そのキーはバッファから除去
             [ngbuf removeObjectsInArray: workbuf];
+            searchHit = true;
             break;
         }
     }
     // どの組み合わせも候補がないときは、先頭のキーを除去する
-    if ([workbuf count] == 0) {
+    if (!searchHit) {
         [ngbuf removeObjectAtIndex:(NSUInteger)0];
     }
     // キーが反応しなくなる場合の対策。キーを何も押していない場合はバッファをクリアする。
