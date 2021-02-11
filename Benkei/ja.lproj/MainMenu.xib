@@ -121,7 +121,7 @@
         <window title="Benkei" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="335" y="390" width="524" height="380"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <value key="minSize" type="size" width="500" height="360"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="524" height="380"/>
@@ -584,11 +584,11 @@
                                                         <size key="minSize" width="444" height="12"/>
                                                         <size key="maxSize" width="444" height="42"/>
                                                         <attributedString key="textStorage">
-                                                            <fragment content="http://github.com/">
+                                                            <fragment content="https://github.com/eswai/Benkei">
                                                                 <attributes>
                                                                     <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <font key="NSFont" size="9" name="AquaKana"/>
-                                                                    <url key="NSLink" string="http://github.com/"/>
+                                                                    <url key="NSLink" string="https://github.com/eswai/Benkei"/>
                                                                     <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                                                     <integer key="NSUnderline" value="1"/>
                                                                     <color key="NSUnderlineColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
