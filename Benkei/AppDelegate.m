@@ -219,6 +219,7 @@ typedef NS_ENUM(NSInteger, BenkeiErrorCode) {
         [ud synchronize];
     }
     prefCshift = value;
+    naginata.kouchiShift = value;
 }
 
 static NSControlStateValue getRadioButtonState(BOOL value) {

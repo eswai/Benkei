@@ -31,4 +31,6 @@
 -(NSArray *)pressKey:(CGKeyCode)keycode;
 -(NSArray *)releaseKey:(CGKeyCode)keycode;
 
+@property bool kouchiShift;
+
 @end

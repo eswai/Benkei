@@ -121,7 +121,7 @@
         <window title="Benkei" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="335" y="390" width="524" height="380"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1055"/>
             <value key="minSize" type="size" width="500" height="360"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="524" height="380"/>
@@ -161,10 +161,10 @@
                                             </connections>
                                         </button>
                                         <button toolTip="親指キーを押し続けていれば、2キー目以降も同時打鍵とみなします（主に飛鳥カナ配列で使用します）" translatesAutoresizingMaskIntoConstraints="NO" id="zkB-hd-3E0">
-                                            <rect key="frame" x="15" y="254" width="111" height="18"/>
-                                            <buttonCell key="cell" type="check" title="連続シフトキー" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1TA-wF-EZ2">
+                                            <rect key="frame" x="15" y="253" width="159" height="20"/>
+                                            <buttonCell key="cell" type="check" title="後置シフトを有効にする" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1TA-wF-EZ2">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" size="13" name=".HiraKakuInterface-W3"/>
                                             </buttonCell>
                                             <connections>
                                                 <binding destination="494" name="value" keyPath="self.propCshift" id="yv6-3A-DvX"/>
@@ -532,7 +532,7 @@
                                             <rect key="frame" x="17" y="27" width="444" height="226"/>
                                             <clipView key="contentView" drawsBackground="NO" id="2yP-00-eUE">
                                                 <rect key="frame" x="1" y="1" width="442" height="224"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <textView editable="NO" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="41Y-KL-Ddr">
                                                         <rect key="frame" x="0.0" y="0.0" width="442" height="224"/>
@@ -574,7 +574,7 @@
                                             <rect key="frame" x="17" y="276" width="444" height="12"/>
                                             <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qXt-YG-gDC">
                                                 <rect key="frame" x="0.0" y="0.0" width="444" height="12"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <textView editable="NO" drawsBackground="NO" importsGraphics="NO" verticallyResizable="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" smartInsertDelete="YES" id="qb6-FT-ZU2">
                                                         <rect key="frame" x="0.0" y="0.0" width="444" height="14"/>

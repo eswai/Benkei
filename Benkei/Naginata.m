@@ -23,6 +23,12 @@
 #import "Naginata.h"
 #import <Carbon/Carbon.h>
 
+
+NSFileHandle *debugOutFile1 = nil;
+#define debugOut(...) \
+ [((debugOutFile1 == nil) ? (debugOutFile1 = [NSFileHandle fileHandleWithStandardOutput]) : debugOutFile1) \
+  writeData:[[NSString stringWithFormat:__VA_ARGS__] dataUsingEncoding:NSUTF8StringEncoding]]
+
 @implementation Naginata
 
 NSMutableArray *ngbuf; // 同時押しキーのバッファ
@@ -37,6 +43,7 @@ NSArray *shiftkeys;
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
         shiftkeys = @[[NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M]];
+        self.kouchiShift = false;
 
         // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -354,7 +361,13 @@ NSArray *shiftkeys;
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
-    
+    return type(self.kouchiShift);
+}
+
+NSArray *type(bool ks)
+{
+    debugOut(@"[Naginata] ngbuf=%@\n", ngbuf);
+
     if ([ngbuf count] == 0) return NULL;
     NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf]; // 作業用のバッファ
     NSArray *kana; // 変換後のかな
@@ -370,10 +383,12 @@ NSArray *shiftkeys;
 
     // 前置シフト
     // スペースキーの前までを処理する
-    NSInteger ps = [workbuf indexOfObject:[NSNumber numberWithInt:kVK_Space]];
-    if (ps > 0) {
-        while ([workbuf count] > ps) {
-            [workbuf removeLastObject];
+    if (!ks) {
+        NSInteger ps = [workbuf indexOfObject:[NSNumber numberWithInt:kVK_Space]];
+        if (ps > 0) {
+            while ([workbuf count] > ps) {
+                [workbuf removeLastObject];
+            }
         }
     }
  
@@ -389,6 +404,7 @@ NSArray *shiftkeys;
             // 検索ヒットしたら、そのキーはバッファから除去
             [ngbuf removeObjectsInArray: workbuf];
             searchHit = true;
+            debugOut(@"[Naginata] workbuf=%@, kana=%@, ngbuf=%@\n", workbuf, kana, ngbuf);
             break;
         }
     }
