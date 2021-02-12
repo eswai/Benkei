@@ -355,6 +355,7 @@ NSArray *shiftkeys;
 {
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
     
+    if ([ngbuf count] == 0) return NULL;
     NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf]; // 作業用のバッファ
     NSArray *kana; // 変換後のかな
     bool searchHit = false; // かな変換にヒットしたらtrue
