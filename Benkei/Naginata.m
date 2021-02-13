@@ -346,7 +346,13 @@ NSArray *shiftkeys;
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
+    // 押してないキーの場合は中断
+    if ([pressed containsObject:[NSNumber numberWithInt:keycode]]) {
+        return NULL;
+    }
+
     NSArray *kana;
+    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     // 前置シフトでスペースを押したら、バッファに溜まっているキーは変換開始する
     if (!self.kouchiShift && [ngbuf count] > 0 && keycode == kVK_Space) {
         kana = type(false);
@@ -367,6 +373,7 @@ NSArray *shiftkeys;
  */
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
+    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
     return type(self.kouchiShift);
 }
