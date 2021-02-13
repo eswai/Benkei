@@ -1379,16 +1379,17 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     
     if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_Space) { // see viewTable
         // 薙刀式処理
+        NSArray *kana;
         if (type == kCGEventKeyDown) {
-            [naginata pressKey:keycode];
+            kana = [naginata pressKey:keycode];
         } else if (type == kCGEventKeyUp) {
-            NSArray *kana = [naginata releaseKey:keycode];
-            for (NSNumber *k in kana) {
-                NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){[k intValue]} length:1];
-                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-            }
+            kana = [naginata releaseKey:keycode];
         }
-        
+        for (NSNumber *k in kana) {
+            NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){[k intValue]} length:1];
+            pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+        }
+
         /*
         if (type == kCGEventKeyDown) {
             // 連続シフトで親指を押した

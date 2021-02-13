@@ -346,9 +346,16 @@ NSArray *shiftkeys;
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
+    NSArray *kana;
+    // 前置シフトでスペースを押したら、バッファに溜まっているキーは変換開始する
+    if (!self.kouchiShift && [ngbuf count] > 0 && keycode == kVK_Space) {
+        kana = type(false);
+        [ngbuf removeAllObjects];
+        [pressed removeAllObjects];
+    }
     [ngbuf addObject:[NSNumber numberWithInt:keycode]];
     [pressed addObject:[NSNumber numberWithInt:keycode]];
-    return NULL;
+    return kana;
 }
 
 /* TODO
@@ -381,17 +388,6 @@ NSArray *type(bool ks)
         }
     }
 
-    // 前置シフト
-    // スペースキーの前までを処理する
-    if (!ks) {
-        NSInteger ps = [workbuf indexOfObject:[NSNumber numberWithInt:kVK_Space]];
-        if (ps > 0) {
-            while ([workbuf count] > ps) {
-                [workbuf removeLastObject];
-            }
-        }
-    }
- 
     // かな変換テーブルを検索する
     // ヒットするまでバッファの最後から１文字ずつ消していく
     while ([workbuf count] > 0) {
