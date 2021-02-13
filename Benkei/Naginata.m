@@ -42,7 +42,7 @@ NSArray *shiftkeys;
     if (self) {
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
-        shiftkeys = @[[NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M]];
+        shiftkeys = @[[NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M]];
         self.kouchiShift = false;
 
         // かな定義　将来的に設定ファイルへ外出しする。
@@ -378,27 +378,47 @@ NSArray *shiftkeys;
     return type(self.kouchiShift);
 }
 
+
 NSArray *type(bool ks)
 {
-    debugOut(@"[Naginata] ngbuf=%@\n", ngbuf);
+    // 連続シフト
+    // スペース、濁点、半濁点はバッファになくても、プレス状態にあったらバッファに追加する
+    NSNumber *shift_key;
+    for (NSNumber *s in shiftkeys) {
+        if ([pressed containsObject:s] || [ngbuf containsObject:s]) {
+            shift_key = s;
+            break;
+        }
+    }
+    
+    // バッファが空になるまで繰り返し変換する。
+    NSMutableArray *kana = [NSMutableArray new];
+    while ([ngbuf count] > 0) {
+        NSArray *k1 = lookup(ks, shift_key);
+        if (k1 != NULL) {
+            [kana addObjectsFromArray:k1];
+        }
+    }
+    return kana;
+}
+
+NSArray *lookup(bool ks, NSNumber *sk)
+{
+    debugOut(@"[TYPE1] received ngbuf=%@\n", ngbuf);
 
     if ([ngbuf count] == 0) return NULL;
     NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf]; // 作業用のバッファ
     NSArray *kana; // 変換後のかな
     bool searchHit = false; // かな変換にヒットしたらtrue
     
-    // 連続シフト
-    // スペース、濁点、半濁点はバッファになくても、プレス状態にあったらバッファに追加する
-    for (NSNumber *s in shiftkeys) {
-        if ([pressed containsObject:s] && ![ngbuf containsObject:s]) {
-            [workbuf insertObject:s atIndex:0];
-        }
-    }
-
     // かな変換テーブルを検索する
     // ヒットするまでバッファの最後から１文字ずつ消していく
     while ([workbuf count] > 0) {
-        NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
+        NSMutableSet *ks = [NSMutableSet new];
+        [ks addObjectsFromArray:workbuf];
+        if ([sk intValue] > 0) {
+            [ks addObject:sk];
+        }
         kana = (NSArray *)[ng_keymap objectForKey:ks];
         if (kana == NULL) {
             // かなテーブルに候補がない場合は、最後のキーをのぞいて再検索する
@@ -407,7 +427,7 @@ NSArray *type(bool ks)
             // 検索ヒットしたら、そのキーはバッファから除去
             [ngbuf removeObjectsInArray: workbuf];
             searchHit = true;
-            debugOut(@"[Naginata] workbuf=%@, kana=%@, ngbuf=%@\n", workbuf, kana, ngbuf);
+            debugOut(@"[TYPE2] workbuf=%@, kana=%@, ngbuf=%@\n", workbuf, kana, ngbuf);
             break;
         }
     }
@@ -423,5 +443,6 @@ NSArray *type(bool ks)
     }
     return kana;
 }
+
 
 @end
