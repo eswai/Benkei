@@ -49,7 +49,73 @@
     XCTAssertEqual([r3 lastObject], [NSNumber numberWithInt:kVK_ANSI_A], "b");
 }
 
-- (void)testAYO {
+- (void)testNOYO {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = false;
+    NSArray *r1, *r2, *r3, *r4, *r5, *r6;
+    r1 = [n pressKey:kVK_Space];
+    r2 = [n pressKey:kVK_ANSI_J];
+    r3 = [n pressKey:kVK_ANSI_I];
+    r4 = [n releaseKey:kVK_ANSI_J];
+    r5 = [n releaseKey:kVK_ANSI_I];
+    r6 = [n releaseKey:kVK_Space];
+    XCTAssertEqual([r1 count], 0, "b");
+    XCTAssertEqual([r2 count], 0, "b");
+    XCTAssertEqual([r3 count], 0, "b");
+    XCTAssertEqual([r4 count], 2, "b");
+    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
+    XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r5 count], 2, "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r6 count], 0, "b");
+}
+
+- (void)testNOYO2 {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = false;
+    NSArray *r1, *r2, *r3, *r4, *r5, *r6;
+    r1 = [n pressKey:kVK_Space];
+    r2 = [n pressKey:kVK_ANSI_J];
+    r3 = [n pressKey:kVK_ANSI_I];
+    r4 = [n releaseKey:kVK_Space];
+    r5 = [n releaseKey:kVK_ANSI_J];
+    r6 = [n releaseKey:kVK_ANSI_I];
+    XCTAssertEqual([r1 count], 0, "b");
+    XCTAssertEqual([r2 count], 0, "b");
+    XCTAssertEqual([r3 count], 0, "b");
+    XCTAssertEqual([r4 count], 2, "b");
+    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
+    XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r5 count], 2, "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r6 count], 0, "b");
+}
+
+- (void)testNORU {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = true;
+    NSArray *r1, *r2, *r3, *r4, *r5, *r6;
+    r1 = [n pressKey:kVK_Space];
+    r2 = [n pressKey:kVK_ANSI_J];
+    r3 = [n releaseKey:kVK_Space];
+    r4 = [n pressKey:kVK_ANSI_I];
+    r5 = [n releaseKey:kVK_ANSI_J];
+    r6 = [n releaseKey:kVK_ANSI_I];
+    XCTAssertEqual([r1 count], 0, "b");
+    XCTAssertEqual([r2 count], 0, "b");
+    XCTAssertEqual([r3 count], 2, "b");
+    XCTAssertEqual([r3 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
+    XCTAssertEqual([r3 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r4 count], 0, "b");
+    XCTAssertEqual([r5 count], 2, "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_R], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([r6 count], 0, "b");
+}
+
+- (void)testAYO1 {
     Naginata *n = [Naginata new];
     n.kouchiShift = false;
     NSArray *r1, *r2, *r3, *r4, *r5, *r6;
@@ -70,7 +136,7 @@
     XCTAssertEqual([r6 count], 0, "b");
 }
 
-- (void)testNORU {
+- (void)testNOYO3 {
     Naginata *n = [Naginata new];
     n.kouchiShift = true;
     NSArray *r1, *r2, *r3, *r4, *r5, *r6;
@@ -87,30 +153,30 @@
     XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
     XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
     XCTAssertEqual([r5 count], 2, "b");
-    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_R], "b");
-    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
     XCTAssertEqual([r6 count], 0, "b");
 }
 
-- (void)testNORU2 {
+- (void)testGAGA {
     Naginata *n = [Naginata new];
-    n.kouchiShift = false;
+    n.kouchiShift = true;
     NSArray *r1, *r2, *r3, *r4, *r5, *r6;
-    r1 = [n pressKey:kVK_Space];
-    r2 = [n pressKey:kVK_ANSI_J];
-    r3 = [n pressKey:kVK_ANSI_I];
-    r4 = [n releaseKey:kVK_Space];
-    r5 = [n releaseKey:kVK_ANSI_J];
-    r6 = [n releaseKey:kVK_ANSI_I];
+    r1 = [n pressKey:kVK_ANSI_J];
+    r2 = [n pressKey:kVK_ANSI_F];
+    r3 = [n releaseKey:kVK_ANSI_F];
+    r4 = [n pressKey:kVK_ANSI_F];
+    r5 = [n releaseKey:kVK_ANSI_F];
+    r6 = [n releaseKey:kVK_ANSI_J];
     XCTAssertEqual([r1 count], 0, "b");
     XCTAssertEqual([r2 count], 0, "b");
-    XCTAssertEqual([r3 count], 0, "b");
-    XCTAssertEqual([r4 count], 2, "b");
-    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r3 count], 2, "b");
+    XCTAssertEqual([r3 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_G], "b");
+    XCTAssertEqual([r3 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([r4 count], 0, "b");
     XCTAssertEqual([r5 count], 2, "b");
-    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_R], "b");
-    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_G], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
     XCTAssertEqual([r6 count], 0, "b");
 }
 
