@@ -60,8 +60,8 @@ CGKeyCode hjbuf = 0;
 
 NSFileHandle *debugOutFile = nil;
 #define debugOut(...) \
-// [((debugOutFile == nil) ? (debugOutFile = [NSFileHandle fileHandleWithStandardOutput]) : debugOutFile) \
-//  writeData:[[NSString stringWithFormat:__VA_ARGS__] dataUsingEncoding:NSUTF8StringEncoding]]
+ [((debugOutFile == nil) ? (debugOutFile = [NSFileHandle fileHandleWithStandardOutput]) : debugOutFile) \
+  writeData:[[NSString stringWithFormat:__VA_ARGS__] dataUsingEncoding:NSUTF8StringEncoding]]
 
 #define LAYOUT_KEY_COUNT    50      // キーの個数
 
@@ -79,7 +79,7 @@ BOOL prefReturnemu = NO;            // 無変換キーのエミュレーショ�
 BOOL prefSpaceemu = NO;             // 変換キーのエミュレーション
 BOOL prefFirstIgnoredSingleThumbL = NO;     // 左親指キーの初回単独打鍵は無視
 BOOL prefFirstIgnoredSingleThumbR = NO;     // 右親指キーの初回単独打鍵は無視
-CGKeyCode prefThumbL = kVK_Space;    // 親指左 = 英数
+CGKeyCode prefThumbL = kVK_JIS_Eisu;    // 親指左 = 英数
 CGKeyCode prefThumbR = kVK_JIS_Kana;    // 親指右 = かな
 NSTimeInterval prefTwait = 0.06;    // 同時判定時間
 
@@ -1492,7 +1492,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
 
 static inline void fireTimer() {
     [gTimer invalidate];
-    [self_ timerFired:nil];
+//    [self_ timerFired:nil];
 }
 
 static inline NSData *getKeyDataForOya(CGKeyCode keycode, unsigned char oya) {
@@ -1549,54 +1549,54 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
     }
 }
 
--(void)timerFired:(NSTimer*)timer {
-    [gLock lock];
-    BOOL flag = (gTimer == nil);
-    gTimer = nil;
-    [gLock unlock];
-    if (flag) return;
-    
-    unsigned char keycode = gBuff;
-    gBuff = 0xff;
-    
-    CGEventSourceRef source;
-    CGEventRef tmp_event = CGEventCreateKeyboardEvent(NULL, 0, YES);
-    source = CGEventCreateSourceFromEvent(tmp_event);
-    CFRelease(tmp_event);
-    CGEventSourceSetKeyboardType(source, gKeyboardType);
-    pid_t targetPid = gTargetPid;
-    
-    if (keycode == prefThumbL || keycode == prefThumbR) {
-        unsigned char oya = (keycode == prefThumbL) ? 1 : 2;
-
-        if (prefReturnemu && keycode == prefThumbL) {
-            keycode = (CGKeyCode)kVK_Return;
-        } else if (prefSpaceemu && keycode == prefThumbR) {
-            keycode = (CGKeyCode)kVK_Space;
-        }
-        
-        if ((oya & gFirstIgnoredSingleThumbMask) == 0 || (gPressedOya == oya && !gKeyDownAutorepeat)) {
-            gPressedOya = 0;
-            myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, keycode, YES));
-            myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, keycode, NO));
-        } else {
-            gPressedOya = oya & gFirstIgnoredSingleThumbMask;
-        }
-        
-    } else if (keycode != 0xff) {
-        gPressedOya = 0;
-        NSData *newkey = getKeyDataForOya(keycode, gOya);
-        debugOut(@"[OYA] Keycode=%d, gOya=%d, newKey=%@\n", keycode, gOya, newkey);
-        pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-    }
-    if (!prefCshift) {
-        gOya = 0;
-    }
-    
-    if(source != NULL) {
-        CFRelease(source);
-    }
-}
+//-(void)timerFired:(NSTimer*)timer {
+//    [gLock lock];
+//    BOOL flag = (gTimer == nil);
+//    gTimer = nil;
+//    [gLock unlock];
+//    if (flag) return;
+//
+//    unsigned char keycode = gBuff;
+//    gBuff = 0xff;
+//
+//    CGEventSourceRef source;
+//    CGEventRef tmp_event = CGEventCreateKeyboardEvent(NULL, 0, YES);
+//    source = CGEventCreateSourceFromEvent(tmp_event);
+//    CFRelease(tmp_event);
+//    CGEventSourceSetKeyboardType(source, gKeyboardType);
+//    pid_t targetPid = gTargetPid;
+//
+//    if (keycode == prefThumbL || keycode == prefThumbR) {
+//        unsigned char oya = (keycode == prefThumbL) ? 1 : 2;
+//
+//        if (prefReturnemu && keycode == prefThumbL) {
+//            keycode = (CGKeyCode)kVK_Return;
+//        } else if (prefSpaceemu && keycode == prefThumbR) {
+//            keycode = (CGKeyCode)kVK_Space;
+//        }
+//
+//        if ((oya & gFirstIgnoredSingleThumbMask) == 0 || (gPressedOya == oya && !gKeyDownAutorepeat)) {
+//            gPressedOya = 0;
+//            myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, keycode, YES));
+//            myCGEventPostToPid(targetPid, CGEventCreateKeyboardEvent(source, keycode, NO));
+//        } else {
+//            gPressedOya = oya & gFirstIgnoredSingleThumbMask;
+//        }
+//
+//    } else if (keycode != 0xff) {
+//        gPressedOya = 0;
+//        NSData *newkey = getKeyDataForOya(keycode, gOya);
+//        debugOut(@"[OYA] Keycode=%d, gOya=%d, newKey=%@\n", keycode, gOya, newkey);
+//        pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+//    }
+//    if (!prefCshift) {
+//        gOya = 0;
+//    }
+//
+//    if(source != NULL) {
+//        CFRelease(source);
+//    }
+//}
 
 - (void)keyboardInputSourceChanged:(NSNotification *)notification {
     TISInputSourceRef inputSource = TISCopyCurrentKeyboardInputSource();
