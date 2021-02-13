@@ -906,6 +906,7 @@ static NSData *convTraditionalKeyData(NSData *in) {
     }
     
     naginata = [Naginata new];
+    naginata.kouchiShift = self.propCshift;
 
     gBuff = 0xff;
     gOya = 0;
@@ -1376,7 +1377,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
 //    }
     
     
-    if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_JIS_Yen || keycode == kVK_JIS_Underscore || keycode == prefThumbL || keycode == prefThumbR) { // see viewTable
+    if (keycode < 0x0A || (0x0A < keycode && keycode < 0x24) || (0x24 < keycode && keycode < 0x30) || keycode == kVK_Space) { // see viewTable
         // 薙刀式処理
         if (type == kCGEventKeyDown) {
             [naginata pressKey:keycode];
