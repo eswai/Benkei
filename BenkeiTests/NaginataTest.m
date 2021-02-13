@@ -60,13 +60,13 @@
     r5 = [n releaseKey:kVK_Space];
     r6 = [n releaseKey:kVK_ANSI_I];
     XCTAssertEqual([r1 count], 0, "b");
-    XCTAssertEqual([r2 count], 0, "b");
+    XCTAssertEqual([r2 count], 1, "b");
+    XCTAssertEqual([r2 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
     XCTAssertEqual([r3 count], 0, "b");
-    XCTAssertEqual([r4 count], 1, "b");
-    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([r5 count], 2, "b");
-    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
-    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r4 count], 2, "b");
+    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
+    XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r5 count], 0, "b");
     XCTAssertEqual([r6 count], 0, "b");
 }
 
@@ -79,6 +79,28 @@
     r3 = [n pressKey:kVK_ANSI_I];
     r4 = [n releaseKey:kVK_ANSI_J];
     r5 = [n releaseKey:kVK_Space];
+    r6 = [n releaseKey:kVK_ANSI_I];
+    XCTAssertEqual([r1 count], 0, "b");
+    XCTAssertEqual([r2 count], 0, "b");
+    XCTAssertEqual([r3 count], 0, "b");
+    XCTAssertEqual([r4 count], 2, "b");
+    XCTAssertEqual([r4 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
+    XCTAssertEqual([r4 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([r5 count], 2, "b");
+    XCTAssertEqual([r5 objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_R], "b");
+    XCTAssertEqual([r5 objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([r6 count], 0, "b");
+}
+
+- (void)testNORU2 {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = false;
+    NSArray *r1, *r2, *r3, *r4, *r5, *r6;
+    r1 = [n pressKey:kVK_Space];
+    r2 = [n pressKey:kVK_ANSI_J];
+    r3 = [n pressKey:kVK_ANSI_I];
+    r4 = [n releaseKey:kVK_Space];
+    r5 = [n releaseKey:kVK_ANSI_J];
     r6 = [n releaseKey:kVK_ANSI_I];
     XCTAssertEqual([r1 count], 0, "b");
     XCTAssertEqual([r2 count], 0, "b");
