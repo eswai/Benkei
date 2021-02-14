@@ -1567,9 +1567,24 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
         unsigned key = [k intValue];
         CGEventRef newevent;
 
-        if (key == kVK_Shift || key == kVK_RightShift) {   // Shift
-            flags |= kCGEventFlagMaskShift;
-            continue;
+        // 修飾キーはその後に続く１キーのみ有効
+        switch (key) {
+            case kVK_Shift:
+            case kVK_RightShift:
+                flags |= kCGEventFlagMaskShift;
+                continue;
+            case kVK_Command:
+            case kVK_RightCommand:
+                flags |= kCGEventFlagMaskCommand;
+                continue;
+            case kVK_Control:
+            case kVK_RightControl:
+                flags |= kCGEventFlagMaskControl;
+                continue;
+            case kVK_Option:
+            case kVK_RightOption:
+                flags |= kCGEventFlagMaskAlternate;
+                continue;
         }
         
         newevent = CGEventCreateKeyboardEvent(source, key, YES);
