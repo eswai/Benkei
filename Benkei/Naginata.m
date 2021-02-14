@@ -51,6 +51,8 @@ NSArray *shiftkeys;
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_JIS_Kana], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_J], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_LeftArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_RightArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_LeftArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_T], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_RightArrow], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Y], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Space], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Delete], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_U], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], nil],

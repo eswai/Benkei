@@ -1385,11 +1385,21 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         } else if (type == kCGEventKeyUp) {
             kana = [naginata releaseKey:keycode];
         }
-        for (NSNumber *k in kana) {
-            NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){[k intValue]} length:1];
-            pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-        }
-
+//        CGEventFlags flag = (CGEventFlags)0;
+//        for (NSNumber *k in kana) {
+//            if ([k intValue] == kVK_Shift) {
+//                flag = kCGEventFlagMaskShift;
+//            } else {
+//                NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){[k intValue]} length:1];
+//                pressKeys(source, targetPid, newkey, flag);
+//                flag = (CGEventFlags)0;
+//            }
+//        }
+        pressKeys2(source, targetPid, kana);
+//        if (type == kCGEventKeyDown) {
+//            sendUnicode(source, targetPid, @"？");
+//        }
+        
         /*
         if (type == kCGEventKeyDown) {
             // 連続シフトで親指を押した
@@ -1539,7 +1549,7 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
             flags |= kCGEventFlagMaskControl;
         } else {
             newevent = CGEventCreateKeyboardEvent(source, key, NO);
-            CGEventSetFlags(newevent, (myCGEventGetFlags(newevent) & ~kCGEventFlagMaskShift) | flags);
+            CGEventSetFlags(newevent, (myCGEventGetFlags(newevent)) | flags);
             myCGEventPostToPid(targetPid, newevent);
         }
         
@@ -1547,6 +1557,56 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
             [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.05f]];
         }
     }
+}
+
+
+static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey) {
+    CGEventFlags flags = 0;
+    
+    for (NSNumber *k in newkey) {
+        unsigned key = [k intValue];
+        CGEventRef newevent;
+
+        if (key == kVK_Shift || key == kVK_RightShift) {   // Shift
+            flags |= kCGEventFlagMaskShift;
+            continue;
+        }
+        
+        newevent = CGEventCreateKeyboardEvent(source, key, YES);
+        CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
+        CGEventSetFlags(newevent, flags2 | flags);
+        myCGEventPostToPid(targetPid, newevent);
+        
+        newevent = CGEventCreateKeyboardEvent(source, key, NO);
+        CGEventSetFlags(newevent, flags2 | flags);
+        myCGEventPostToPid(targetPid, newevent);
+        
+        flags = 0;
+        CFRelease(newevent);
+    }
+}
+
+static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str) {
+    // 1 - Get the string length in bytes.
+    NSUInteger l = [str lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
+
+    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Eisu} length:1];
+    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+    
+    // 2 - Get bytes for unicode characters
+    UniChar *uc = malloc(l);
+    [str getBytes:uc maxLength:l usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, l) remainingRange:NULL];
+
+    // 3 - create an empty tap event, and set unicode string
+    CGEventRef tap = CGEventCreateKeyboardEvent(source, 0, YES);
+    CGEventKeyboardSetUnicodeString(tap, str.length, uc);
+    myCGEventPostToPid(targetPid, tap);
+
+    newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
+    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+
+    CFRelease(tap);
+    free(uc);
 }
 
 //-(void)timerFired:(NSTimer*)timer {
