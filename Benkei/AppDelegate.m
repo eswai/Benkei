@@ -1263,12 +1263,12 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
             } else {
                 if (hjbuf + keycode == kVK_ANSI_H + kVK_ANSI_J) {
                     NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
-                    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                    pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
                     hjbuf = 0;
                     return NULL;
                 } else {
                     NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf, keycode} length:2];
-                    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                    pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
                     hjbuf = 0;
                     return NULL;
                 }
@@ -1276,7 +1276,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         } else if (type == kCGEventKeyUp) {
             if (hjbuf > 0 && hjbuf == keycode) {
                 NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf} length:1];
-                pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+                pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
                 hjbuf = 0;
             }
         }
