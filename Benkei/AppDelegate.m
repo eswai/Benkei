@@ -1563,41 +1563,48 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
 static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey) {
     CGEventFlags flags = 0;
     
-    for (NSNumber *k in newkey) {
-        unsigned key = [k intValue];
-        CGEventRef newevent;
+    for (NSObject *k in newkey) {
+        if ([k isKindOfClass: [NSNumber class]]) {
 
-        // 修飾キーはその後に続く１キーのみ有効
-        switch (key) {
-            case kVK_Shift:
-            case kVK_RightShift:
-                flags |= kCGEventFlagMaskShift;
-                continue;
-            case kVK_Command:
-            case kVK_RightCommand:
-                flags |= kCGEventFlagMaskCommand;
-                continue;
-            case kVK_Control:
-            case kVK_RightControl:
-                flags |= kCGEventFlagMaskControl;
-                continue;
-            case kVK_Option:
-            case kVK_RightOption:
-                flags |= kCGEventFlagMaskAlternate;
-                continue;
+            unsigned key = [(NSNumber *)k intValue];
+            CGEventRef newevent;
+
+            // 修飾キーはその後に続く１キーのみ有効
+            switch (key) {
+                case kVK_Shift:
+                case kVK_RightShift:
+                    flags |= kCGEventFlagMaskShift;
+                    continue;
+                case kVK_Command:
+                case kVK_RightCommand:
+                    flags |= kCGEventFlagMaskCommand;
+                    continue;
+                case kVK_Control:
+                case kVK_RightControl:
+                    flags |= kCGEventFlagMaskControl;
+                    continue;
+                case kVK_Option:
+                case kVK_RightOption:
+                    flags |= kCGEventFlagMaskAlternate;
+                    continue;
+            }
+            
+            newevent = CGEventCreateKeyboardEvent(source, key, YES);
+            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
+            CGEventSetFlags(newevent, flags2 | flags);
+            myCGEventPostToPid(targetPid, newevent);
+            
+            newevent = CGEventCreateKeyboardEvent(source, key, NO);
+            CGEventSetFlags(newevent, flags2 | flags);
+            myCGEventPostToPid(targetPid, newevent);
+
+            flags = 0;
+            CFRelease(newevent);
+            
+        } else if ([k isKindOfClass:[NSString class]]) {
+            sendUnicode(source, targetPid, (NSString *)k);
         }
         
-        newevent = CGEventCreateKeyboardEvent(source, key, YES);
-        CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
-        CGEventSetFlags(newevent, flags2 | flags);
-        myCGEventPostToPid(targetPid, newevent);
-        
-        newevent = CGEventCreateKeyboardEvent(source, key, NO);
-        CGEventSetFlags(newevent, flags2 | flags);
-        myCGEventPostToPid(targetPid, newevent);
-        
-        flags = 0;
-        CFRelease(newevent);
     }
 }
 
@@ -1605,9 +1612,10 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     // 1 - Get the string length in bytes.
     NSUInteger l = [str lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
 
-    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Eisu} length:1];
-    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-    
+//    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Eisu} length:1];
+//    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+    pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Eisu]]);
+
     // 2 - Get bytes for unicode characters
     UniChar *uc = malloc(l);
     [str getBytes:uc maxLength:l usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, l) remainingRange:NULL];
@@ -1617,8 +1625,9 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     CGEventKeyboardSetUnicodeString(tap, str.length, uc);
     myCGEventPostToPid(targetPid, tap);
 
-    newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
-    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
+//    newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
+    pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Kana]]);
+//    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
 
     CFRelease(tap);
     free(uc);
