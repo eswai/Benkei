@@ -42,7 +42,15 @@ NSArray *shiftkeys;
     if (self) {
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
-        shiftkeys = @[[NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M]];
+        shiftkeys = @[[NSNumber numberWithInt:kVK_Space],
+                      [NSNumber numberWithInt:kVK_ANSI_D],
+                      [NSNumber numberWithInt:kVK_ANSI_F],
+                      [NSNumber numberWithInt:kVK_ANSI_C],
+                      [NSNumber numberWithInt:kVK_ANSI_V],
+                      [NSNumber numberWithInt:kVK_ANSI_J],
+                      [NSNumber numberWithInt:kVK_ANSI_K],
+                      [NSNumber numberWithInt:kVK_ANSI_M],
+                      [NSNumber numberWithInt:kVK_ANSI_Comma]];
         self.kouchiShift = false;
 
         // かな定義　将来的に設定ファイルへ外出しする。
