@@ -278,8 +278,8 @@ mode2r = <<MEND
 MEND
 
 $henshu = {
-"？{改行}"       => ["kVK_Shift", "kVK_ANSI_Slash", "kVK_Return"],
-"！{改行}"       => ["kVK_Shift", "kVK_ANSI_1", "kVK_Return"],
+"？{改行}"       => ["？"],
+"！{改行}"       => ["！"],
 "{Home}"        => ["kVK_Control", "kVK_ANSI_A"],
 "{End}"         => ["kVK_Control", "kVK_ANSI_E"],
 "+{Home}"       => ["kVK_Shift", "kVK_Control", "kVK_UpArrow"],
@@ -326,7 +326,7 @@ $henshu = {
 "『{改行}"      => ["『"],
 "』{改行}"      => ["』"],
 
-"｜{改行}{End}《》{改行}{↑}"=> ["｜", "kVK_Return", "kVK_Control", "kVK_ANSI_E", "《》", "kVK_Return", "kVK_UpArrow"], # ルビ
+"｜{改行}{End}《》{改行}{↑}"=> ["｜", "kVK_Control", "kVK_ANSI_E", "《》", "kVK_UpArrow"], # ルビ
 "」{改行 2}「{改行}"=> ["」", "kVK_Return", "「"],
 "」{改行 2}{Space}"=> ["」", "kVK_Return", "kVK_Space"],
 "　　　×　　　×　　　×{改行 2}"=> ["　　　×　　　×　　　×", "kVK_Return"],
