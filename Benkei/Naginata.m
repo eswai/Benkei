@@ -67,7 +67,7 @@ NSArray *shiftkeys;
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_Space], nil],
-            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
 
             // 清音
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], nil], // あ
