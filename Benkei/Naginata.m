@@ -420,8 +420,12 @@ NSArray *shiftkeys;
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
-    // 押してないキーの場合は中断
+    // 今押しているはずのキーの場合は中断
     if ([pressed containsObject:[NSNumber numberWithInt:keycode]]) {
+        return NULL;
+    }
+    // すでにバッファにあるキーが来たら中断
+    if ([ngbuf containsObject:[NSNumber numberWithInt:keycode]]) {
         return NULL;
     }
 
@@ -448,8 +452,18 @@ NSArray *shiftkeys;
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d pressed=%@\n", ngbuf, keycode, pressed);
+    if (![pressed containsObject:[NSNumber numberWithInt:keycode]]) {
+        return NULL;
+    }
+    
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
     return type(self.kouchiShift);
+}
+
+-(void)clear
+{
+    [pressed removeAllObjects];
+    [ngbuf removeAllObjects];
 }
 
 NSArray *type(bool ks)

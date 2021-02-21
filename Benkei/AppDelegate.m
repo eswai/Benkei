@@ -1561,6 +1561,10 @@ static void pressKeys(CGEventSourceRef source, pid_t targetPid, NSData *newkey, 
 
 
 static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey) {
+    if (newkey == NULL) {
+        return;
+    }
+    
     CGEventFlags flags = 0;
     
     for (NSObject *k in newkey) {
@@ -1691,6 +1695,7 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
         
         [self updateSbIcon];
     }
+    [naginata clear];
 }
 
 - (void)updateSbIcon {
