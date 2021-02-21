@@ -42,15 +42,16 @@ NSArray *shiftkeys;
     if (self) {
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
-        shiftkeys = @[[NSNumber numberWithInt:kVK_Space],
-                      [NSNumber numberWithInt:kVK_ANSI_D],
-                      [NSNumber numberWithInt:kVK_ANSI_F],
-                      [NSNumber numberWithInt:kVK_ANSI_C],
-                      [NSNumber numberWithInt:kVK_ANSI_V],
-                      [NSNumber numberWithInt:kVK_ANSI_J],
-                      [NSNumber numberWithInt:kVK_ANSI_K],
-                      [NSNumber numberWithInt:kVK_ANSI_M],
-                      [NSNumber numberWithInt:kVK_ANSI_Comma]];
+        shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_K], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_Comma], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_F], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], nil],
+                      ];
         self.kouchiShift = false;
 
         // かな定義　将来的に設定ファイルへ外出しする。
@@ -446,7 +447,7 @@ NSArray *shiftkeys;
  */
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
+    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d pressed=%@\n", ngbuf, keycode, pressed);
     [pressed removeObject:[NSNumber numberWithInt:keycode]];
     return type(self.kouchiShift);
 }
@@ -462,9 +463,14 @@ NSArray *type(bool ks)
     
     // 連続シフト
     // スペース、濁点、半濁点はバッファになくても、プレス状態にあったらバッファに追加する
-    for (NSNumber *s in shiftkeys) {
-        if ([pressed containsObject:s] && ![ngbuf containsObject:s]) {
-            [workbuf insertObject:s atIndex:0];
+    for (NSSet *s in shiftkeys) {
+        if ([s isSubsetOfSet:pressed]) {
+            for (NSNumber *k in s) {
+                if (![ngbuf containsObject:k]) {
+                    [workbuf insertObject:k atIndex:0];
+                }
+            }
+            break;
         }
     }
 
