@@ -261,6 +261,47 @@
     XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U], "b");
 }
 
+- (void)testMUIA1 {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_L]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_Semicolon]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Semicolon]];
+
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus], "b");
+}
+
+- (void)testMUIA2 {
+    Naginata *n = [Naginata new];
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_L]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_Semicolon]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Semicolon]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus], "b");
+}
+
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
