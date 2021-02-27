@@ -161,19 +161,19 @@
                                             </connections>
                                         </button>
                                         <button toolTip="親指キーを押し続けていれば、2キー目以降も同時打鍵とみなします（主に飛鳥カナ配列で使用します）" translatesAutoresizingMaskIntoConstraints="NO" id="zkB-hd-3E0">
-                                            <rect key="frame" x="15" y="253" width="159" height="20"/>
+                                            <rect key="frame" x="15" y="254" width="159" height="18"/>
                                             <buttonCell key="cell" type="check" title="後置シフトを有効にする" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="1TA-wF-EZ2">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
                                                 <binding destination="494" name="value" keyPath="self.propCshift" id="yv6-3A-DvX"/>
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgw-nM-gcf">
-                                            <rect key="frame" x="15" y="216" width="77" height="16"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="同時判定時間" id="pNT-1y-1tl">
-                                                <font key="font" metaFont="system"/>
+                                            <rect key="frame" x="15" y="216" width="149" height="16"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="同時押しとみなす最小時間" id="pNT-1y-1tl">
+                                                <font key="font" size="13" name=".HiraKakuInterface-W3"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>

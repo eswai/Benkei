@@ -32,20 +32,20 @@ NSFileHandle *debugOutFile1 = nil;
 
 @implementation Naginata
 
-NSMutableArray *ngbuf; // 同時押しキーのバッファ
+NSMutableArray *ngbuf; // 未変換のキーバッファ
 NSDictionary *ng_keymap; // かな変換テーブル
-NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは一致しない場合あり。
 NSArray *shiftkeys;
 
-NSMutableDictionary *ngbuf2;
+NSMutableDictionary *ngdic; // CGKeycodeとNGKeyの対応
+NSMutableDictionary *pressed; // 押されているキー
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
-        ngbuf2 = [NSMutableDictionary new];
-        pressed = [NSMutableSet new];
+        ngdic = [NSMutableDictionary new];
+        pressed = [NSMutableDictionary new];
         shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil],
@@ -425,20 +425,18 @@ NSMutableDictionary *ngbuf2;
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
-    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf2, keycode);
+    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngdic, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
     // 今押しているはずのキーの場合は中断
-    if ([ngbuf2 objectForKey:k] != nil) {
+    if ([pressed objectForKey:k] != nil) {
         return NULL;
     }
     
     NGKey *ngk = [[NGKey alloc] initWithKeycode: keycode];
-    if ([shiftkeys containsObject:k]) {
-        ngk.isShiftKey = true;
-    }
     [ngbuf addObject: ngk];
-    [ngbuf2 setObject:ngk forKey:k];
+    [ngdic setObject:ngk forKey:k];
+    [pressed setObject:ngk forKey:k];
 
     return NULL;
 }
@@ -449,28 +447,48 @@ NSMutableDictionary *ngbuf2;
     
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
-    if ([ngbuf2 objectForKey:k] == nil) {
+    if ([pressed objectForKey:k] == nil) {
         return NULL;
     }
     
     NSDate *releaseTime = [NSDate new];
-    NGKey *rk = [ngbuf2 objectForKey:k];
-    [ngbuf removeObject: rk];
-
+    NGKey *rk = [ngdic objectForKey:k]; // 離したキー
+    NGKey *fk = [ngbuf firstObject]; // バッファの先頭キー
+    [pressed removeObjectForKey:k];
+    [ngbuf removeObjectAtIndex:0];
+    
+    // シフトキーかどうか
+//    NSSet *pks = [[NSSet new] setByAddingObjectsFromArray:[pressed allValues]];
+//    for (NSSet *s in shiftkeys) {
+//        if ([s isSubsetOfSet:pks]) {
+//            for (NSNumber *sk in s) {
+//                NGKey *ngk = [pressed objectForKey:sk];
+//                ngk.isShiftKey = true;
+//            }
+//            break;
+//        }
+//    }
+    
     NSMutableArray *douji = [NSMutableArray new];
-    if (!rk.isConverted || rk.isShiftKey) {
-        [douji addObject:k];
-        for (NGKey *pk in ngbuf) {
-            // 離したキーが、他のキーに完全に重なっている
-            if ([pk.pressTime compare:rk.pressTime] == NSOrderedDescending) {
+//    // 連続シフト
+//    for (NGKey *pk in [pressed allValues]) {
+//        if (pk.isShiftKey) {
+//            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
+//            pk.isShiftKey = false;
+//        }
+//    }
+    if (!fk.isConverted || fk.isShiftKey) {
+        [douji addObject:[NSNumber numberWithInt:fk.keycode]];
+    }
+    for (NGKey *pk in ngbuf) {
+        // x sec以上、重なっている
+        if ([releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
+            if (!pk.isConverted) {
                 [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-                continue;
             }
-            // x sec以上、重なっている
-            if ([releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
-                [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-            }
+            continue;
         }
+        break;
     }
 
     NSArray *kana;
@@ -479,7 +497,7 @@ NSMutableDictionary *ngbuf2;
         kana = (NSArray *)[ng_keymap objectForKey:ds];
         if (kana != NULL) {
             for (NSNumber *dk in douji) {
-                NGKey *ngk = [ngbuf2 objectForKey:dk];
+                NGKey *ngk = [ngdic objectForKey:dk];
                 ngk.isConverted = true;
             }
             break;
@@ -487,9 +505,9 @@ NSMutableDictionary *ngbuf2;
             [douji removeLastObject];
         }
     }
-    
-    [ngbuf2 removeObjectForKey:k];
-    
+        
+    [ngdic removeObjectForKey:fk];
+
     return kana;
 }
 
