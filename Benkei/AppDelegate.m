@@ -319,6 +319,7 @@ static NSControlStateValue getRadioButtonState(BOOL value) {
         [ud synchronize];
     };
     prefTwait = value / 1000;
+    naginata.doujiTime = prefTwait;
 }
 
 
@@ -907,6 +908,7 @@ static NSData *convTraditionalKeyData(NSData *in) {
     
     naginata = [Naginata new];
     naginata.kouchiShift = self.propCshift;
+    naginata.doujiTime = prefTwait;
 
     gBuff = 0xff;
     gOya = 0;

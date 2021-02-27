@@ -33,5 +33,6 @@
 -(void)clear;
 
 @property bool kouchiShift;
+@property double doujiTime;
 
 @end

@@ -57,6 +57,7 @@ NSMutableDictionary *ngbuf2;
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], nil],
                       ];
         self.kouchiShift = false;
+        self.doujiTime = 0.1;
 
         // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -431,52 +432,70 @@ NSMutableDictionary *ngbuf2;
     if ([ngbuf2 objectForKey:k] != nil) {
         return NULL;
     }
-
-    [ngbuf2 setObject:[[NGKey alloc] initWithKeycode: keycode] forKey:k];
+    
+    NGKey *ngk = [[NGKey alloc] initWithKeycode: keycode];
+    if ([shiftkeys containsObject:k]) {
+        ngk.isShiftKey = true;
+    }
+    [ngbuf addObject: ngk];
+    [ngbuf2 setObject:ngk forKey:k];
 
     return NULL;
 }
 
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf2, keycode);
+    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
-    if (![ngbuf2 objectForKey:k]) {
+    if ([ngbuf2 objectForKey:k] == nil) {
         return NULL;
     }
     
     NSDate *releaseTime = [NSDate new];
     NGKey *rk = [ngbuf2 objectForKey:k];
-    NSMutableSet *douji = [NSMutableSet new];
-    
-    [ngbuf2 removeObjectForKey:k];
-    for (NGKey *pk in [ngbuf2 allValues]) {
-        if ([releaseTime timeIntervalSinceDate:pk.pressTime] > 0.1) {
-            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-        }
-    }
-    
-    if (!rk.isConverted || (rk.isShiftKey && [douji count] > 0)) {
+    [ngbuf removeObject: rk];
+
+    NSMutableArray *douji = [NSMutableArray new];
+    if (!rk.isConverted || rk.isShiftKey) {
         [douji addObject:k];
+        for (NGKey *pk in ngbuf) {
+            // 離したキーが、他のキーに完全に重なっている
+            if ([pk.pressTime compare:rk.pressTime] == NSOrderedDescending) {
+                [douji addObject:[NSNumber numberWithInt:pk.keycode]];
+                continue;
+            }
+            // x sec以上、重なっている
+            if ([releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
+                [douji addObject:[NSNumber numberWithInt:pk.keycode]];
+            }
+        }
     }
 
     NSArray *kana;
-    kana = (NSArray *)[ng_keymap objectForKey:douji];
-    if (kana != NULL) {
-        for (NSNumber *dk in douji) {
-            NGKey *dkn = [ngbuf2 objectForKey:dk];
-            dkn.isConverted = true;
+    while ([douji count] > 0) {
+        NSSet *ds = [[NSSet new] setByAddingObjectsFromArray:douji];
+        kana = (NSArray *)[ng_keymap objectForKey:ds];
+        if (kana != NULL) {
+            for (NSNumber *dk in douji) {
+                NGKey *ngk = [ngbuf2 objectForKey:dk];
+                ngk.isConverted = true;
+            }
+            break;
+        } else {
+            [douji removeLastObject];
         }
     }
+    
+    [ngbuf2 removeObjectForKey:k];
     
     return kana;
 }
 
 -(void)clear
 {
-    [ngbuf2 removeAllObjects];
+    [ngbuf removeAllObjects];
 }
 
 NSArray *type(bool ks)
