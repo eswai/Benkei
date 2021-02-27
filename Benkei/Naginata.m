@@ -55,6 +55,7 @@ NSMutableDictionary *pressed; // 押されているキー
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], nil],
                       ];
         self.kouchiShift = false;
         self.doujiTime = 0.1;
