@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5249B5F125E98011008A1A37 /* NGKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 5249B5F025E98011008A1A37 /* NGKey.m */; };
 		52D0819725D03F4300531247 /* Naginata.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D0819625D03F4300531247 /* Naginata.m */; };
 		52D0819B25D06F3700531247 /* NaginataTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 52D0819A25D06F3700531247 /* NaginataTest.m */; };
 		A41064AD18F0109700323B12 /* License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A41064AC18F0109700323B12 /* License.rtf */; };
@@ -39,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5249B5F025E98011008A1A37 /* NGKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGKey.m; sourceTree = "<group>"; };
+		5249B5F425E9801D008A1A37 /* NGKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGKey.h; sourceTree = "<group>"; };
 		52D0819525D03F2000531247 /* Naginata.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Naginata.h; sourceTree = "<group>"; };
 		52D0819625D03F4300531247 /* Naginata.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Naginata.m; sourceTree = "<group>"; };
 		52D0819A25D06F3700531247 /* NaginataTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaginataTest.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				A4A8F83D18E7A4A600571DD5 /* KeyTransformer.m */,
 				52D0819525D03F2000531247 /* Naginata.h */,
 				52D0819625D03F4300531247 /* Naginata.m */,
+				5249B5F025E98011008A1A37 /* NGKey.m */,
+				5249B5F425E9801D008A1A37 /* NGKey.h */,
 			);
 			path = Benkei;
 			sourceTree = "<group>";
@@ -288,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5249B5F125E98011008A1A37 /* NGKey.m in Sources */,
 				52D0819725D03F4300531247 /* Naginata.m in Sources */,
 				A4A8F83E18E7A4A600571DD5 /* KeyTransformer.m in Sources */,
 				A4F5EF1818BA293000A2F984 /* AppDelegate.m in Sources */,

@@ -21,6 +21,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Naginata.h"
+#import "NGKey.h"
 #import <Carbon/Carbon.h>
 
 
@@ -36,11 +37,14 @@ NSDictionary *ng_keymap; // かな変換テーブル
 NSMutableSet *pressed; // 今、押下状態にあるキー。バッファとは一致しない場合あり。
 NSArray *shiftkeys;
 
+NSMutableDictionary *ngbuf2;
+
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
+        ngbuf2 = [NSMutableDictionary new];
         pressed = [NSMutableSet new];
         shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
@@ -420,50 +424,59 @@ NSArray *shiftkeys;
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
+    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf2, keycode);
+    NSNumber *k = [NSNumber numberWithInt:keycode];
+    
     // 今押しているはずのキーの場合は中断
-    if ([pressed containsObject:[NSNumber numberWithInt:keycode]]) {
-        return NULL;
-    }
-    // すでにバッファにあるキーが来たら中断
-    if ([ngbuf containsObject:[NSNumber numberWithInt:keycode]]) {
+    if ([ngbuf2 objectForKey:k] != nil) {
         return NULL;
     }
 
-    NSArray *kana;
-    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
-    // 前置シフトでスペースを押したら、バッファに溜まっているキーは変換開始する
-    if (!self.kouchiShift && [ngbuf count] > 0 && keycode == kVK_Space) {
-        kana = type(false);
-        [ngbuf removeAllObjects];
-        [pressed removeAllObjects];
-    }
-    [ngbuf addObject:[NSNumber numberWithInt:keycode]];
-    [pressed addObject:[NSNumber numberWithInt:keycode]];
-    return kana;
+    [ngbuf2 setObject:[[NGKey alloc] initWithKeycode: keycode] forKey:k];
+
+    return NULL;
 }
 
-/* TODO
- 連続シフト done
- 前置シフト done
- 縦書き横書きの切り替え
- 編集モード
- 
- */
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d pressed=%@\n", ngbuf, keycode, pressed);
-    if (![pressed containsObject:[NSNumber numberWithInt:keycode]]) {
+    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf2, keycode);
+    
+    NSNumber *k = [NSNumber numberWithInt:keycode];
+    
+    if (![ngbuf2 objectForKey:k]) {
         return NULL;
     }
     
-    [pressed removeObject:[NSNumber numberWithInt:keycode]];
-    return type(self.kouchiShift);
+    NSDate *releaseTime = [NSDate new];
+    NGKey *rk = [ngbuf2 objectForKey:k];
+    NSMutableSet *douji = [NSMutableSet new];
+    
+    [ngbuf2 removeObjectForKey:k];
+    for (NGKey *pk in [ngbuf2 allValues]) {
+        if ([releaseTime timeIntervalSinceDate:pk.pressTime] > 0.1) {
+            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
+        }
+    }
+    
+    if (!rk.isConverted || (rk.isShiftKey && [douji count] > 0)) {
+        [douji addObject:k];
+    }
+
+    NSArray *kana;
+    kana = (NSArray *)[ng_keymap objectForKey:douji];
+    if (kana != NULL) {
+        for (NSNumber *dk in douji) {
+            NGKey *dkn = [ngbuf2 objectForKey:dk];
+            dkn.isConverted = true;
+        }
+    }
+    
+    return kana;
 }
 
 -(void)clear
 {
-    [pressed removeAllObjects];
-    [ngbuf removeAllObjects];
+    [ngbuf2 removeAllObjects];
 }
 
 NSArray *type(bool ks)
