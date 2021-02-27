@@ -452,40 +452,32 @@ NSMutableDictionary *pressed; // 押されているキー
     }
     
     NSDate *releaseTime = [NSDate new];
-    NGKey *rk = [ngdic objectForKey:k]; // 離したキー
+//    NGKey *rk = [ngdic objectForKey:k]; // 離したキー
     NGKey *fk = [ngbuf firstObject]; // バッファの先頭キー
+    NSSet *pshift;
     [pressed removeObjectForKey:k];
     [ngbuf removeObjectAtIndex:0];
     
-    // シフトキーかどうか
-//    NSSet *pks = [[NSSet new] setByAddingObjectsFromArray:[pressed allValues]];
-//    for (NSSet *s in shiftkeys) {
-//        if ([s isSubsetOfSet:pks]) {
-//            for (NSNumber *sk in s) {
-//                NGKey *ngk = [pressed objectForKey:sk];
-//                ngk.isShiftKey = true;
-//            }
-//            break;
-//        }
-//    }
+    // シフトキー
+    NSSet *pks = [[NSSet new] setByAddingObjectsFromArray:[pressed allKeys]];
+    for (NSSet *s in shiftkeys) {
+        if ([s isSubsetOfSet:pks]) {
+            pshift = s;
+            break;
+        }
+    }
     
     NSMutableArray *douji = [NSMutableArray new];
-//    // 連続シフト
-//    for (NGKey *pk in [pressed allValues]) {
-//        if (pk.isShiftKey) {
-//            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-//            pk.isShiftKey = false;
-//        }
-//    }
-    if (!fk.isConverted || fk.isShiftKey) {
+    if (![pshift containsObject:[NSNumber numberWithInt:fk.keycode]]
+        && !fk.isConverted) {
         [douji addObject:[NSNumber numberWithInt:fk.keycode]];
     }
     for (NGKey *pk in ngbuf) {
         // x sec以上、重なっている
-        if ([releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
-            if (!pk.isConverted) {
-                [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-            }
+        if (![pshift containsObject:[NSNumber numberWithInt:pk.keycode]]
+            && !pk.isConverted
+            && [releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
+            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
             continue;
         }
         break;
@@ -493,7 +485,9 @@ NSMutableDictionary *pressed; // 押されているキー
 
     NSArray *kana;
     while ([douji count] > 0) {
-        NSSet *ds = [[NSSet new] setByAddingObjectsFromArray:douji];
+        NSMutableSet *ds = [NSMutableSet new];
+        [ds addObjectsFromArray:douji];
+        [ds addObjectsFromArray:[pshift allObjects]];
         kana = (NSArray *)[ng_keymap objectForKey:ds];
         if (kana != NULL) {
             for (NSNumber *dk in douji) {
@@ -514,57 +508,6 @@ NSMutableDictionary *pressed; // 押されているキー
 -(void)clear
 {
     [ngbuf removeAllObjects];
-}
-
-NSArray *type(bool ks)
-{
-    debugOut(@"[Naginata] ngbuf=%@\n", ngbuf);
-
-    if ([ngbuf count] == 0) return NULL;
-    NSMutableArray *workbuf = [NSMutableArray arrayWithArray:ngbuf]; // 作業用のバッファ
-    NSArray *kana; // 変換後のかな
-    bool searchHit = false; // かな変換にヒットしたらtrue
-    
-    // 連続シフト
-    // スペース、濁点、半濁点はバッファになくても、プレス状態にあったらバッファに追加する
-    for (NSSet *s in shiftkeys) {
-        if ([s isSubsetOfSet:pressed]) {
-            for (NSNumber *k in s) {
-                if (![ngbuf containsObject:k]) {
-                    [workbuf insertObject:k atIndex:0];
-                }
-            }
-            break;
-        }
-    }
-
-    // かな変換テーブルを検索する
-    // ヒットするまでバッファの最後から１文字ずつ消していく
-    while ([workbuf count] > 0) {
-        NSSet *ks = [[NSSet new] setByAddingObjectsFromArray:workbuf];
-        kana = (NSArray *)[ng_keymap objectForKey:ks];
-        if (kana == NULL) {
-            // かなテーブルに候補がない場合は、最後のキーをのぞいて再検索する
-            [workbuf removeLastObject];
-        } else {
-            // 検索ヒットしたら、そのキーはバッファから除去
-            [ngbuf removeObjectsInArray: workbuf];
-            searchHit = true;
-            debugOut(@"[Naginata] workbuf=%@, kana=%@, ngbuf=%@\n", workbuf, kana, ngbuf);
-            break;
-        }
-    }
-    // どの組み合わせも候補がないときは、先頭のキーを除去する
-    if (!searchHit) {
-        NSArray *a = [NSArray arrayWithObject:[ngbuf objectAtIndex:0]];
-        [ngbuf removeObjectAtIndex:0];
-        return a;
-    }
-    // キーが反応しなくなる場合の対策。キーを何も押していない場合はバッファをクリアする。
-    if ([pressed count] == 0) {
-        [ngbuf removeAllObjects];
-    }
-    return kana;
 }
 
 @end
