@@ -35,17 +35,14 @@ NSFileHandle *debugOutFile1 = nil;
 NSMutableArray *ngbuf; // 未変換のキーバッファ
 NSDictionary *ng_keymap; // かな変換テーブル
 NSArray *shiftkeys;
-
-NSMutableDictionary *ngdic; // CGKeycodeとNGKeyの対応
-NSMutableDictionary *pressed; // 押されているキー
+NSMutableSet *pressed; // 押されているキー
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         ngbuf = [NSMutableArray new];
-        ngdic = [NSMutableDictionary new];
-        pressed = [NSMutableDictionary new];
+        pressed = [NSMutableSet new];
         shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil],
@@ -58,7 +55,7 @@ NSMutableDictionary *pressed; // 押されているキー
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], nil],
                       ];
         self.kouchiShift = false;
-        self.doujiTime = 0.1;
+        self.doujiTime = 0;
 
         // かな定義　将来的に設定ファイルへ外出しする。
         ng_keymap = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -426,122 +423,46 @@ NSMutableDictionary *pressed; // 押されているキー
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
-    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngdic, keycode);
+    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
     // 今押しているはずのキーの場合は中断
-    if ([pressed objectForKey:k] != nil) {
+    if ([pressed containsObject:k]) {
         return NULL;
     }
     
+    NSArray *kana;
+    if (keycode == kVK_Space) {
+        if (!self.kouchiShift) {
+            if ([ngbuf count] > 0) {
+                kana = type(ngbuf);
+                [pressed removeAllObjects];
+            }
+        }
+    }
     NGKey *ngk = [[NGKey alloc] initWithKeycode: keycode];
     [ngbuf addObject: ngk];
-    [ngdic setObject:ngk forKey:k];
-    [pressed setObject:ngk forKey:k];
+    [pressed addObject:k];
 
-    return NULL;
+    return kana;
 }
 
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
     debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
-    
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
-    if ([pressed objectForKey:k] == nil) {
-        return NULL;
+    if (![pressed containsObject:k]) {
+        return [NSArray new];
     }
     
-    NSDate *releaseTime = [NSDate new];
-    NGKey *rk = [ngdic objectForKey:k];
-    rk.releaseTime = releaseTime;
-//    NGKey *rk = [ngdic objectForKey:k]; // 離したキー
-    NGKey *fk; // バッファの先頭キー
-    NSSet *pshift;
+    [pressed removeObject:k];
     
-    // 連続シフトしない
-    NSMutableArray *douji_nr = [NSMutableArray new];
-    for (NGKey *pk in ngbuf) {
-        // x sec以上、重なっている
-        if (!pk.isConverted
-            && [releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
-            [douji_nr addObject:[NSNumber numberWithInt:pk.keycode]];
-            continue;
-        }
-    }
-
-    // 連続シフトする
-    // バッファの中で、まだ変換されていない最初のキーを探索
-    for (NGKey *ngk in ngbuf) {
-        if (!ngk.isConverted) {
-            fk = ngk;
-            break;
-        }
-    }
-    
-    // シフトキー
-    // 有効な先頭キーをプレスしたときに同時に押していたキーの中で、無効なキーがあって、
-    // シフト文字なら、有効にする
-    NSMutableDictionary *mshift_ngk = [NSMutableDictionary new];
-    NSMutableArray *mshift_kc = [NSMutableArray new];
-    for (NGKey *ngk in ngbuf) {
-        if (ngk.isConverted &&
-            [ngk.pressTime compare:fk.pressTime] == NSOrderedAscending // <
-            && (ngk.releaseTime == nil
-                || [fk.pressTime compare:ngk.releaseTime] == NSOrderedAscending)
-            ) {
-            [mshift_ngk setObject:ngk forKey:[NSNumber numberWithInt:ngk.keycode]];
-            [mshift_kc addObject:[NSNumber numberWithInt:ngk.keycode]];
-        }
-    }
-    if ([mshift_kc count] > 0) {
-        for (NSSet *sset in shiftkeys) {
-            if ([sset isSubsetOfSet:[[NSSet alloc] initWithArray:mshift_kc]]) {
-                for (NSNumber *ps in sset) {
-                    NGKey *ngk = [mshift_ngk objectForKey:ps];
-                    ngk.isConverted = false;
-                    ngk.isShiftKey = true;
-                }
-                break;
-            }
-        }
-    }
-    
-    NSMutableArray *douji = [NSMutableArray new];
-
-    for (NGKey *pk in ngbuf) {
-        // x sec以上、重なっている
-        if (!pk.isConverted
-            && [releaseTime timeIntervalSinceDate:pk.pressTime] >= self.doujiTime) {
-            [douji addObject:[NSNumber numberWithInt:pk.keycode]];
-            continue;
-        }
-//        break;
-    }
-
-    // 先に連続シフトありで検索
     NSArray *kana;
-    kana = lookup(douji);
+    if ([ngbuf count] > 0) {
+        kana = type();
+    }
     
-    // 連続シフトなしで検索
-    if ([kana count] == 0) {
-        kana = lookup(douji_nr);
-    }
-        
-    [pressed removeObjectForKey:k];
-    
-    // バッファ内の全てのキーが変換されたら、バッファをクリアする
-    bool f = false;
-    for (NGKey *ngk in ngbuf) {
-        if (!ngk.isConverted) {
-            f = true;
-        }
-    }
-    if ([pressed count] == 0) {
-        [ngbuf removeAllObjects];
-        [ngdic removeAllObjects];
-    }
-
     return kana;
 }
 
@@ -550,35 +471,45 @@ NSMutableDictionary *pressed; // 押されているキー
     [ngbuf removeAllObjects];
 }
 
-NSArray *lookup(NSArray *keys)
+NSArray *type()
 {
-    NSArray *kana;
-    NSMutableArray *douji = [[NSMutableArray alloc] initWithArray:keys];
-    while ([douji count] > 0) {
-        // 復活させたシフトキーは単独変換しない
-        if ([douji count] == 1) {
-            NSNumber *d = [douji firstObject];
-            NGKey *ngk = [ngdic objectForKey:d];
-            if (ngk.isShiftKey) {
-                ngk.isConverted = true;
-                ngk.isShiftKey = false;
-                break;
+    NSUInteger nt = [ngbuf count];
+    while (nt > 0) {
+        NSArray *r = lookup(nt, true);
+        if ([r count] > 0) return r;
+        r = lookup(nt, false);
+        if ([r count] > 0) return r;
+        nt--;
+    }
+    [ngbuf removeObjectAtIndex:0];
+    return [NSArray new];
+}
+
+NSArray *lookup(NSUInteger nt, bool shifted)
+{
+    NSMutableSet *keycomb_buf = [NSMutableSet new];
+    for (int i = 0; i < nt; i++) {
+        NGKey *ngk = [ngbuf objectAtIndex:i];
+        [keycomb_buf addObject:[NSNumber numberWithInt:ngk.keycode]];
+    }
+    
+    if (shifted) {
+        for (NSSet *s in shiftkeys) {
+            if ([s isSubsetOfSet:pressed]) {
+                [keycomb_buf addObjectsFromArray:[s allObjects]];
             }
-        }
-        NSMutableSet *ds = [NSMutableSet new];
-        [ds addObjectsFromArray:douji];
-        kana = (NSArray *)[ng_keymap objectForKey:ds];
-        if (kana != NULL) {
-            for (NSNumber *dk in douji) {
-                NGKey *ngk = [ngdic objectForKey:dk];
-                ngk.isConverted = true;
-            }
-            break;
-        } else {
-            [douji removeLastObject];
         }
     }
-    return kana;
+    
+    NSArray *kana = [ng_keymap objectForKey:keycomb_buf];
+    if (kana != nil) {
+        for (int i = 0; i < nt; i++) {
+            [ngbuf removeObjectAtIndex:0];
+        }
+        return kana;
+    } else {
+        return [NSArray new];
+    }
 }
 
 @end
