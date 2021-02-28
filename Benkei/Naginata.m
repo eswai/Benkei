@@ -456,8 +456,6 @@ NSMutableDictionary *pressed; // 押されているキー
 //    NGKey *rk = [ngdic objectForKey:k]; // 離したキー
     NGKey *fk = [ngbuf firstObject]; // バッファの先頭キー
     NSSet *pshift;
-    [pressed removeObjectForKey:k];
-    [ngbuf removeObjectAtIndex:0];
     
     // シフトキー
     NSSet *pks = [[NSSet new] setByAddingObjectsFromArray:[pressed allKeys]];
@@ -469,10 +467,10 @@ NSMutableDictionary *pressed; // 押されているキー
     }
     
     NSMutableArray *douji = [NSMutableArray new];
-    if (![pshift containsObject:[NSNumber numberWithInt:fk.keycode]]
-        && !fk.isConverted) {
-        [douji addObject:[NSNumber numberWithInt:fk.keycode]];
-    }
+//    if (![pshift containsObject:[NSNumber numberWithInt:fk.keycode]]
+//        && !fk.isConverted) {
+//        [douji addObject:[NSNumber numberWithInt:fk.keycode]];
+//    }
     for (NGKey *pk in ngbuf) {
         // x sec以上、重なっている
         if (![pshift containsObject:[NSNumber numberWithInt:pk.keycode]]
@@ -481,10 +479,20 @@ NSMutableDictionary *pressed; // 押されているキー
             [douji addObject:[NSNumber numberWithInt:pk.keycode]];
             continue;
         }
-        break;
+//        break;
     }
 
     NSArray *kana;
+    // シフトキーだけを押している場合
+    if ([douji count] == 0) {
+        for (NSNumber *ns in pshift) {
+            NGKey *ngk = [ngdic objectForKey:ns];
+            if (!ngk.isConverted) {
+                [douji addObject:ns];
+            }
+        }
+        pshift = [NSSet new];
+    }
     while ([douji count] > 0) {
         NSMutableSet *ds = [NSMutableSet new];
         [ds addObjectsFromArray:douji];
@@ -495,6 +503,10 @@ NSMutableDictionary *pressed; // 押されているキー
                 NGKey *ngk = [ngdic objectForKey:dk];
                 ngk.isConverted = true;
             }
+            for (NSNumber *dk in pshift) {
+                NGKey *ngk = [ngdic objectForKey:dk];
+                ngk.isConverted = true;
+            }
             break;
         } else {
             [douji removeLastObject];
@@ -502,6 +514,8 @@ NSMutableDictionary *pressed; // 押されているキー
     }
         
     [ngdic removeObjectForKey:fk];
+    [pressed removeObjectForKey:k];
+    [ngbuf removeObjectAtIndex:0];
 
     return kana;
 }
