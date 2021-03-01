@@ -1596,14 +1596,14 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
             
             CGEventRef newevent;
             newevent = CGEventCreateKeyboardEvent(source, key, YES);
-//            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
-//            CGEventSetFlags(newevent, flags2 | flags);
-            CGEventSetFlags(newevent, flags);
+            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
+            CGEventSetFlags(newevent, flags2 | flags);
+//            CGEventSetFlags(newevent, flags);
             myCGEventPostToPid(targetPid, newevent);
             
             newevent = CGEventCreateKeyboardEvent(source, key, NO);
-//            CGEventSetFlags(newevent, flags2 | flags);
-            CGEventSetFlags(newevent, flags);
+            CGEventSetFlags(newevent, flags2 | flags);
+//            CGEventSetFlags(newevent, flags);
             myCGEventPostToPid(targetPid, newevent);
 
             flags = 0;
@@ -1612,7 +1612,8 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
         } else if ([k isKindOfClass:[NSString class]]) {
             sendUnicode(source, targetPid, (NSString *)k);
         }
-        
+        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
+
     }
 }
 
