@@ -35,6 +35,18 @@
     XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Space], "b");
 }
 
+- (void)testNumber {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_1]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_1]];
+    // pass through number
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_1], "b");
+}
+
 - (void)testA {
     Naginata *n = [Naginata new];
     n.doujiTime = 0;
