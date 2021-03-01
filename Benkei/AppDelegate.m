@@ -1573,7 +1573,6 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
         if ([k isKindOfClass: [NSNumber class]]) {
 
             unsigned key = [(NSNumber *)k intValue];
-            CGEventRef newevent;
 
             // 修飾キーはその後に続く１キーのみ有効
             switch (key) {
@@ -1595,13 +1594,16 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
                     continue;
             }
             
+            CGEventRef newevent;
             newevent = CGEventCreateKeyboardEvent(source, key, YES);
-            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
-            CGEventSetFlags(newevent, flags2 | flags);
+//            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
+//            CGEventSetFlags(newevent, flags2 | flags);
+            CGEventSetFlags(newevent, flags);
             myCGEventPostToPid(targetPid, newevent);
             
             newevent = CGEventCreateKeyboardEvent(source, key, NO);
-            CGEventSetFlags(newevent, flags2 | flags);
+//            CGEventSetFlags(newevent, flags2 | flags);
+            CGEventSetFlags(newevent, flags);
             myCGEventPostToPid(targetPid, newevent);
 
             flags = 0;
