@@ -481,8 +481,9 @@ NSArray *type()
         if ([r count] > 0) return r;
         nt--;
     }
+    NGKey *ngk = [ngbuf objectAtIndex:0];
     [ngbuf removeObjectAtIndex:0];
-    return [NSArray new];
+    return [[NSArray alloc] initWithObjects: [NSNumber numberWithInt:ngk.keycode], nil];
 }
 
 NSArray *lookup(NSUInteger nt, bool shifted)
