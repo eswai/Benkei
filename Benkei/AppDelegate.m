@@ -1595,17 +1595,15 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
             }
             
             CGEventRef newevent;
+                        
             newevent = CGEventCreateKeyboardEvent(source, key, YES);
-            CGEventFlags flags2 = (CGEventFlags)CGEventGetFlags(newevent);
-            CGEventSetFlags(newevent, flags2 | flags);
-//            CGEventSetFlags(newevent, flags);
-            myCGEventPostToPid(targetPid, newevent);
-            
-            newevent = CGEventCreateKeyboardEvent(source, key, NO);
-            CGEventSetFlags(newevent, flags2 | flags);
-//            CGEventSetFlags(newevent, flags);
+            CGEventSetFlags(newevent, (myCGEventGetFlags(newevent) & ~kCGEventFlagMaskShift) | flags);
             myCGEventPostToPid(targetPid, newevent);
 
+            newevent = CGEventCreateKeyboardEvent(source, key, NO);
+            CGEventSetFlags(newevent, (myCGEventGetFlags(newevent)) | flags);
+            myCGEventPostToPid(targetPid, newevent);
+            
             flags = 0;
             CFRelease(newevent);
             
