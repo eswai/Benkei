@@ -1619,9 +1619,11 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     // 1 - Get the string length in bytes.
     NSUInteger l = [str lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
 
-//    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Eisu} length:1];
-//    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
-    pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Eisu]]);
+//    pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Eisu]]);
+//    NSArray* isources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID : @"com.apple.keylayout.ABC" }, FALSE));
+//    TISInputSourceRef isource = (__bridge TISInputSourceRef)isources[0];
+//    TISSelectInputSource(isource);
+    TISSelectInputSource(TISCopyInputSourceForLanguage(CFSTR("en")));
 
     // 2 - Get bytes for unicode characters
     UniChar *uc = malloc(l);
@@ -1632,9 +1634,7 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     CGEventKeyboardSetUnicodeString(tap, str.length, uc);
     myCGEventPostToPid(targetPid, tap);
 
-//    newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
     pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Kana]]);
-//    pressKeys(source, targetPid, newkey, (CGEventFlags)0);
 
     CFRelease(tap);
     free(uc);
