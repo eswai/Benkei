@@ -308,7 +308,7 @@ $henshu = {
 "{Home}{改行}{Space 1}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Control", "kVK_ANSI_E"], # ト マクロ
 
 "｜{改行}"      => ["｜"],
-"・"           => ["・"],
+"・"           => ["kVK_ANSI_Slash"],
 "……{改行}"     => ["……"],
 "／{改行}"      => ["／"],
 "《{改行}"      => ["《"],
