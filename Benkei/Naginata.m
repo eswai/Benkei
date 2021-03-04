@@ -433,8 +433,9 @@ NSMutableSet *pressed; // 押されているキー
     
     NSArray *kana;
     if (keycode == kVK_Space) {
-        if (!self.kouchiShift) {
-            if ([ngbuf count] > 0) {
+        if ([ngbuf count] > 0) {
+            NGKey *ngk = [ngbuf objectAtIndex:0];
+            if (!self.kouchiShift || -[ngk.pressTime timeIntervalSinceNow] > self.doujiTime) {
                 kana = type(ngbuf);
                 [pressed removeAllObjects];
             }
@@ -473,6 +474,16 @@ NSMutableSet *pressed; // 押されているキー
 
 NSArray *type()
 {
+//    ロールオーバー対策、うまく動作しない
+//    NSUInteger nt = 0;
+//    NSDate *n = [NSDate new];
+//    for (NGKey *ngk in ngbuf) {
+//        if (-[ngk.pressTime timeIntervalSinceDate:n] > 0.1) {
+//            nt++;
+//        }
+//    }
+//    nt = nt == 0 ? 1 : nt;
+    
     NSUInteger nt = [ngbuf count];
     while (nt > 0) {
         NSArray *r = lookup(nt, true);
