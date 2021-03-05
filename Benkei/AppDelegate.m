@@ -56,9 +56,9 @@ NSMutableData *gKeySheetValue;
 int gKeySheetValueLength;   // N.B. 10.9 or lower does not support NSMutableData.length
 unsigned char gFirstIgnoredSingleThumbMask = 0;    // 親指キーの初回単独打鍵を無視するためのマスク
 
-//CGKeyCode hjbuf = 0;
-CGKeyCode curkey = 0;
-bool gvalid = 0;
+CGKeyCode hjbuf = 0;
+//CGKeyCode curkey = 0;
+//bool gvalid = 0;
 
 NSFileHandle *debugOutFile = nil;
 #define debugOut(...) \
@@ -1251,28 +1251,63 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         gPrevOya = 0;
 
         // 薙刀式処理
-        curkey = keycode;
-        if (type == kCGEventKeyDown && (keycode == kVK_ANSI_H || keycode == kVK_ANSI_J)) {
-            gvalid = true;
-            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC));
-            dispatch_after(time, dispatch_get_main_queue(), ^{
-                CGKeyCode firstkey = keycode;
-                debugOut(@"[GCD] keycode=%d\n", keycode);
-                @synchronized ([NSNumber numberWithInt:keycode]) {
-                    if (gvalid) {
-                        if (curkey + firstkey == kVK_ANSI_H + kVK_ANSI_J) {
-                            debugOut(@"[GCD] Naginata ON\n");
-                            [naginata clear];
-                            pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Kana]]);
-                            gvalid = false;
-                        } else {
-                            pressKeys2(source, targetPid, @[[NSNumber numberWithInt:firstkey]]);
-                        }
-                    }
+        /*
+         hjbuf keycode   press             release
+         空     H/J     next               H/J出力+continue
+         空     HJ以外   continue           continue
+         H/J    H/J     kVK_JIS_Kana+next  continue
+         H/J    HJ以外   H/J出力+continue    continue
+        */
+        if (type == kCGEventKeyDown) {
+            if (hjbuf == 0) {
+                if (keycode == kVK_ANSI_H || keycode == kVK_ANSI_J) {
+                    hjbuf = keycode;
+                    return NULL;
                 }
-            });
-            return NULL;
+            } else {
+                if (hjbuf + keycode == kVK_ANSI_H + kVK_ANSI_J) {
+                    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
+                    pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
+                    hjbuf = 0;
+                    return NULL;
+                } else {
+                    NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf, keycode} length:2];
+                    pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
+                    hjbuf = 0;
+                    return NULL;
+                }
+            }
+        } else if (type == kCGEventKeyUp) {
+            if (hjbuf > 0 && hjbuf == keycode) {
+                NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){hjbuf} length:1];
+                pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
+                hjbuf = 0;
+            }
         }
+        
+//        修飾キーが効かない
+//        curkey = keycode;
+//        if (type == kCGEventKeyDown && (keycode == kVK_ANSI_H || keycode == kVK_ANSI_J)) {
+//            gvalid = true;
+//            dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(50 * NSEC_PER_MSEC));
+//            dispatch_after(time, dispatch_get_main_queue(), ^{
+//                CGKeyCode firstkey = keycode;
+//                debugOut(@"[GCD] keycode=%d\n", keycode);
+//                @synchronized ([NSNumber numberWithInt:keycode]) {
+//                    if (gvalid) {
+//                        if (curkey + firstkey == kVK_ANSI_H + kVK_ANSI_J) {
+//                            debugOut(@"[GCD] Naginata ON\n");
+//                            [naginata clear];
+//                            pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Kana]]);
+//                            gvalid = false;
+//                        } else {
+//                            pressKeys2(source, targetPid, @[[NSNumber numberWithInt:firstkey]]);
+//                        }
+//                    }
+//                }
+//            });
+//            return NULL;
+//        }
 //        文字の逆転を防止したいが、waitは効かない
 //        if (gvalid && (keycode != kVK_ANSI_H && keycode != kVK_ANSI_J)) {
 //            [NSThread sleepForTimeInterval:0.05f];
