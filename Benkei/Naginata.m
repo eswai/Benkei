@@ -36,6 +36,7 @@ NSMutableArray *ngbuf; // 未変換のキーバッファ
 NSDictionary *ng_keymap; // かな変換テーブル
 NSArray *shiftkeys;
 NSMutableSet *pressed; // 押されているキー
+NSMutableDictionary *ngdic;
 
 - (instancetype)init
 {
@@ -43,6 +44,7 @@ NSMutableSet *pressed; // 押されているキー
     if (self) {
         ngbuf = [NSMutableArray new];
         pressed = [NSMutableSet new];
+        ngdic = [NSMutableDictionary new];
         shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil],
@@ -444,6 +446,7 @@ NSMutableSet *pressed; // 押されているキー
     NGKey *ngk = [[NGKey alloc] initWithKeycode: keycode];
     [ngbuf addObject: ngk];
     [pressed addObject:k];
+    [ngdic setObject:ngk forKey:[NSNumber numberWithInt:keycode]];
 
     return kana;
 }
@@ -452,6 +455,8 @@ NSMutableSet *pressed; // 押されているキー
 {
     debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
+    NGKey *ngk = [ngdic objectForKey:[NSNumber numberWithInt:keycode]];
+    ngk.releaseTime = [NSDate new];
     
     if (![pressed containsObject:k]) {
         return [NSArray new];
@@ -470,6 +475,7 @@ NSMutableSet *pressed; // 押されているキー
 -(void)clear
 {
     [ngbuf removeAllObjects];
+    [ngdic removeAllObjects];
 }
 
 NSArray *type()
