@@ -419,6 +419,46 @@
     XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus], "b");
 }
 
+- (void)testXAXA {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_Q]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Q]];
+
+    XCTAssertEqual([k count], 4, "b");
+    XCTAssertEqualObjects([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_X], "b");
+    XCTAssertEqualObjects([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqualObjects([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_X], "b");
+    XCTAssertEqualObjects([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+}
+
+
+- (void)testQuesQues {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_D]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_D]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_D]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_D]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
+
+    XCTAssertEqual([k count], 2);
+    XCTAssertEqualObjects([k objectAtIndex:0], @"？");
+    XCTAssertEqualObjects([k objectAtIndex:1], @"？");
+}
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
