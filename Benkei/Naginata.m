@@ -34,9 +34,9 @@ NSFileHandle *debugOutFile1 = nil;
 
 NSMutableArray *ngbuf; // 未変換のキーバッファ
 NSDictionary *ng_keymap; // かな変換テーブル
-NSArray *shiftkeys;
+NSArray *shiftkeys; // 薙刀式で連続シフトキーになるキー（濁点、半濁点、小書、編集モードも含む）
 NSMutableSet *pressed; // 押されているキー
-NSMutableDictionary *ngdic;
+NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にここに入っているキーが一連の変換に使ったキーの集合を表す。
 
 - (instancetype)init
 {
@@ -428,12 +428,13 @@ NSMutableDictionary *ngdic;
     debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
-    // 今押しているはずのキーの場合は中断
+    // ガード。今押しているはずのキーの場合は中断
     if ([pressed containsObject:k]) {
         return NULL;
     }
     
     NSArray *kana;
+    // シフトキーが来たら、そこで一旦変換してしまう(前置シフト)
     if (keycode == kVK_Space) {
         if ([ngbuf count] > 0) {
             NGKey *ngk = [ngbuf objectAtIndex:0];
@@ -458,6 +459,7 @@ NSMutableDictionary *ngdic;
     NGKey *ngk = [ngdic objectForKey:k];
     ngk.releaseTime = [NSDate new];
     
+    // ガード。押してないキーなら中断。
     if (![pressed containsObject:k]) {
         return [NSArray new];
     }
@@ -468,7 +470,7 @@ NSMutableDictionary *ngdic;
     if ([ngbuf count] > 0) {
         kana = type();
     }
-    // 押してるキーがなくたなったら辞書を空にする
+    // 押してるキーがなくなったら辞書を空にする
     if ([pressed count] == 0) {
         [ngdic removeAllObjects];
     }
@@ -482,23 +484,15 @@ NSMutableDictionary *ngdic;
     [ngdic removeAllObjects];
 }
 
+// 変換処理
+// ngbufのキー組み合わせを辞書から検索して、なかったら、最後の１文字を削って、再度検索を繰り返す。
 NSArray *type()
 {
-//    ロールオーバー対策、うまく動作しない
-//    NSUInteger nt = 0;
-//    NSDate *n = [NSDate new];
-//    for (NGKey *ngk in ngbuf) {
-//        if (-[ngk.pressTime timeIntervalSinceDate:n] > 0.1) {
-//            nt++;
-//        }
-//    }
-//    nt = nt == 0 ? 1 : nt;
-    
     NSUInteger nt = [ngbuf count];
     while (nt > 0) {
-        NSArray *r = lookup(nt, true);
+        NSArray *r = lookup(nt, true); // 連続シフト有効
         if ([r count] > 0) return r;
-        r = lookup(nt, false);
+        r = lookup(nt, false); // 連続シフト無効で検索しなおす
         if ([r count] > 0) return r;
         nt--;
     }
@@ -507,20 +501,25 @@ NSArray *type()
     return [[NSArray alloc] initWithObjects: [NSNumber numberWithInt:ngk.keycode], nil];
 }
 
+// ngbufの先頭からnt文字目までが変換対象
 NSArray *lookup(NSUInteger nt, bool shifted)
 {
     NSMutableSet *keycomb_buf = [NSMutableSet new];
+    // 先頭からnt文字のキー集合を作る
     for (int i = 0; i < nt; i++) {
         NGKey *ngk = [ngbuf objectAtIndex:i];
         [keycomb_buf addObject:[NSNumber numberWithInt:ngk.keycode]];
     }
+
+    // 最初のキー
     NGKey *fk = [ngbuf objectAtIndex:0];
-    // すでに変換してngbufにはないキー
-    NSMutableSet *ndset =[[NSMutableSet alloc] initWithArray:[ngdic allKeys]];
-    for (NGKey *ngk in ngbuf) {
-        [ndset removeObject:[NSNumber numberWithInt:ngk.keycode]];
-    }
+
     if (shifted) { // 連続シフトする場合
+        // すでに変換してngbufにはないキー。ここから連続シフトするシフトキーをもう一度探す。
+        NSMutableSet *ndset =[[NSMutableSet alloc] initWithArray:[ngdic allKeys]];
+        for (NGKey *ngk in ngbuf) {
+            [ndset removeObject:[NSNumber numberWithInt:ngk.keycode]];
+        }
         for (NSSet *s in shiftkeys) {
             if ([s isSubsetOfSet:ndset]) {
                 for (NSNumber *k in s) {
