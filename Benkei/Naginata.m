@@ -438,7 +438,7 @@ NSMutableDictionary *ngdic;
         if ([ngbuf count] > 0) {
             NGKey *ngk = [ngbuf objectAtIndex:0];
             if (!self.kouchiShift || -[ngk.pressTime timeIntervalSinceNow] > self.doujiTime) {
-                kana = type(ngbuf);
+                kana = type();
                 [pressed removeAllObjects];
             }
         }
@@ -446,7 +446,7 @@ NSMutableDictionary *ngdic;
     NGKey *ngk = [[NGKey alloc] initWithKeycode: keycode];
     [ngbuf addObject: ngk];
     [pressed addObject:k];
-    [ngdic setObject:ngk forKey:[NSNumber numberWithInt:keycode]];
+    [ngdic setObject:ngk forKey:k];
 
     return kana;
 }
@@ -455,7 +455,7 @@ NSMutableDictionary *ngdic;
 {
     debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
-    NGKey *ngk = [ngdic objectForKey:[NSNumber numberWithInt:keycode]];
+    NGKey *ngk = [ngdic objectForKey:k];
     ngk.releaseTime = [NSDate new];
     
     if (![pressed containsObject:k]) {
@@ -467,6 +467,10 @@ NSMutableDictionary *ngdic;
     NSArray *kana;
     if ([ngbuf count] > 0) {
         kana = type();
+    }
+    // 押してるキーがなくたなったら辞書を空にする
+    if ([pressed count] == 0) {
+        [ngdic removeAllObjects];
     }
     
     return kana;
@@ -510,11 +514,23 @@ NSArray *lookup(NSUInteger nt, bool shifted)
         NGKey *ngk = [ngbuf objectAtIndex:i];
         [keycomb_buf addObject:[NSNumber numberWithInt:ngk.keycode]];
     }
-    
-    if (shifted) {
+    NGKey *fk = [ngbuf objectAtIndex:0];
+    // すでに変換してngbufにはないキー
+    NSMutableSet *ndset =[[NSMutableSet alloc] initWithArray:[ngdic allKeys]];
+    for (NGKey *ngk in ngbuf) {
+        [ndset removeObject:[NSNumber numberWithInt:ngk.keycode]];
+    }
+    if (shifted) { // 連続シフトする場合
         for (NSSet *s in shiftkeys) {
-            if ([s isSubsetOfSet:pressed]) {
-                [keycomb_buf addObjectsFromArray:[s allObjects]];
+            if ([s isSubsetOfSet:ndset]) {
+                for (NSNumber *k in s) {
+                    NGKey *sft = [ngdic objectForKey:k];
+                    // シフトキーが変換するキーのプレスにかかっていたら
+                    if (sft.releaseTime == NULL || [sft.releaseTime timeIntervalSinceDate:fk.pressTime] >= 0) {
+                        [keycomb_buf addObject:k];
+                    }
+                }
+                break;
             }
         }
     }

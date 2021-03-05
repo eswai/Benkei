@@ -268,7 +268,7 @@
 
 - (void)testNOYO3 {
     Naginata *n = [Naginata new];
-    n.doujiTime = 0;
+    n.doujiTime = 0.05;
     n.kouchiShift = true;
     NSMutableArray *k = [NSMutableArray new];
 
@@ -302,6 +302,40 @@
     XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
     XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_G], "b");
     XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+}
+
+- (void)testRenzokuEnter {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_V]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return], "b");
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return], "b");
+}
+
+- (void)testRenzokuEnter2 {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_V]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_V]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_V]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_V]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
+
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return], "b");
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return], "b");
 }
 
 - (void)testSENU {
