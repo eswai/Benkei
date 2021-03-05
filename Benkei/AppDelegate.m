@@ -1397,7 +1397,9 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
 //                flag = (CGEventFlags)0;
 //            }
 //        }
-        pressKeys2(source, targetPid, kana);
+        if (kana != nil) {
+            pressKeys2(source, targetPid, kana);
+        }
 //        if (type == kCGEventKeyDown) {
 //            sendUnicode(source, targetPid, @"？");
 //        }
@@ -1698,7 +1700,6 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
         
         [self updateSbIcon];
     }
-    [naginata clear];
 }
 
 - (void)updateSbIcon {

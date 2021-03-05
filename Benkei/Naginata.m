@@ -425,7 +425,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
 
 -(NSArray *)pressKey:(CGKeyCode)keycode
 {
-    debugOut(@"[PRESS] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
+    debugOut(@"[PRESS] received ngbuf=%@ pressed=%@ keycode=%d\n", ngbuf, pressed, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
     
     // ガード。今押しているはずのキーの場合は中断
@@ -454,14 +454,14 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
 
 -(NSArray *)releaseKey:(CGKeyCode)keycode
 {
-    debugOut(@"[RELEASE] received ngbuf=%@ keycode=%d\n", ngbuf, keycode);
+    debugOut(@"[RELEASE] received ngbuf=%@ pressed=%@ keycode=%d\n", ngbuf, pressed, keycode);
     NSNumber *k = [NSNumber numberWithInt:keycode];
     NGKey *ngk = [ngdic objectForKey:k];
     ngk.releaseTime = [NSDate new];
     
     // ガード。押してないキーなら中断。
     if (![pressed containsObject:k]) {
-        return [NSArray new];
+        return NULL;
     }
     
     [pressed removeObject:k];
@@ -472,7 +472,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
     }
     // 押してるキーがなくなったら辞書を空にする
     if ([pressed count] == 0) {
-        [ngdic removeAllObjects];
+        [self clear];
     }
     
     return kana;

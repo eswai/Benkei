@@ -440,24 +440,31 @@
 }
 
 
-- (void)testQuesQues {
+- (void)testQuesExc {
     Naginata *n = [Naginata new];
-    n.doujiTime = 0;
-    n.kouchiShift = false;
+    n.doujiTime = 0.04;
+    n.kouchiShift = true;
     NSMutableArray *k = [NSMutableArray new];
 
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [NSThread sleepForTimeInterval:0.2f];
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_K]];
+    [NSThread sleepForTimeInterval:0.2f];
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_D]];
+    [NSThread sleepForTimeInterval:0.2f];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_D]];
-    [k addObjectsFromArray:[n pressKey:kVK_ANSI_D]];
-    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_D]];
+    [NSThread sleepForTimeInterval:0.2f];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_C]];
+    [NSThread sleepForTimeInterval:0.2f];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_C]];
+    [NSThread sleepForTimeInterval:0.2f];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+    [NSThread sleepForTimeInterval:0.2f];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
 
     XCTAssertEqual([k count], 2);
     XCTAssertEqualObjects([k objectAtIndex:0], @"？");
-    XCTAssertEqualObjects([k objectAtIndex:1], @"？");
+    XCTAssertEqualObjects([k objectAtIndex:1], @"！");
 }
 
 - (void)testPerformanceExample {
