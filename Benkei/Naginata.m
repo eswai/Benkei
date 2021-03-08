@@ -448,7 +448,12 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
     [ngbuf addObject: ngk];
     [pressed addObject:k];
     [ngdic setObject:ngk forKey:k];
-
+    
+    // プレス時に候補を絞り込めるなら変換する。
+    if (numberOfCandidates() <= 1) {
+        kana = type();
+    }
+    
     return kana;
 }
 
@@ -543,6 +548,18 @@ NSArray *lookup(NSUInteger nt, bool shifted)
     } else {
         return [NSArray new];
     }
+}
+
+int numberOfCandidates() {
+    int c = 0;
+    NSSet *keycomb = [[NSSet alloc] initWithArray:[ngdic allKeys]];
+    for (NSSet *s in [ng_keymap allKeys]) {
+        if ([keycomb isSubsetOfSet:s]) {
+            c++;
+        }
+    }
+    debugOut(@"[Candidate] c=%d\n", c);
+    return c;
 }
 
 @end
