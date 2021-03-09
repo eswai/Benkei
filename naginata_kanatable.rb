@@ -119,10 +119,10 @@ daku.each_with_index do |k, i|
   if j && j > 0
     if eiji_r.index(eiji[j])
       puts teigi(eiji[j], r_daku[i], k, "kVK_ANSI_F")
-      puts teigi(eiji[j], r_daku[i], k + "(冗長)", "kVK_ANSI_F", "kVK_Space")
+      # puts teigi(eiji[j], r_daku[i], k + "(冗長)", "kVK_ANSI_F", "kVK_Space")
     else
       puts teigi(eiji[j], r_daku[i], k, "kVK_ANSI_J")
-      puts teigi(eiji[j], r_daku[i], k + "(冗長)", "kVK_ANSI_J", "kVK_Space")
+      # puts teigi(eiji[j], r_daku[i], k + "(冗長)", "kVK_ANSI_J", "kVK_Space")
     end
   end
 end
@@ -134,10 +134,10 @@ handaku.each_with_index do |k, i|
   if j && j > 0
     if eiji_r.index(eiji[j])
       puts teigi(eiji[j], r_handaku[i], k, "kVK_ANSI_V")
-      puts teigi(eiji[j], r_handaku[i], k + "(冗長)", "kVK_ANSI_V", "kVK_Space")
+      # puts teigi(eiji[j], r_handaku[i], k + "(冗長)", "kVK_ANSI_V", "kVK_Space")
     else
       puts teigi(eiji[j], r_handaku[i], k, "kVK_ANSI_M")
-      puts teigi(eiji[j], r_handaku[i], k + "(冗長)", "kVK_ANSI_M", "kVK_Space")
+      # puts teigi(eiji[j], r_handaku[i], k + "(冗長)", "kVK_ANSI_M", "kVK_Space")
     end
   end
 end
@@ -159,7 +159,7 @@ kogaki.each_with_index do |k, i|
   j = tanda.index(t_kogaki[i]) || shifted.index(t_kogaki[i])
   if j && j > 0
     puts teigi(eiji[j], r_kogaki[i], k, "kVK_ANSI_Q")
-    puts teigi(eiji[j], r_kogaki[i], k, "kVK_ANSI_Q", "kVK_Space")
+    # puts teigi(eiji[j], r_kogaki[i], k, "kVK_ANSI_Q", "kVK_Space")
     # puts teigi(eiji[j], r_kogaki[i], k, "B_V|B_M|")
     # puts teigi(eiji[j], r_kogaki[i], k + "(冗長)", "B_V|B_M|", "|B_SHFT")
   end
@@ -210,7 +210,7 @@ kumiawase.each_with_index do |k, i|
   if j && j > 0
     e1 = eiji[j]
     puts teigi([e0, e1], r_kumiawase[i], k)
-    puts teigi([e0, e1], r_kumiawase[i], k + "(冗長)", "", "kVK_Space")
+    # puts teigi([e0, e1], r_kumiawase[i], k + "(冗長)", "", "kVK_Space")
   end
 end
 
@@ -244,7 +244,7 @@ gairai.each_with_index do |k, i|
   if j && j > 0
     e1 = eiji[j]
     puts teigi([e0, e1], r_gairai[i], k)
-    puts teigi([e0, e1], r_gairai[i], k + "(冗長)", "", "kVK_Space")
+    # puts teigi([e0, e1], r_gairai[i], k + "(冗長)", "", "kVK_Space")
   end
 end
 
