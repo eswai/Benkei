@@ -452,6 +452,16 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
     [ngdic setObject:ngk forKey:k];
     
     // プレス時に候補を絞り込めるなら変換する。
+    // 例外: Space+Qと来ると、Lを押さなくても、「ゎ」しかない。
+    // しかし、そこで変換を開始するとLを押していないので、正しく変換されない。
+    if ([ngbuf count] == 2) {
+        NGKey *n0 = [ngbuf objectAtIndex:0];
+        NGKey *n1 = [ngbuf objectAtIndex:1];
+        if ((n0.keycode == kVK_Space && n1.keycode == kVK_ANSI_Q)
+            || (n1.keycode == kVK_Space && n0.keycode == kVK_ANSI_Q)) {
+            return nil;
+        }
+    }
     if (numberOfCandidates() <= 1) {
         kana = type();
     }
