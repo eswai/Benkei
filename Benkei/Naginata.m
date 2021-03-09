@@ -442,6 +442,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             if (!self.kouchiShift || -[ngk.pressTime timeIntervalSinceNow] > self.doujiTime) {
                 kana = type();
                 [pressed removeAllObjects];
+                [ngdic removeAllObjects];
             }
         }
     }
