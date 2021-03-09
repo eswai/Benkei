@@ -73,6 +73,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_Space], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray new], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], nil],
 
             // 清音
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], nil], // あ
@@ -496,9 +497,9 @@ NSArray *type()
     NSUInteger nt = [ngbuf count];
     while (nt > 0) {
         NSArray *r = lookup(nt, true); // 連続シフト有効
-        if ([r count] > 0) return r;
+        if (r != nil) return r;
         r = lookup(nt, false); // 連続シフト無効で検索しなおす
-        if ([r count] > 0) return r;
+        if (r != nil) return r;
         nt--;
     }
     NGKey *ngk = [ngbuf objectAtIndex:0];
@@ -544,10 +545,8 @@ NSArray *lookup(NSUInteger nt, bool shifted)
         for (int i = 0; i < nt; i++) {
             [ngbuf removeObjectAtIndex:0];
         }
-        return kana;
-    } else {
-        return [NSArray new];
     }
+        return kana;
 }
 
 int numberOfCandidates() {
