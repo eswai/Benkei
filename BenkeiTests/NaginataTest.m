@@ -32,7 +32,7 @@
     [k addObjectsFromArray:[n pressKey:kVK_Space]];
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Space], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Space]);
 }
 
 - (void)testNumber {
@@ -44,7 +44,7 @@
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_1]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_1]];
     // pass through number
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_1], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_1]);
 }
 
 - (void)testA {
@@ -56,7 +56,7 @@
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 - (void)testNO1 {
@@ -70,9 +70,9 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k count], 2, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k count], 2);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testNO2 {
@@ -86,9 +86,9 @@
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
 
-    XCTAssertEqual([k count], 2, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k count], 2);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testKI {
@@ -100,8 +100,8 @@
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_W]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_W]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_K], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_K]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I]);
 }
 
 - (void)testDA {
@@ -115,8 +115,8 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_F]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_N]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_D], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_D]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 - (void)testPA {
@@ -130,8 +130,8 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_C]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_P], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_P]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 - (void)testXWA {
@@ -147,9 +147,39 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Q]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_X], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_W], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k count], 3);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_X]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_W]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_A]);
+}
+
+- (void)testQ {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_Q]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Q]];
+    
+    XCTAssertEqual([k count], 0);
+}
+
+- (void)testAS {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_J]];
+    [NSThread sleepForTimeInterval:0.2f];
+    [k addObjectsFromArray:[n pressKey:kVK_Space]];
+    [k addObjectsFromArray:[n releaseKey:kVK_Space]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
+
+    XCTAssertEqual([k count], 2);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Space]);
 }
 
 - (void)testPA2 {
@@ -158,15 +188,15 @@
     n.kouchiShift = false;
     NSMutableArray *k = [NSMutableArray new];
 
-    [k addObjectsFromArray:[n pressKey:kVK_Space]];
+//    [k addObjectsFromArray:[n pressKey:kVK_Space]];
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_M]];
     [k addObjectsFromArray:[n pressKey:kVK_ANSI_C]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_C]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
-    [k addObjectsFromArray:[n releaseKey:kVK_Space]];
+//    [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_P], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_P]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 - (void)testAIU {
@@ -182,9 +212,9 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U]);
 }
 
 - (void)testNOYO {
@@ -200,11 +230,11 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_I]];
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k count], 4, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k count], 4);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testNOYO2 {
@@ -220,11 +250,11 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_I]];
 
-    XCTAssertEqual([k count], 4, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k count], 4);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testNORU {
@@ -240,11 +270,11 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_I]];
 
-    XCTAssertEqual([k count], 4, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_R], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k count], 4);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_R]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U]);
 }
 
 - (void)testAYO1 {
@@ -260,10 +290,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_I]];
 
-    XCTAssertEqual([k count], 3, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k count], 3);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_Y]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testNOYO3 {
@@ -279,10 +309,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_I]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_Y]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_O]);
 }
 
 - (void)testGAGA {
@@ -298,10 +328,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_F]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_G], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_G], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_G]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_G]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 - (void)testRenzokuEnter {
@@ -317,8 +347,8 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return]);
 }
 
 - (void)testRenzokuEnter2 {
@@ -334,8 +364,8 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_V]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_Return]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_Return]);
 }
 
 - (void)testSENU {
@@ -351,10 +381,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_S]];
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_S], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_E], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_S]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_E]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U]);
 }
 
 - (void)testSENU2 {
@@ -370,10 +400,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_S]];
     [k addObjectsFromArray:[n releaseKey:kVK_Space]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_S], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_E], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_N], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_S]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_E]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_N]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_U]);
 }
 
 - (void)testMUIA1 {
@@ -391,10 +421,10 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Semicolon]];
 
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus], "b");
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus]);
 }
 
 - (void)testMUIA2 {
@@ -412,11 +442,11 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
 
-    XCTAssertEqual([k count], 4, "b");
-    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I], "b");
-    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U], "b");
-    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus], "b");
+    XCTAssertEqual([k count], 4);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_I]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U]);
+    XCTAssertEqual([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_Minus]);
 }
 
 - (void)testXAXA {
@@ -432,11 +462,11 @@
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_J]];
     [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Q]];
 
-    XCTAssertEqual([k count], 4, "b");
-    XCTAssertEqualObjects([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_X], "b");
-    XCTAssertEqualObjects([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A], "b");
-    XCTAssertEqualObjects([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_X], "b");
-    XCTAssertEqualObjects([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A], "b");
+    XCTAssertEqual([k count], 4);
+    XCTAssertEqualObjects([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_X]);
+    XCTAssertEqualObjects([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqualObjects([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_X]);
+    XCTAssertEqualObjects([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
 
