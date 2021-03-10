@@ -1632,19 +1632,20 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
             newevent = CGEventCreateKeyboardEvent(source, key, YES);
             CGEventSetFlags(newevent, (myCGEventGetFlags(newevent) & ~kCGEventFlagMaskShift) | flags);
             myCGEventPostToPid(targetPid, newevent);
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
 
             newevent = CGEventCreateKeyboardEvent(source, key, NO);
             CGEventSetFlags(newevent, (myCGEventGetFlags(newevent)) | flags);
             myCGEventPostToPid(targetPid, newevent);
-            
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
+
             flags = 0;
             CFRelease(newevent);
             
         } else if ([k isKindOfClass:[NSString class]]) {
             sendUnicode(source, targetPid, (NSString *)k);
         }
-        [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
-
+        
     }
 }
 
@@ -1657,6 +1658,7 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
 //    TISInputSourceRef isource = (__bridge TISInputSourceRef)isources[0];
 //    TISSelectInputSource(isource);
     TISSelectInputSource(TISCopyInputSourceForLanguage(CFSTR("en")));
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
 
     // 2 - Get bytes for unicode characters
     UniChar *uc = malloc(l);
@@ -1666,8 +1668,10 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     CGEventRef tap = CGEventCreateKeyboardEvent(source, 0, YES);
     CGEventKeyboardSetUnicodeString(tap, str.length, uc);
     myCGEventPostToPid(targetPid, tap);
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
 
     pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Kana]]);
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
 
     CFRelease(tap);
     free(uc);
