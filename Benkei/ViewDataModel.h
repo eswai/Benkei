@@ -33,6 +33,7 @@
 @property NSData* ascii;
 @property NSData* shift;
 @property NSData* modifier;
+@property NSString* proper;
 
 -(NSString*)getKeycodeString;
 -(NSData*)getKeyData:(unsigned char)gOya;

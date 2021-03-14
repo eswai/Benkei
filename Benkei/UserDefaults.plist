@@ -33,6 +33,8 @@
 			<data>OAD/</data>
 			<key>With right shift</key>
 			<data>CSD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -49,6 +51,8 @@
 			<data>OAH/</data>
 			<key>With right shift</key>
 			<data>BiL/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -65,6 +69,8 @@
 			<data>OAL/</data>
 			<key>With right shift</key>
 			<data>Ag7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -81,6 +87,8 @@
 			<data>OAP/</data>
 			<key>With right shift</key>
 			<data>BQ7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -97,6 +105,8 @@
 			<data>IwD/</data>
 			<key>With right shift</key>
 			<data>LiL/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -113,6 +123,8 @@
 			<data>OAX/</data>
 			<key>With right shift</key>
 			<data>Bg7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -129,6 +141,8 @@
 			<data>OAb/</data>
 			<key>With right shift</key>
 			<data>DRAO</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -145,6 +159,8 @@
 			<data>IyL/</data>
 			<key>With right shift</key>
 			<data>CyL/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -161,6 +177,8 @@
 			<data>OAj/</data>
 			<key>With right shift</key>
 			<data>BiD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -177,6 +195,8 @@
 			<data>IyD/</data>
 			<key>With right shift</key>
 			<data>CyD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -193,6 +213,8 @@
 			<data>OAr/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -209,6 +231,8 @@
 			<data>Iw7/</data>
 			<key>With right shift</key>
 			<data>Cw7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -225,6 +249,8 @@
 			<data>OAz/</data>
 			<key>With right shift</key>
 			<data>DRAi</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -241,6 +267,8 @@
 			<data>OA3/</data>
 			<key>With right shift</key>
 			<data>BQD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -257,6 +285,8 @@
 			<data>OA7/</data>
 			<key>With right shift</key>
 			<data>AgD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -273,6 +303,8 @@
 			<data>OA//</data>
 			<key>With right shift</key>
 			<data>BR//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -289,6 +321,8 @@
 			<data>OBD/</data>
 			<key>With right shift</key>
 			<data>EB//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -305,6 +339,8 @@
 			<data>OBH/</data>
 			<key>With right shift</key>
 			<data>BgD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -321,6 +357,8 @@
 			<data>OBL/</data>
 			<key>With right shift</key>
 			<data>OCz/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -337,6 +375,8 @@
 			<data>OBP/</data>
 			<key>With right shift</key>
 			<data>Oiz/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -353,6 +393,8 @@
 			<data>OBT/</data>
 			<key>With right shift</key>
 			<data>OBj/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -369,6 +411,8 @@
 			<data>OBX/</data>
 			<key>With right shift</key>
 			<data>Hv//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -385,6 +429,8 @@
 			<data>OBb/</data>
 			<key>With right shift</key>
 			<data>Oh7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -401,6 +447,8 @@
 			<data>OBf/</data>
 			<key>With right shift</key>
 			<data>Kv//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -417,6 +465,8 @@
 			<data>OBj/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -433,6 +483,8 @@
 			<data>OBn/</data>
 			<key>With right shift</key>
 			<data>OBn/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -449,6 +501,8 @@
 			<data>OBr/</data>
 			<key>With right shift</key>
 			<data>Oir/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -465,6 +519,8 @@
 			<data>OBv/</data>
 			<key>With right shift</key>
 			<data>OCr/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -481,6 +537,8 @@
 			<data>OBz/</data>
 			<key>With right shift</key>
 			<data>OBz/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -497,6 +555,8 @@
 			<data>OB3/</data>
 			<key>With right shift</key>
 			<data>OB7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -513,6 +573,8 @@
 			<data>OB7/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -529,6 +591,8 @@
 			<data>OB//</data>
 			<key>With right shift</key>
 			<data>LgD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -545,6 +609,8 @@
 			<data>OCD/</data>
 			<key>With right shift</key>
 			<data>LSL/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -561,6 +627,8 @@
 			<data>OCH/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -577,6 +645,8 @@
 			<data>OCL/</data>
 			<key>With right shift</key>
 			<data>DyD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -593,6 +663,8 @@
 			<data>OCP/</data>
 			<key>With right shift</key>
 			<data>Bw7/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -609,6 +681,8 @@
 			<data>OCT/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -625,6 +699,8 @@
 			<data>OCX/</data>
 			<key>With right shift</key>
 			<data>BxAf</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -641,6 +717,8 @@
 			<data>OCb/</data>
 			<key>With right shift</key>
 			<data>H///</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -657,6 +735,8 @@
 			<data>M///</data>
 			<key>With right shift</key>
 			<data>M///</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -673,6 +753,8 @@
 			<data>OCj/</data>
 			<key>With right shift</key>
 			<data>LR//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -689,6 +771,8 @@
 			<data>OCn/</data>
 			<key>With right shift</key>
 			<data>BxEg</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -705,6 +789,8 @@
 			<data>Nf//</data>
 			<key>With right shift</key>
 			<data>Nf//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -721,6 +807,8 @@
 			<data>OCv/</data>
 			<key>With right shift</key>
 			<data>LiD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -737,6 +825,8 @@
 			<data>OCz/</data>
 			<key>With right shift</key>
 			<data>Bx//</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -753,6 +843,8 @@
 			<data>OC3/</data>
 			<key>With right shift</key>
 			<data>LSD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -769,6 +861,8 @@
 			<data>OC7/</data>
 			<key>With right shift</key>
 			<data>ECD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -785,6 +879,8 @@
 			<data>Ix//</data>
 			<key>With right shift</key>
 			<data>DQD/</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -801,6 +897,8 @@
 			<data>OF3/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -817,6 +915,8 @@
 			<data>OF7/</data>
 			<key>With right shift</key>
 			<data>////</data>
+			<key>Proper noun</key>
+			<string>固有名詞</string>
 		</dict>
 	</array>
 	<key>mode</key>
@@ -835,9 +935,13 @@
 	<array>
 		<dict>
 			<key>kana</key>
-			<string></string>
+			<array>
+				<integer>0</integer>
+			</array>
 			<key>keys</key>
-			<integer>0</integer>
+			<array>
+				<integer>0</integer>
+			</array>
 		</dict>
 	</array>
 	<key>twait</key>

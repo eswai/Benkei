@@ -173,7 +173,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgw-nM-gcf">
                                             <rect key="frame" x="15" y="216" width="149" height="16"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="後置シフトを許容する時間" id="pNT-1y-1tl">
-                                                <font key="font" size="13" name=".HiraKakuInterface-W3"/>
+                                                <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -205,7 +205,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="U56-Sj-QHg"/>
                                             </constraints>
-                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gzO-JE-Tya">
+                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gzO-JE-Tya">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -220,7 +220,7 @@
                                         </button>
                                         <button toolTip="左親指キーを単独打鍵した際に、割り当てたキーを打鍵したとみなします" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IqA-pS-WrM">
                                             <rect key="frame" x="258" y="269" width="51" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="通常" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Vsp-5t-V8J">
+                                            <buttonCell key="cell" type="radio" title="通常" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="Vsp-5t-V8J">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -230,7 +230,7 @@
                                         </button>
                                         <button toolTip="左親指キーを2回連続で打鍵した際に、割り当てたキーを打鍵したとみなします" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="0n9-sq-cZP">
                                             <rect key="frame" x="316" y="269" width="75" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="初回無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="0he-6R-xHt">
+                                            <buttonCell key="cell" type="radio" title="初回無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="0he-6R-xHt">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -240,7 +240,7 @@
                                         </button>
                                         <button toolTip="左親指キーの単独打鍵を return キーとして使用します" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Tk7-yc-bfj">
                                             <rect key="frame" x="398" y="269" width="63" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="無変換" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="q0U-sY-qqf">
+                                            <buttonCell key="cell" type="radio" title="無変換" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="q0U-sY-qqf">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -261,7 +261,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="88" id="QBN-PK-pus"/>
                                             </constraints>
-                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IEl-MK-qs2">
+                                            <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="IEl-MK-qs2">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -276,7 +276,7 @@
                                         </button>
                                         <button toolTip="右親指キーを単独打鍵した際に、割り当てたキーを打鍵したとみなします" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wmt-BG-nFJ">
                                             <rect key="frame" x="258" y="215" width="51" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="通常" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="TaQ-24-eXE">
+                                            <buttonCell key="cell" type="radio" title="通常" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="TaQ-24-eXE">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -286,7 +286,7 @@
                                         </button>
                                         <button toolTip="右親指キーを2回連続で打鍵した際に、割り当てたキーを打鍵したとみなします" horizontalHuggingPriority="251" verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="9H2-cR-FLS">
                                             <rect key="frame" x="316" y="215" width="75" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="初回無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="33n-eb-9U8">
+                                            <buttonCell key="cell" type="radio" title="初回無効" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="33n-eb-9U8">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -296,7 +296,7 @@
                                         </button>
                                         <button toolTip="右親指キーの単独打鍵をスペースバーとして使用します" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="kHc-a7-j4S">
                                             <rect key="frame" x="398" y="215" width="63" height="18"/>
-                                            <buttonCell key="cell" type="radio" title="変換" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xgm-0Q-hFB">
+                                            <buttonCell key="cell" type="radio" title="変換" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="xgm-0Q-hFB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -330,7 +330,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn identifier="keycode" width="51" minWidth="42" maxWidth="120" id="Ey6-ND-lUV">
+                                                            <tableColumn identifier="keycode" width="48" minWidth="42" maxWidth="120" id="Ey6-ND-lUV">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="キー">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,7 +343,7 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
                                                             <tableColumn identifier="center" width="47" minWidth="47" maxWidth="300" id="QfU-7n-Wdh">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="単独打鍵">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="編集1">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.33333298560000002" alpha="1" colorSpace="calibratedWhite"/>
                                                                 </tableHeaderCell>
@@ -355,7 +355,7 @@
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
                                                             <tableColumn identifier="left" width="47" minWidth="47" maxWidth="300" id="cas-Md-lXA">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="親指左">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="編集2">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
@@ -366,8 +366,8 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="right" width="47" minWidth="47" maxWidth="300" id="hEz-iL-U7J">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="親指右">
+                                                            <tableColumn identifier="right" width="61" minWidth="47" maxWidth="300" id="hEz-iL-U7J">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="固有名詞">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
@@ -378,8 +378,8 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn identifier="outer" width="47" minWidth="47" maxWidth="300" id="LIS-LZ-cEu">
-                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="小指シフト">
+                                                            <tableColumn identifier="outer" width="63" minWidth="47" maxWidth="300" id="LIS-LZ-cEu">
+                                                                <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="-">
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 </tableHeaderCell>
@@ -435,7 +435,7 @@
                                                 </subviews>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="8NJ-A3-XBz">
-                                                <rect key="frame" x="1" y="133" width="412" height="15"/>
+                                                <rect key="frame" x="1" y="129" width="442" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="laU-df-kxf">

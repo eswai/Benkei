@@ -175,6 +175,7 @@ typedef NS_ENUM(NSInteger, BenkeiErrorCode) {
                                          convTraditionalKeyData([(ViewDataModel *)obj getKeyData:4]), @"ASCII - No shift",
                                          convTraditionalKeyData([(ViewDataModel *)obj getKeyData:5]), @"ASCII - With outer shift",
                                          convTraditionalKeyData([(ViewDataModel *)obj getKeyData:6]), @"With modifier key",
+                                         ((ViewDataModel *)obj).proper, @"Proper noun",
                                          nil]];
     }
     
@@ -499,6 +500,11 @@ static int getOyaByIdentifier(NSString *identifier) {
         NSTextFieldCell* txcell = [[NSTextFieldCell alloc] init];
         return txcell;
         
+    } else if(oya == 2) {
+        NSTextFieldCell* txcell = [[NSTextFieldCell alloc] init];
+        txcell.editable = true;
+        return txcell;
+
     } else if(oya >= 0) {
         NSButtonCell* btcell = [[NSButtonCell alloc] init];
         
@@ -523,6 +529,9 @@ static int getOyaByIdentifier(NSString *identifier) {
     if([[tableColumn identifier] isEqualToString:@"keycode"]) {
         return [(ViewDataModel *)prefLayout[viewTable[row]] getKeycodeString];
         
+    } else if(oya == 2) {
+        return ((ViewDataModel *)prefLayout[viewTable[row]]).proper;
+
     } else if(oya >= 0) {
         return 0;
         
@@ -607,7 +616,8 @@ static int getOyaByIdentifier(NSString *identifier) {
         model.ascii = convKeyData(obj[@"ASCII - No shift"]);
         model.shift = convKeyData(obj[@"ASCII - With outer shift"]);
         model.modifier = convKeyData(obj[@"With modifier key"]);
-        
+        model.proper = obj[@"Proper noun"];
+
         // backward compatibility: 後退／取消キーのエミュレーション
 //        if (keycode == kVK_ANSI_Quote && bcBsemu) {
 //            model.center = model.left = model.right = model.outer = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_Delete} length:1];
@@ -636,6 +646,10 @@ static int getOyaByIdentifier(NSString *identifier) {
         
         if (model.center == nil || model.left == nil || model.right == nil) {
             return NO;
+        }
+
+        if (model.proper == nil) {
+            model.proper = @"固有名詞";
         }
         [keyData1 addObject:model];
     }

@@ -57,6 +57,7 @@
             return self.left;
         case 2:
             return self.right;
+//            return [self.proper dataUsingEncoding:NSUTF8StringEncoding];
         case 3:
             return self.outer;
         case 4:
