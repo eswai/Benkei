@@ -425,3 +425,32 @@ qwerty.each_with_index do |k, i|
   pk = ["kVK_ANSI_C", "kVK_ANSI_V"]
   puts teigi2(k, l, m, [], pk)
 end
+
+
+puts "// 固有名詞"
+
+def teigi3(key, prefix=[], suffix=[])
+  as = ["[NSNumber numberWithInt:kVK_ANSI_#{key}]"]
+  prefix.each do |pf|
+    as.unshift "[NSNumber numberWithInt:#{pf}]"
+  end
+  suffix.each do |sf|
+    as.push "[NSNumber numberWithInt:#{sf}]"
+  end
+  as = as.join(", ")
+
+  bs = "@\"#{key.downcase}\""
+
+  sprintf("[NSArray arrayWithObjects: [[ProperAction alloc] initWith:#{bs}], nil], [NSSet setWithObjects: #{as}, nil], // 固有名詞 #{key}")
+end
+
+eiji_r.each_with_index do |k, i|
+  pk = ["kVK_ANSI_E", "kVK_ANSI_R"]
+  puts teigi3(k, [], pk)
+end
+
+eiji_l.each_with_index do |k, i|
+  pk = ["kVK_ANSI_U", "kVK_ANSI_I"]
+  puts teigi3(k, [], pk)
+end
+

@@ -22,6 +22,7 @@
 #import <Foundation/Foundation.h>
 #import "Naginata.h"
 #import "NGKey.h"
+#import "ProperAction.h"
 #import <Carbon/Carbon.h>
 
 
@@ -308,6 +309,39 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil], // ^{PgDn}
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_PageDown], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Slash], [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil], // ^{PgDn 5}
 
+            // 固有名詞
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"y"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 Y
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"u"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 U
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"i"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_I], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 I
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"o"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_O], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 O
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"p"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_P], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 P
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"h"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 H
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"j"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 J
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"k"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 K
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"l"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_L], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 L
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@";"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Semicolon], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 Semicolon
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"n"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 N
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"m"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 M
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@","], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 Comma
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"."], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 Period
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"/"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Slash], [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_R], nil], // 固有名詞 Slash
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"q"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 Q
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"w"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 W
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"e"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_E], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 E
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"r"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 R
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"t"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 T
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"a"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_A], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 A
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"s"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 S
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"d"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 D
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"f"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_F], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 F
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"g"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_G], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 G
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"z"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Z], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 Z
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"x"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 X
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"c"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 C
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"v"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 V
+            [NSArray arrayWithObjects: [[ProperAction alloc] initWith:@"b"], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_B], [NSNumber numberWithInt:kVK_ANSI_U], [NSNumber numberWithInt:kVK_ANSI_I], nil], // 固有名詞 B
+
+                     
         nil];
     }
     return self;

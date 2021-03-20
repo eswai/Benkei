@@ -23,6 +23,7 @@
 
 #import "AppDelegate.h"
 #import "Naginata.h"
+#import "ProperAction.h"
 
 @implementation AppDelegate
 
@@ -1711,12 +1712,25 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
             
         } else if ([k isKindOfClass:[NSString class]]) {
             sendUnicode(source, targetPid, (NSString *)k);
+            
+        } else if ([k isKindOfClass:[ProperAction class]]) {
+            NSString *pk = ((ProperAction *)k).keycode;
+            for (ViewDataModel *vdm in prefLayout) {
+                if ([pk isEqualToString:[vdm getKeycodeString]]) {
+                    sendUnicode(source, targetPid, vdm.proper);
+                    break;
+                }
+            }
         }
         
     }
 }
 
 static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str) {
+    if (str == nil || [str length] == 0) {
+        return;
+    }
+    
     // 1 - Get the string length in bytes.
     NSUInteger l = [str lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
 
