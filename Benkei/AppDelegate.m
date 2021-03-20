@@ -519,6 +519,7 @@ static NSControlStateValue getRadioButtonState(BOOL value) {
     
     ViewDataModel* model = ((ViewDataModel *)prefLayout[keycode]);
     model.proper = [_properText stringValue];
+    self.propLayout = prefLayout;
 }
 
 - (int)numberOfRowsInTableView:(NSTableView *)tableView {
