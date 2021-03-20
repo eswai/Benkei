@@ -34,7 +34,7 @@
 			<key>With right shift</key>
 			<data>CSD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -52,7 +52,7 @@
 			<key>With right shift</key>
 			<data>BiL/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -70,7 +70,7 @@
 			<key>With right shift</key>
 			<data>Ag7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -88,7 +88,7 @@
 			<key>With right shift</key>
 			<data>BQ7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>心の闇</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -106,7 +106,7 @@
 			<key>With right shift</key>
 			<data>LiL/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>鞍馬</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -124,7 +124,7 @@
 			<key>With right shift</key>
 			<data>Bg7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -142,7 +142,7 @@
 			<key>With right shift</key>
 			<data>DRAO</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>火よ、在れ</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -160,7 +160,7 @@
 			<key>With right shift</key>
 			<data>CyL/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>火の剣</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -178,7 +178,7 @@
 			<key>With right shift</key>
 			<data>BiD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>小鴉</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -196,7 +196,7 @@
 			<key>With right shift</key>
 			<data>CyD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>光太郎</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -214,7 +214,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -232,7 +232,7 @@
 			<key>With right shift</key>
 			<data>Cw7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>峯</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -250,7 +250,7 @@
 			<key>With right shift</key>
 			<data>DRAi</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>臨兵闘者皆陣烈在前</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -268,7 +268,7 @@
 			<key>With right shift</key>
 			<data>BQD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>ネムカケ</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -286,7 +286,7 @@
 			<key>With right shift</key>
 			<data>AgD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>天狗</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -304,7 +304,7 @@
 			<key>With right shift</key>
 			<data>BR//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>シンイチ</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -322,7 +322,7 @@
 			<key>With right shift</key>
 			<data>EB//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>さくら</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -340,7 +340,7 @@
 			<key>With right shift</key>
 			<data>BgD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>才一</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -358,7 +358,7 @@
 			<key>With right shift</key>
 			<data>OCz/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -376,7 +376,7 @@
 			<key>With right shift</key>
 			<data>Oiz/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -394,7 +394,7 @@
 			<key>With right shift</key>
 			<data>OBj/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -412,7 +412,7 @@
 			<key>With right shift</key>
 			<data>Hv//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -430,7 +430,7 @@
 			<key>With right shift</key>
 			<data>Oh7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -448,7 +448,7 @@
 			<key>With right shift</key>
 			<data>Kv//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -466,7 +466,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -484,7 +484,7 @@
 			<key>With right shift</key>
 			<data>OBn/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -502,7 +502,7 @@
 			<key>With right shift</key>
 			<data>Oir/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -520,7 +520,7 @@
 			<key>With right shift</key>
 			<data>OCr/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -538,7 +538,7 @@
 			<key>With right shift</key>
 			<data>OBz/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -556,7 +556,7 @@
 			<key>With right shift</key>
 			<data>OB7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -574,7 +574,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -592,7 +592,7 @@
 			<key>With right shift</key>
 			<data>LgD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -610,7 +610,7 @@
 			<key>With right shift</key>
 			<data>LSL/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>妖怪</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -628,7 +628,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -646,7 +646,7 @@
 			<key>With right shift</key>
 			<data>DyD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -664,7 +664,7 @@
 			<key>With right shift</key>
 			<data>Bw7/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -682,7 +682,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -700,7 +700,7 @@
 			<key>With right shift</key>
 			<data>BxAf</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -718,7 +718,7 @@
 			<key>With right shift</key>
 			<data>H///</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>青鬼</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -736,7 +736,7 @@
 			<key>With right shift</key>
 			<data>M///</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -754,7 +754,7 @@
 			<key>With right shift</key>
 			<data>LR//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -772,7 +772,7 @@
 			<key>With right shift</key>
 			<data>BxEg</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -790,7 +790,7 @@
 			<key>With right shift</key>
 			<data>Nf//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -808,7 +808,7 @@
 			<key>With right shift</key>
 			<data>LiD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -826,7 +826,7 @@
 			<key>With right shift</key>
 			<data>Bx//</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -844,7 +844,7 @@
 			<key>With right shift</key>
 			<data>LSD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>鬼塚</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -862,7 +862,7 @@
 			<key>With right shift</key>
 			<data>ECD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -880,7 +880,7 @@
 			<key>With right shift</key>
 			<data>DQD/</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string>不動金縛りの術</string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -898,7 +898,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 		<dict>
 			<key>ASCII - No shift</key>
@@ -916,7 +916,7 @@
 			<key>With right shift</key>
 			<data>////</data>
 			<key>Proper noun</key>
-			<string>固有名詞</string>
+			<string></string>
 		</dict>
 	</array>
 	<key>mode</key>

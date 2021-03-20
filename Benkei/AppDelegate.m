@@ -701,7 +701,7 @@ static int getOyaByIdentifier(NSString *identifier) {
         }
 
         if (model.proper == nil) {
-            model.proper = @"固有名詞";
+            model.proper = @"";
         }
         [keyData1 addObject:model];
     }
