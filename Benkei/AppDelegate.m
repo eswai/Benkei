@@ -42,6 +42,7 @@ NSImage *imgDisabled;
 
 BOOL oyaSheetIsActive;
 BOOL keySheetIsActive;
+BOOL properSheetIsActive;
 BOOL volatile gKanaMethod; // 日本語入力モード trueで日本語
 unsigned char gBuff; // 文字入力バッファ
 unsigned char gOya; // 左親指なら1、右親指なら2、それ以外0
@@ -330,6 +331,38 @@ static NSControlStateValue getRadioButtonState(BOOL value) {
     return 17.0f;
 }
 
+
+- (IBAction)clickPropButton:(id)sender {
+    CGKeyCode keycode = viewTable[[sender clickedRow]];
+    
+    [_properLabel setStringValue:[NSString stringWithFormat:@"%@",
+                                [(ViewDataModel *)prefLayout[keycode] getKeycodeString]]
+     ];
+    [_properText setStringValue:((ViewDataModel *)prefLayout[keycode]).proper];
+    
+    if (!prefEnabled && !enableEventTap()) {
+        return;
+    }
+    
+    properSheetIsActive = YES;
+    
+    // N.B. 10.9 and above: [_window beginSheet:completionHandler]
+    [NSApp beginSheet: _properSheet
+       modalForWindow: _window
+        modalDelegate: self
+       didEndSelector: @selector(properSheetClosed:returnCode:contextInfo:)
+          contextInfo: (__bridge void *)[NSNumber numberWithInt:(keycode << 8)]];
+}
+
+- (IBAction)properOK:(id)sender {
+    [NSApp endSheet:_properSheet returnCode:0];
+    [_properSheet close];
+}
+- (IBAction)properCancel:(id)sender {
+    [NSApp endSheet:_properSheet returnCode:0xff];
+    [_properSheet close];
+}
+
 - (IBAction)clickButton:(id)sender {
     CGKeyCode keycode = viewTable[[sender clickedRow]];
     int oya = (int)[sender clickedColumn] - 1;
@@ -474,6 +507,19 @@ static NSControlStateValue getRadioButtonState(BOOL value) {
     }
 }
 
+- (void)properSheetClosed:(NSWindow *)sheet returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
+    if (!prefEnabled) {
+        disableEventTap();
+    }
+    properSheetIsActive = NO;
+    
+    if (returnCode == 0xff) return;
+    
+    CGKeyCode keycode = (CGKeyCode)[(__bridge NSNumber *)contextInfo intValue] >> 8;
+    
+    ViewDataModel* model = ((ViewDataModel *)prefLayout[keycode]);
+    model.proper = [_properText stringValue];
+}
 
 - (int)numberOfRowsInTableView:(NSTableView *)tableView {
     return (prefLayout == nil || [prefLayout count] != LAYOUT_KEY_COUNT) ? 0 : (sizeof(viewTable) / sizeof(CGKeyCode));
@@ -501,9 +547,15 @@ static int getOyaByIdentifier(NSString *identifier) {
         return txcell;
         
     } else if(oya == 2) {
-        NSTextFieldCell* txcell = [[NSTextFieldCell alloc] init];
-        txcell.editable = true;
-        return txcell;
+        NSButtonCell* btcell = [[NSButtonCell alloc] init];
+        
+        [btcell setTarget:self];
+        [btcell setAction:@selector(clickPropButton:)];
+        
+        [btcell setBezelStyle:NSBezelStyleRoundRect];   // NSRecessedBezelStyle, NSInlineBezelStyle
+        [btcell setTitle:[(ViewDataModel *)prefLayout[viewTable[row]] proper]];
+        
+        return btcell;
 
     } else if(oya >= 0) {
         NSButtonCell* btcell = [[NSButtonCell alloc] init];

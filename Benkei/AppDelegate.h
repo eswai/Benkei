@@ -69,6 +69,12 @@ extern void CGEventPostToPid(pid_t pid, CGEventRef event) __attribute__((weak_im
 @property (assign) IBOutlet NSTextField *keyLabel1;
 @property (assign) IBOutlet NSTextField *keyLabel2;
 
+@property (assign) IBOutlet NSPanel *properSheet;
+- (IBAction)properOK:(id)sender;
+- (IBAction)properCancel:(id)sender;
+@property (assign) IBOutlet NSTextField *properLabel;
+@property (assign) IBOutlet NSTextField *properText;
+
 @property (assign) IBOutlet NSMenu *sbMenu;
 - (IBAction)showPreferences:(id)sender;
 
