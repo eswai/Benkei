@@ -31,6 +31,7 @@
 -(NSArray *)pressKey:(CGKeyCode)keycode;
 -(NSArray *)releaseKey:(CGKeyCode)keycode;
 -(void)clear;
+-(void)deepClear;
 
 @property bool kouchiShift;
 @property double doujiTime;

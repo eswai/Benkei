@@ -1336,6 +1336,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
                 if (hjbuf + keycode == kVK_ANSI_H + kVK_ANSI_J) {
                     NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
                     pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
+                    [naginata deepClear];
                     hjbuf = 0;
                     return NULL;
                 } else {

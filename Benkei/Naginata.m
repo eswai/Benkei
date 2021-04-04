@@ -364,8 +364,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             NGKey *ngk = [ngbuf objectAtIndex:0];
             if (!self.kouchiShift || -[ngk.pressTime timeIntervalSinceNow] > self.doujiTime) {
                 kana = type();
-                [pressed removeAllObjects];
-                [ngdic removeAllObjects];
+                [self clear];
             }
         }
     }
@@ -422,6 +421,12 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
 {
     [ngbuf removeAllObjects];
     [ngdic removeAllObjects];
+}
+
+-(void)deepClear
+{
+    [self clear];
+    [pressed removeAllObjects];
 }
 
 // 変換処理
