@@ -1736,10 +1736,14 @@ static void sendUnicode(CGEventSourceRef source, pid_t targetPid, NSString *str)
     NSUInteger l = [str lengthOfBytesUsingEncoding:NSUTF16StringEncoding];
 
 //    pressKeys2(source, targetPid, @[[NSNumber numberWithInt:kVK_JIS_Eisu]]);
+    
 //    NSArray* isources = CFBridgingRelease(TISCreateInputSourceList((__bridge CFDictionaryRef)@{ (__bridge NSString*)kTISPropertyInputSourceID : @"com.apple.keylayout.ABC" }, FALSE));
 //    TISInputSourceRef isource = (__bridge TISInputSourceRef)isources[0];
 //    TISSelectInputSource(isource);
-    TISSelectInputSource(TISCopyInputSourceForLanguage(CFSTR("en")));
+    
+//    TISSelectInputSource(TISCopyInputSourceForLanguage(CFSTR("en")));
+    
+    TISSelectInputSource(TISCopyCurrentASCIICapableKeyboardLayoutInputSource());
     [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
 
     // 2 - Get bytes for unicode characters
