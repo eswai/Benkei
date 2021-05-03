@@ -1317,6 +1317,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
     if (!gKanaMethod) { // 日本語入力でない
         gOya = 0;
         gPrevOya = 0;
+        [naginata deepClear];
 
         // 薙刀式処理
         /*
@@ -1336,7 +1337,6 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
                 if (hjbuf + keycode == kVK_ANSI_H + kVK_ANSI_J) {
                     NSData *newkey = [[NSData alloc] initWithBytes:(unsigned char[]){kVK_JIS_Kana} length:1];
                     pressKeys(source, targetPid, newkey, myCGEventGetFlags(event));
-                    [naginata deepClear];
                     hjbuf = 0;
                     return NULL;
                 } else {
