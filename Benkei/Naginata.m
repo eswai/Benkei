@@ -67,64 +67,95 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_N], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_P], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_N], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_T], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_N], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_T], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_P], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Y], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Shift], [NSNumber numberWithInt:kVK_Control], [NSNumber numberWithInt:kVK_ANSI_P], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Y], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Space], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Delete], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_U], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Return], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], [NSNumber numberWithInt:kVK_Return], nil],
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Space], nil],
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], [NSNumber numberWithInt:kVK_Return], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_Return], nil],
             [NSArray new], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], nil],
 
-                     // 清音
+            // 清音
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], nil], // あ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], nil], // い
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_L], nil], // う
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_O], nil], // え
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_O], nil], // え
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_N], nil], // お
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_N], nil], // お
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_F], nil], // か
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], nil], // き
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], nil], // く
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], nil], // け
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_K], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_V], nil], // こ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_U], nil], // さ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_U], nil], // さ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], nil], // し
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_O], nil], // す
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_A], nil], // せ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_A], nil], // せ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_S], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_B], nil], // そ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], nil], // た
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_G], nil], // ち
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_G], nil], // ち
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Semicolon], nil], // つ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Semicolon], nil], // つ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_E], nil], // て
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], nil], // と
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], nil], // な
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_D], nil], // に
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_D], nil], // に
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_S], nil], // ぬ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_S], nil], // ぬ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_W], nil], // ね
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_W], nil], // ね
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_J], nil], // の
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_J], nil], // の
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], nil], // は
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], nil], // ひ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_X], nil], // ひ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_X], nil], // ひ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Period], nil], // ふ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Period], nil], // ふ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_P], nil], // へ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Z], nil], // ほ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Z], nil], // ほ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_H], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Z], nil], // ほ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_F], nil], // ま
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_F], nil], // ま
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_B], nil], // み
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_B], nil], // み
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Comma], nil], // む
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Comma], nil], // む
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_R], nil], // め
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_R], nil], // め
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_K], nil], // も
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_M], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_K], nil], // も
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_H], nil], // や
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_H], nil], // や
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_P], nil], // ゆ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_P], nil], // ゆ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_I], nil], // よ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Y], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_I], nil], // よ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Period], nil], // ら
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_E], nil], // り
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_I], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_E], nil], // り
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_I], nil], // る
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Slash], nil], // れ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_Slash], nil], // れ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_Slash], nil], // れ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_R], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_A], nil], // ろ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_L], nil], // わ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_L], nil], // わ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_C], nil], // を
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_C], nil], // を
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_N], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], // ん
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Minus], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Semicolon], nil], // ー
 
@@ -168,6 +199,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_E], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_O], nil], // ぇ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_N], nil], // ぉ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_L], [NSNumber numberWithInt:kVK_Space], nil], // ゎ
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Q], [NSNumber numberWithInt:kVK_ANSI_L], [NSNumber numberWithInt:kVK_Return], nil], // ゎ
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_X], [NSNumber numberWithInt:kVK_ANSI_T], [NSNumber numberWithInt:kVK_ANSI_U], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_G], nil], // っ
 
             // 清音拗音 濁音拗音 半濁拗音
@@ -385,7 +417,9 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
         NGKey *n0 = [ngbuf objectAtIndex:0];
         NGKey *n1 = [ngbuf objectAtIndex:1];
         if ((n0.keycode == kVK_Space && n1.keycode == kVK_ANSI_Q)
-            || (n1.keycode == kVK_Space && n0.keycode == kVK_ANSI_Q)) {
+            || (n1.keycode == kVK_Space && n0.keycode == kVK_ANSI_Q)
+            || (n0.keycode == kVK_Return && n1.keycode == kVK_ANSI_Q)
+            || (n1.keycode == kVK_Return && n0.keycode == kVK_ANSI_Q)) {
             return nil;
         }
     }

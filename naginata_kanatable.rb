@@ -109,6 +109,7 @@ kana.each_with_index do |k, i|
   j = shifted.index(k)
   if j && j > 0
     puts teigi(eiji[j], r_kana[i], k, "kVK_Space")
+    puts teigi(eiji[j], r_kana[i], k, "kVK_Return")
   end
 end
 
@@ -153,6 +154,7 @@ kogaki.each_with_index do |k, i|
   j = shifted.index(k)
   if j && j > 0
     puts teigi(eiji[j], r_kogaki[i], k, "kVK_Space")
+    puts teigi(eiji[j], r_kogaki[i], k, "kVK_Return")
     next
   end
 
