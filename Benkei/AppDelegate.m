@@ -1479,7 +1479,7 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
 //    }
     
     
-    if (keycode <= kVK_ANSI_T || keycode == kVK_ANSI_O || keycode == kVK_ANSI_U || (kVK_ANSI_I <= keycode && keycode <= kVK_ANSI_J) || keycode == kVK_ANSI_K  || keycode == kVK_ANSI_Semicolon || (kVK_ANSI_Comma <= keycode && keycode <= kVK_ANSI_Period) || keycode == kVK_Space) { // see viewTable
+    if (keycode <= kVK_ANSI_T || keycode == kVK_ANSI_O || keycode == kVK_ANSI_U || (kVK_ANSI_I <= keycode && keycode <= kVK_ANSI_J) || keycode == kVK_ANSI_K  || keycode == kVK_ANSI_Semicolon || (kVK_ANSI_Comma <= keycode && keycode <= kVK_ANSI_Period) || keycode == kVK_Space || keycode == kVK_Return) { // see viewTable
         // 薙刀式処理
         NSArray *kana;
         if (type == kCGEventKeyDown) {

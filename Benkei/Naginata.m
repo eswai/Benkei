@@ -47,6 +47,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
         pressed = [NSMutableSet new];
         ngdic = [NSMutableDictionary new];
         shiftkeys = @[[NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], nil],
+                      [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_D], [NSNumber numberWithInt:kVK_ANSI_F], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_C], [NSNumber numberWithInt:kVK_ANSI_V], nil],
                       [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_K], nil],
@@ -396,7 +397,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
     
     NSArray *kana;
     // シフトキーが来たら、そこで一旦変換してしまう(前置シフト)
-    if (keycode == kVK_Space) {
+    if (keycode == kVK_Space || keycode == kVK_Return) {
         if ([ngbuf count] > 0) {
             NGKey *ngk = [ngbuf objectAtIndex:0];
             if (!self.kouchiShift || -[ngk.pressTime timeIntervalSinceNow] > self.doujiTime) {
