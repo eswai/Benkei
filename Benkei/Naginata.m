@@ -411,20 +411,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
     [pressed addObject:k];
     [ngdic setObject:ngk forKey:k];
     
-    // プレス時に候補を絞り込めるなら変換する。
-    // 例外: Space+Qと来ると、Lを押さなくても、「ゎ」しかない。
-    // しかし、そこで変換を開始するとLを押していないので、正しく変換されない。
-    if ([ngbuf count] == 2) {
-        NGKey *n0 = [ngbuf objectAtIndex:0];
-        NGKey *n1 = [ngbuf objectAtIndex:1];
-        if ((n0.keycode == kVK_Space && n1.keycode == kVK_ANSI_Q)
-            || (n1.keycode == kVK_Space && n0.keycode == kVK_ANSI_Q)
-            || (n0.keycode == kVK_Return && n1.keycode == kVK_ANSI_Q)
-            || (n1.keycode == kVK_Return && n0.keycode == kVK_ANSI_Q)) {
-            return nil;
-        }
-    }
-    if (numberOfCandidates() <= 1) {
+    if (numberOfCandidates() == 1 || numberOfCandidates() == 0) {
         kana = type();
     }
     
@@ -529,15 +516,24 @@ NSArray *lookup(NSUInteger nt, bool shifted)
     return kana;
 }
 
+// 組み合わせが複数ある > 1: 変換しない
+// 組み合わせが一つしかない = 1: 変換を開始する
+// 組み合わせが一つしかない、ただしキーを全て押していない =-1: 変換しない
+// 組み合わせがない = 0: 変換を開始する
 int numberOfCandidates() {
     int c = 0;
+    NSSet *hit;
     NSSet *keycomb = [[NSSet alloc] initWithArray:[ngdic allKeys]];
     for (NSSet *s in [ng_keymap allKeys]) {
         if ([keycomb isSubsetOfSet:s]) {
             c++;
+            hit = s;
         }
     }
     debugOut(@"[Candidate] c=%d\n", c);
+    if (c == 1 && [keycomb count] < [hit count]) {
+        return -1;
+    }
     return c;
 }
 

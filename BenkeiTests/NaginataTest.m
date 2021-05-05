@@ -153,6 +153,25 @@
     XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
+- (void)testPYA {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_H]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_X]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_M]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_H]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_X]];
+
+    XCTAssertEqual([k count], 3);
+    XCTAssertEqual([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_P]);
+    XCTAssertEqual([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_Y]);
+    XCTAssertEqual([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_A]);
+}
+
 - (void)testQ {
     Naginata *n = [Naginata new];
     n.doujiTime = 0;
