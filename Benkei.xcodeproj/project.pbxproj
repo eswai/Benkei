@@ -250,10 +250,9 @@
 			};
 			buildConfigurationList = A4F5EEFC18BA293000A2F984 /* Build configuration list for PBXProject "Benkei" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 				ja,

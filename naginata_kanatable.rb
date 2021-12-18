@@ -1,13 +1,13 @@
 tanda = <<ETANDA
-|き|て|し|{←}|{→}|{BS}|る|す|へ|「|」|
-ろ|け|と|か|っ  |く  |あ  |い|う|ー|’|‘|
-ほ|ひ|は|こ|そ  |た  |な  |ん|ら|れ|？|
+|き|て|し|{←}|{→}|{BS}|る|す|へ|@|[  |
+ろ|け|と|か|っ  |く  |あ  |い|う|ー|:|]  |
+ほ|ひ|は|こ|そ  |た  |な  |ん|ら|れ|\|
 ETANDA
 
 shifted = <<ESHIFTED
-|ね|り|め|+{←}|+{→}|さ       |よ|え|ゆ|『|』|
-せ|ぬ|に|ま|ち   |や   |の       |も|わ|つ|" |~ |
-ほ|ひ|を|、|み   |お   |。{Enter}|む|ふ|れ|！|
+|む|り |ぬ|+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
+せ|め|に |ま|ち   |や   |の       |も|わ|つ|*|{}}|
+ほ|ひ|を |、|み   |お   |。{Enter}|ね|ふ|れ|_|
 ESHIFTED
 
 eiji    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
@@ -256,27 +256,27 @@ end
 # 編集モード
 
 mode1l = <<MEND
-^{End}    |｜{改行}|/*ディ*/|^s      |・     ||||||||
-……{改行}|《{改行}|？{改行}|「{改行}|({改行}||||||||
-││{改行}|》{改行}|！{改行}|」{改行}|){改行}|||||||
+^{End}    |『』{改行}{↑}|/*ディ*/|^s            |・                             ||||||||
+……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|{改行}{End}{改行}「」{改行}{↑}||||||||
+││{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |{改行}{End}{改行}{Space}       |||||||
 MEND
 
 mode1r = <<MEND
 |||||{Home}      |+{End}{BS}|{vk1Csc079}|{Del} |{Esc 3}|  |  |
-|||||{Enter}{End}|{↑}      |+{↑}      |{↑ 5}|^i     |  |  |
-|||||{End}       |{↓}      |+{↓}      |{↓ 5}|^u     |  |
+|||||{Enter}{End}|{↑}      |+{↑}      |+{↑ 7}|{↑ 5}|  |  |
+|||||{End}       |{↓}      |+{↓}      |+{↓ 7}|{↓ 5}|  |
 MEND
 
 mode2l = <<MEND
-／{改行}|｜{改行}{End}《》{改行}{↑}|{Home}{改行}{Space 3}{End}|{Home}{改行}{Space 1}{End}|〇{改行} ||||||||
-【{改行}|〈{改行}                   |『{改行}                   |」{改行 2}「{改行}       |{Space 3}||||||||
-】{改行}|〉{改行}                   |』{改行}                   |」{改行 2}{Space}        |　　　×　　　×　　　×{改行 2}|||||||
+^x{BS}{Del}^v                           |^x『^v』{改行}{Space}+{↑}^x|{Home}{改行}{Space 3}{End}|{Home}{改行}{Space 1}{End}  |〇{改行}                        ||||||||
+《》{改行}{↑}                          |^x(^v){改行}{Space}+{↑}^x  |{Space 3}                 |^x「^v」{改行}{Space}+{↑}^x|／{改行}                        ||||||||
+^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x|^x【^v】{改行}{Space}+{↑}^x|{Home}{BS}{Del 3}{End}    |{Home}{BS}{Del 1}{End}      |　　　×　　　×　　　×{改行 2}|||||||
 MEND
 
 mode2r = <<MEND
-|||||+{Home}|^x    |^v     |^y     |^z       |  |  |
-|||||^c     |{→ 5}|+{→ 5}|^{PgUp}|^{PgUp 5}|  |  |
-|||||+{End} |{← 5}|+{← 5}|^{PgDn}|^{PgDn 5}|  |
+|||||+{Home}|^x     |^v     |^y      |^z|  |  |
+|||||^c     | {→ 5}|+{→ 5}|+{→ 20}|^i|  |  |
+|||||+{End} | {← 5}|+{← 5}|+{← 20}|^u|  |
 MEND
 
 $henshu = {
@@ -308,6 +308,27 @@ $henshu = {
 "{Enter}{End}"  => ["kVK_Return", "kVK_Control", "kVK_ANSI_E"],
 "{Home}{改行}{Space 3}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space", "kVK_Control", "kVK_ANSI_E"], # 台マクロ
 "{Home}{改行}{Space 1}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Control", "kVK_ANSI_E"], # ト マクロ
+
+"『』{改行}{↑}" => ["『』", "kVK_Control", "kVK_ANSI_B"],
+"(){改行}{↑}" => ["()", "kVK_Control", "kVK_ANSI_B"],
+"「」{改行}{↑}" => ["「」", "kVK_Control", "kVK_ANSI_B"],
+"{改行}{End}{改行}「」{改行}{↑}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return", "「」", "kVK_Control", "kVK_ANSI_B"],
+"【】{改行}{↑}" => ["【】", "kVK_Control", "kVK_ANSI_B"],
+"{改行}{↓}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_F"],
+"{改行}{End}{改行}{Space}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return", "kVK_Space"],
+"+{↑ 7}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B"],
+"+{↓ 7}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F"],
+"^x{BS}{Del}^v" => ["kVK_Command", "kVK_ANSI_X", "kVK_Delete", "kVK_ForwardDelete", "kVK_Command", "kVK_ANSI_V"],
+"^x『^v』{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "『", "kVK_Command", "kVK_ANSI_V", "』", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
+"《》{改行}{↑}" => ["《》", "kVK_Control", "kVK_ANSI_B"],
+"^x(^v){改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "(", "kVK_Command", "kVK_ANSI_V", ")", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
+"^x「^v」{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "「", "kVK_Command", "kVK_ANSI_V", "」", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
+"^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "｜", "kVK_Command", "kVK_ANSI_V", "《》", "kVK_Control", "kVK_ANSI_B", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
+"^x【^v】{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "【", "kVK_Command", "kVK_ANSI_V", "】", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
+"{Home}{BS}{Del 3}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Delete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_Control", "kVK_ANSI_E"],
+"{Home}{BS}{Del 1}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Delete", "kVK_ForwardDelete", "kVK_Control", "kVK_ANSI_E"],
+"+{→ 20}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
+"+{← 20}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
 
 "｜{改行}"      => ["｜"],
 "・"           => ["kVK_ANSI_Slash"],
@@ -395,7 +416,10 @@ end
 puts "// 編集モード1"
 
 qwerty.each_with_index do |k, i|
-  next unless $henshu.key? mode1l[i]
+  unless $henshu.key? mode1l[i]
+    puts "missing #{mode1l[i]}" if mode1l[i].size > 0
+    next
+  end
   m =  mode1l[i]
   l = $henshu[m]
   pk = ["kVK_ANSI_J", "kVK_ANSI_K"]
@@ -403,7 +427,10 @@ qwerty.each_with_index do |k, i|
 end
 
 qwerty.each_with_index do |k, i|
-  next unless $henshu.key? mode1r[i]
+  unless $henshu.key? mode1r[i]
+    puts "missing #{mode1r[i]}" if mode1r[i].size > 0
+    next
+  end
   m =  mode1r[i]
   l = $henshu[m]
   pk = ["kVK_ANSI_D", "kVK_ANSI_F"]
@@ -413,7 +440,10 @@ end
 puts "// 編集モード2"
 
 qwerty.each_with_index do |k, i|
-  next unless $henshu.key? mode2l[i]
+  unless $henshu.key? mode2l[i]
+    puts "missing #{mode2l[i]}" if mode2l[i].size > 0
+    next
+  end
   m =  mode2l[i]
   l = $henshu[m]
   pk = ["kVK_ANSI_M", "kVK_ANSI_Comma"]
@@ -421,7 +451,10 @@ qwerty.each_with_index do |k, i|
 end
 
 qwerty.each_with_index do |k, i|
-  next unless $henshu.key? mode2r[i]
+  unless $henshu.key? mode2r[i]
+    puts "missing #{mode2r[i]}" if mode2r[i].size > 0
+    next
+  end
   m =  mode2r[i]
   l = $henshu[m]
   pk = ["kVK_ANSI_C", "kVK_ANSI_V"]
