@@ -1701,12 +1701,12 @@ static void pressKeys2(CGEventSourceRef source, pid_t targetPid, NSArray *newkey
             newevent = CGEventCreateKeyboardEvent(source, key, YES);
             CGEventSetFlags(newevent, (myCGEventGetFlags(newevent) & ~kCGEventFlagMaskShift) | flags);
             myCGEventPostToPid(targetPid, newevent);
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.001f]];
 
             newevent = CGEventCreateKeyboardEvent(source, key, NO);
             CGEventSetFlags(newevent, (myCGEventGetFlags(newevent)) | flags);
             myCGEventPostToPid(targetPid, newevent);
-            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.01f]];
+            [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.001f]];
 
             flags = 0;
             CFRelease(newevent);

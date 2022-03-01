@@ -488,6 +488,40 @@
     XCTAssertEqualObjects([k objectAtIndex:3], [NSNumber numberWithInt:kVK_ANSI_A]);
 }
 
+- (void)testTAI {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_N]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_N]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_K]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_K]];
+
+    XCTAssertEqual([k count], 3);
+    XCTAssertEqualObjects([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_T]);
+    XCTAssertEqualObjects([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_A]);
+    XCTAssertEqualObjects([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_I]);
+}
+
+- (void)testHOU {
+    Naginata *n = [Naginata new];
+    n.doujiTime = 0;
+    n.kouchiShift = false;
+    NSMutableArray *k = [NSMutableArray new];
+
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_Z]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_Z]];
+    [k addObjectsFromArray:[n pressKey:kVK_ANSI_L]];
+    [k addObjectsFromArray:[n releaseKey:kVK_ANSI_L]];
+
+    XCTAssertEqual([k count], 3);
+    XCTAssertEqualObjects([k objectAtIndex:0], [NSNumber numberWithInt:kVK_ANSI_H]);
+    XCTAssertEqualObjects([k objectAtIndex:1], [NSNumber numberWithInt:kVK_ANSI_O]);
+    XCTAssertEqualObjects([k objectAtIndex:2], [NSNumber numberWithInt:kVK_ANSI_U]);
+}
+
 
 - (void)testQuesExc {
     Naginata *n = [Naginata new];
