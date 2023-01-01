@@ -1,13 +1,13 @@
 tanda = <<ETANDA
-|き|て|し|{←}|{→}|{BS}|る|す|へ|@|[  |
+ヴ|き|て|し|{←}|{→}|{BS}|る|す|へ|@|[  |
 ろ|け|と|か|っ  |く  |あ  |い|う|ー|:|]  |
 ほ|ひ|は|こ|そ  |た  |な  |ん|ら|れ|\|
 ETANDA
 
 shifted = <<ESHIFTED
-|む|り |ぬ|+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
-せ|め|に |ま|ち   |や   |の       |も|わ|つ|*|{}}|
-ほ|ひ|を |、|み   |お   |。{Enter}|ね|ふ|れ|_|
+ヴ|ぬ|り |ね       |+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
+せ|め|に |ま       |ち   |や   |の       |も|つ|ふ|*|{}}|
+ほ|ひ|を |、{Enter}|み   |お   |。{Enter}|む|わ|れ|_|
 ESHIFTED
 
 eiji    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
@@ -79,8 +79,8 @@ gairai << %w(うぃ うぇ うぉ ゔぁ ゔぃ ゔぇ ゔぉ ゔゅ)
 r_gairai << %w(wi we uxo va vi ve vo vuxyu)
 gairai << %w(くぁ くぃ くぇ くぉ くゎ ぐぁ ぐぃ ぐぇ ぐぉ ぐゎ)
 r_gairai << %w(kuxa kuxi kuxe kuxo kuxwa guxa guxi guxe guxo guxwa)
-gairai << %w(つぁ つぃ つぇ つぉ)
-r_gairai << %w(tsa tsi tse tso)
+gairai << %w(つぁ)
+r_gairai << %w(tsa)
 
 kumiawase.flatten!
 r_kumiawase.flatten!
@@ -256,27 +256,27 @@ end
 # 編集モード
 
 mode1l = <<MEND
-^{End}    |『』{改行}{↑}|/*ディ*/|^s            |・                             ||||||||
-……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|{改行}{End}{改行}「」{改行}{↑}||||||||
-││{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |{改行}{End}{改行}{Space}       |||||||
+^{End}    |《》{改行}{↑}|/*ディ*/|^s            |・            ||||||||
+……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|『』{改行}{↑}||||||||
+││{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |／{改行}      |||||||
 MEND
 
 mode1r = <<MEND
-|||||{Home}      |+{End}{BS}|{vk1Csc079}|{Del} |{Esc 3}|  |  |
-|||||{Enter}{End}|{↑}      |+{↑}      |+{↑ 7}|{↑ 5}|  |  |
-|||||{End}       |{↓}      |+{↓}      |+{↓ 7}|{↓ 5}|  |
+|||||{Home}      |+{End}{BS}|{vk1Csc079}|{Del}  |{Esc 3}|  |  |
+|||||{Enter}{End}|{↑}      |+{↑}      |+{↑ 7}|^i     |  |  |
+|||||{End}       |{↓}      |+{↓}      |+{↓ 7}|^u     |  |
 MEND
 
 mode2l = <<MEND
-^x{BS}{Del}^v                           |^x『^v』{改行}{Space}+{↑}^x|{Home}{改行}{Space 3}{End}|{Home}{改行}{Space 1}{End}  |〇{改行}                        ||||||||
-《》{改行}{↑}                          |^x(^v){改行}{Space}+{↑}^x  |{Space 3}                 |^x「^v」{改行}{Space}+{↑}^x|／{改行}                        ||||||||
-^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x|^x【^v】{改行}{Space}+{↑}^x|{Home}{BS}{Del 3}{End}    |{Home}{BS}{Del 1}{End}      |　　　×　　　×　　　×{改行 2}|||||||
+{Home}{Del 3}{BS}{←}           |^x｜{改行}^v《》{改行}{↑}  |{Home}{改行}{Space 3}{←}|{Space 3}                      |〇{改行}      ||||||||
+{Home}{Del 1}{BS}{←}           |^x(^v){改行}{Space}+{↑}^x  |{Home}{改行}{Space 1}{←}|^x「^v」{改行}{Space}+{↑}^x   |^x『^v』{改行}{Space}+{↑}^x||||||||
+　　　×　　　×　　　×{改行 2}|^x【^v】{改行}{Space}+{↑}^x|{改行}{End}{改行}}       |{改行}{End}{改行}「」{改行}{↑}|{End}{改行}   |||||||
 MEND
 
 mode2r = <<MEND
-|||||+{Home}|^x     |^v     |^y      |^z|  |  |
-|||||^c     | {→ 5}|+{→ 5}|+{→ 20}|^i|  |  |
-|||||+{End} | {← 5}|+{← 5}|+{← 20}|^u|  |
+|||||+{Home}|^x    |^z   |^y      |^v      |  |  |
+|||||^c     |{→ 5}|+{→}|+{→ 5} |+{→ 20}|  |  |
+|||||+{End} |{← 5}|+{←}|+{← 5} |+{← 20}|  |
 MEND
 
 $henshu = {
@@ -363,6 +363,17 @@ $henshu = {
 "^y"            => ["kVK_Command", "kVK_Shift", "kVK_ANSI_Z"],
 "^z"            => ["kVK_Command", "kVK_ANSI_Z"],
 "^c"            => ["kVK_Command", "kVK_ANSI_C"],
+
+"{Home}{Del 3}{BS}{←}"    => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
+"^x｜{改行}^v《》{改行}{↑}" => ["kVK_Command", "kVK_ANSI_X", "｜", "kVK_Command", "kVK_ANSI_V", "《》", "kVK_Control", "kVK_ANSI_B"],
+"{Home}{改行}{Space 3}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space"],
+"{Home}{Del 1}{BS}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
+"{Home}{改行}{Space 1}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space"],
+"{改行}{End}{改行}}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return"],
+"{End}{改行}" => ["kVK_Control", "kVK_ANSI_E", "kVK_Return"],
+"+{→}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
+"+{←}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
+
 }
 
 qwerty    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
