@@ -366,9 +366,9 @@ $henshu = {
 
 "{Home}{Del 3}{BS}{←}"    => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
 "^x｜{改行}^v《》{改行}{↑}" => ["kVK_Command", "kVK_ANSI_X", "｜", "kVK_Command", "kVK_ANSI_V", "《》", "kVK_Control", "kVK_ANSI_B"],
-"{Home}{改行}{Space 3}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space"],
+"{Home}{改行}{Space 3}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space", "kVK_Control", "kVK_ANSI_N"],
 "{Home}{Del 1}{BS}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
-"{Home}{改行}{Space 1}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space"],
+"{Home}{改行}{Space 1}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Control", "kVK_ANSI_N"],
 "{改行}{End}{改行}}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return"],
 "{End}{改行}" => ["kVK_Control", "kVK_ANSI_E", "kVK_Return"],
 "+{→}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
