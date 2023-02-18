@@ -6,8 +6,8 @@ ETANDA
 
 shifted = <<ESHIFTED
 ヴ|ぬ|り |ね       |+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
-せ|め|に |ま       |ち   |や   |の       |も|つ|ふ|*|{}}|
-ほ|ひ|を |、{Enter}|み   |お   |。{Enter}|む|わ|れ|_|
+せ|み|に |ま       |ち   |や   |の       |も|つ|ふ|*|{}}|
+ほ|ひ|を |、{Enter}|め   |お   |。{Enter}|む|わ|れ|_|
 ESHIFTED
 
 eiji    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
