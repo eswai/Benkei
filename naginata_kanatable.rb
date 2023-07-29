@@ -1,13 +1,13 @@
 tanda = <<ETANDA
-ヴ|き|て|し|{←}|{→}|{BS}|る|す|へ|@|[  |
+ゔ|き|て|し|{←}|{→}|{BS}|る|す|へ|@|[  |
 ろ|け|と|か|っ  |く  |あ  |い|う|ー|:|]  |
 ほ|ひ|は|こ|そ  |た  |な  |ん|ら|れ|\|
 ETANDA
 
 shifted = <<ESHIFTED
-ヴ|ぬ|り |ね       |+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
-せ|み|に |ま       |ち   |や   |の       |も|つ|ふ|*|{}}|
-ほ|ひ|を |、{Enter}|め   |お   |。{Enter}|む|わ|れ|_|
+ゔ|ぬ|り |ね       |+{←}|+{→}|さ       |よ|え|ゆ|`|{{}|
+せ|め|に |ま       |ち   |や   |の       |も|つ|ふ|*|{}}|
+ほ|ひ|を |、{Enter}|み   |お   |。{Enter}|む|わ|れ|_|
 ESHIFTED
 
 eiji    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
@@ -256,9 +256,9 @@ end
 # 編集モード
 
 mode1l = <<MEND
-^{End}    |《》{改行}{↑}|/*ディ*/|^s            |・            ||||||||
-……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|『』{改行}{↑}||||||||
-││{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |／{改行}      |||||||
+^{End}    |『』{改行}{↑}|/*ディ*/|^s            |・            ||||||||
+……{改行}|(){改行}{↑}  |？{改行}|「」{改行}{↑}|《》{改行}{↑}||||||||
+――{改行}|【】{改行}{↑}|！{改行}|{改行}{↓}    |{改行}{←}    |||||||
 MEND
 
 mode1r = <<MEND
@@ -268,114 +268,65 @@ mode1r = <<MEND
 MEND
 
 mode2l = <<MEND
-{Home}{Del 3}{BS}{←}           |^x｜{改行}^v《》{改行}{↑}  |{Home}{改行}{Space 3}{←}|{Space 3}                      |〇{改行}      ||||||||
-{Home}{Del 1}{BS}{←}           |^x(^v){改行}{Space}+{↑}^x  |{Home}{改行}{Space 1}{←}|^x「^v」{改行}{Space}+{↑}^x   |^x『^v』{改行}{Space}+{↑}^x||||||||
-　　　×　　　×　　　×{改行 2}|^x【^v】{改行}{Space}+{↑}^x|{改行}{End}{改行}}       |{改行}{End}{改行}「」{改行}{↑}|{End}{改行}   |||||||
+{Home}{→}{End}{Del 4}{←}      |^x『^v』{改行}{Space}+{↑}^x|{Home}{改行}{Space 3}{←}|{Space 3}                      |〇{改行}                                ||||||||
+{Home}{→}{End}{Del 2}{←}      |^x(^v){改行}{Space}+{↑}^x  |{Home}{改行}{Space 1}{←}|^x「^v」{改行}{Space}+{↑}^x   |^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x||||||||
+　　　×　　　×　　　×{改行 2}|^x【^v】{改行}{Space}+{↑}^x|／{改行}                 |{改行}{End}{改行}「」{改行}{↑}|{改行}{End}{改行}{Space}                |||||||
 MEND
 
 mode2r = <<MEND
-|||||+{Home}|^x    |^z   |^y      |^v      |  |  |
-|||||^c     |{→ 5}|+{→}|+{→ 5} |+{→ 20}|  |  |
-|||||+{End} |{← 5}|+{←}|+{← 5} |+{← 20}|  |
+|||||+{Home}|^x  |^v   |^y      |^z      |  |  |
+|||||^c     |{→}|+{→}|+{→ 5} |+{→ 20}|  |  |
+|||||+{End} |{←}|+{←}|+{← 5} |+{← 20}|  |
 MEND
 
+
 $henshu = {
-"？{改行}"       => ["？"],
-"！{改行}"       => ["！"],
-"{Home}"        => ["kVK_Control", "kVK_ANSI_A"],
-"{End}"         => ["kVK_Control", "kVK_ANSI_E"],
-"+{Home}"       => ["kVK_Shift", "kVK_Control", "kVK_ANSI_A"],
-"+{End}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_E"],
-"^{End}"        => ["kVK_Command", "kVK_LeftArrow", "kVK_Command", "kVK_DownArrow"],
-"+{End}{BS}"    => ["kVK_Control", "kVK_ANSI_K"], # 末消
-"{vk1Csc079}"   => ["kVK_JIS_Kana", "kVK_JIS_Kana"], # 再変換
-"{Del}"         => ["kVK_ForwardDelete"],
-"{Esc 3}"       => ["kVK_Escape", "kVK_Escape", "kVK_Escape"],
-"{↑}"           => ["kVK_Control", "kVK_ANSI_B"],
-"{↓}"           => ["kVK_Control", "kVK_ANSI_F"],
-"+{↑}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_B"],
-"+{↓}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_F"],
-"{↑ 5}"         => ["kVK_Control", "kVK_ANSI_B", "kVK_Control", "kVK_ANSI_B", "kVK_Control", "kVK_ANSI_B", "kVK_Control", "kVK_ANSI_B", "kVK_Control", "kVK_ANSI_B"],
-"{↓ 5}"         => ["kVK_Control", "kVK_ANSI_F", "kVK_Control", "kVK_ANSI_F", "kVK_Control", "kVK_ANSI_F", "kVK_Control", "kVK_ANSI_F", "kVK_Control", "kVK_ANSI_F"],
-"+{→ 5}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
-"+{← 5}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
-"{→ 5}"         => ["kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P"],
-"{← 5}"         => ["kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N"],
-"^{PgUp}"       => ["kVK_Control", "kVK_PageUp"],
-"^{PgDn}"       => ["kVK_Control", "kVK_PageDown"],
-"^{PgUp 5}"     => ["kVK_Control", "kVK_PageUp", "kVK_Control", "kVK_PageUp", "kVK_Control", "kVK_PageUp", "kVK_Control", "kVK_PageUp", "kVK_Control", "kVK_PageUp"],
-"^{PgDn 5}"     => ["kVK_Control", "kVK_PageDown", "kVK_Control", "kVK_PageDown", "kVK_Control", "kVK_PageDown", "kVK_Control", "kVK_PageDown", "kVK_Control", "kVK_PageDown"],
-"{Enter}{End}"  => ["kVK_Return", "kVK_Control", "kVK_ANSI_E"],
-"{Home}{改行}{Space 3}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space", "kVK_Control", "kVK_ANSI_E"], # 台マクロ
-"{Home}{改行}{Space 1}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Control", "kVK_ANSI_E"], # ト マクロ
-
-"『』{改行}{↑}" => ["『』", "kVK_Control", "kVK_ANSI_B"],
-"(){改行}{↑}" => ["()", "kVK_Control", "kVK_ANSI_B"],
-"「」{改行}{↑}" => ["「」", "kVK_Control", "kVK_ANSI_B"],
-"{改行}{End}{改行}「」{改行}{↑}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return", "「」", "kVK_Control", "kVK_ANSI_B"],
-"【】{改行}{↑}" => ["【】", "kVK_Control", "kVK_ANSI_B"],
-"{改行}{↓}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_F"],
-"{改行}{End}{改行}{Space}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return", "kVK_Space"],
-"+{↑ 7}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B"],
-"+{↓ 7}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F"],
-"^x{BS}{Del}^v" => ["kVK_Command", "kVK_ANSI_X", "kVK_Delete", "kVK_ForwardDelete", "kVK_Command", "kVK_ANSI_V"],
-"^x『^v』{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "『", "kVK_Command", "kVK_ANSI_V", "』", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
-"《》{改行}{↑}" => ["《》", "kVK_Control", "kVK_ANSI_B"],
-"^x(^v){改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "(", "kVK_Command", "kVK_ANSI_V", ")", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
-"^x「^v」{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "「", "kVK_Command", "kVK_ANSI_V", "」", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
-"^x｜{改行}^v《》{改行}{↑}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "｜", "kVK_Command", "kVK_ANSI_V", "《》", "kVK_Control", "kVK_ANSI_B", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
-"^x【^v】{改行}{Space}+{↑}^x" => ["kVK_Command", "kVK_ANSI_X", "【", "kVK_Command", "kVK_ANSI_V", "】", "kVK_Space", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Command", "kVK_ANSI_X"],
-"{Home}{BS}{Del 3}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Delete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_Control", "kVK_ANSI_E"],
-"{Home}{BS}{Del 1}{End}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Delete", "kVK_ForwardDelete", "kVK_Control", "kVK_ANSI_E"],
-"+{→ 20}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
-"+{← 20}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
-
-"｜{改行}"      => ["｜"],
-"・"           => ["kVK_ANSI_Slash"],
-"……{改行}"     => ["……"],
-"／{改行}"      => ["／"],
-"《{改行}"      => ["《"],
-"》{改行}"      => ["》"],
-"「{改行}"      => ["「"],
-"」{改行}"      => ["」"],
-"({改行}"       => ["（"],
-"){改行}"       => ["）"],
-"││{改行}"      => ["││"],
-"〇{改行}"      => ["〇"],
-"【{改行}"      => ["【"],
-"】{改行}"      => ["】"],
-"〈{改行}"      => ["〈"],
-"〉{改行}"      => ["〉"],
-"『{改行}"      => ["『"],
-"』{改行}"      => ["』"],
-
-"｜{改行}{End}《》{改行}{↑}"=> ["｜", "kVK_Control", "kVK_ANSI_E", "《》", "kVK_Control", "kVK_ANSI_B"], # ルビ
-"」{改行 2}「{改行}"=> ["」", "kVK_Return", "「"],
-"」{改行 2}{Space}"=> ["」", "kVK_Return", "kVK_Space"],
-"　　　×　　　×　　　×{改行 2}"=> ["　　　×　　　×　　　×", "kVK_Return"],
-
-"{Space 3}"     => ["kVK_Space", "kVK_Space", "kVK_Space"],
-"^i"            => ["kVK_Control", "kVK_ANSI_K"], # カタカナ
-"^u"            => ["kVK_Control", "kVK_ANSI_J"], # ひらがな
-"^s"            => ["kVK_Command", "kVK_ANSI_S"],
-"^x"            => ["kVK_Command", "kVK_ANSI_X"],
-"^v"            => ["kVK_Command", "kVK_ANSI_V"],
-"^y"            => ["kVK_Command", "kVK_Shift", "kVK_ANSI_Z"],
-"^z"            => ["kVK_Command", "kVK_ANSI_Z"],
-"^c"            => ["kVK_Command", "kVK_ANSI_C"],
-
-"{Home}{Del 3}{BS}{←}"    => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
-"^x｜{改行}^v《》{改行}{↑}" => ["kVK_Command", "kVK_ANSI_X", "｜", "kVK_Command", "kVK_ANSI_V", "《》", "kVK_Control", "kVK_ANSI_B"],
-"{Home}{改行}{Space 3}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Space", "kVK_Space", "kVK_Control", "kVK_ANSI_N"],
-"{Home}{Del 1}{BS}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_ForwardDelete", "kVK_Delete", "kVK_Control", "kVK_ANSI_N"],
-"{Home}{改行}{Space 1}{←}" => ["kVK_Control", "kVK_ANSI_A", "kVK_Return", "kVK_Space", "kVK_Control", "kVK_ANSI_N"],
-"{改行}{End}{改行}}" => ["kVK_Return", "kVK_Control", "kVK_ANSI_E", "kVK_Return"],
-"{End}{改行}" => ["kVK_Control", "kVK_ANSI_E", "kVK_Return"],
-"+{→}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
-"+{←}" => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
-
-}
-
+  "+{End}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_E"],
+  "+{Home}"       => ["kVK_Shift", "kVK_Control", "kVK_ANSI_A"],
+  "+{← 20}"       => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
+  "+{← 5}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N", "kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
+  "+{←}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_N"],
+  "+{↑ 7}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B", "kVK_Shift", "kVK_Control", "kVK_ANSI_B"],
+  "+{↑}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_B"],
+  "+{→ 20}"       => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
+  "+{→ 5}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P", "kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
+  "+{→}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_P"],
+  "+{↓ 7}"        => ["kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F", "kVK_Shift", "kVK_Control", "kVK_ANSI_F"],
+  "+{↓}"          => ["kVK_Shift", "kVK_Control", "kVK_ANSI_F"],
+  "/*ディ*/"       => [""],
+  "^i"            => ["kVK_Control", "kVK_ANSI_K"], # カタカナ
+  "^u"            => ["kVK_Control", "kVK_ANSI_J"], # ひらがな
+  "^s"            => ["kVK_Command", "kVK_ANSI_S"],
+  "^x"            => ["kVK_Command", "kVK_ANSI_X"],
+  "^v"            => ["kVK_Command", "kVK_ANSI_V"],
+  "^y"            => ["kVK_Command", "kVK_Shift", "kVK_ANSI_Z"],
+  "^z"            => ["kVK_Command", "kVK_ANSI_Z"],
+  "^c"            => ["kVK_Command", "kVK_ANSI_C"],  
+  "^{End}"        => ["kVK_Command", "kVK_LeftArrow", "kVK_Command", "kVK_DownArrow"],
+  "{BS}"          => ["kVK_Delete"],
+  "{Del 1}"       => ["kVK_ForwardDelete"],
+  "{Del 2}"       => ["kVK_ForwardDelete"] * 2,
+  "{Del 3}"       => ["kVK_ForwardDelete"] * 3,
+  "{Del 4}"       => ["kVK_ForwardDelete"] * 4,
+  "{Del}"         => ["kVK_ForwardDelete"],
+  "{End}"         => ["kVK_Control", "kVK_ANSI_E"],
+  "{Enter}"       => ["kVK_Return"],
+  "{Esc 3}"       => ["kVK_Escape"] * 3,
+  "{Home}"        => ["kVK_Control", "kVK_ANSI_A"],
+  "{Space 1}"     => ["kVK_Space"],
+  "{Space 3}"     => ["kVK_Space"] * 3,
+  "{Space}"       => ["kVK_Space"],
+  "{vk1Csc079}"   => ["kVK_JIS_Kana", "kVK_JIS_Kana"], # 再変換
+  "{←}"           => ["kVK_Control", "kVK_ANSI_N"],
+  "{↑}"           => ["kVK_Control", "kVK_ANSI_B"],
+  "{↓}"           => ["kVK_Control", "kVK_ANSI_F"],
+  "{→ 5}"         => ["kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P", "kVK_Control", "kVK_ANSI_P"],
+  "{← 5}"         => ["kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N", "kVK_Control", "kVK_ANSI_N"],  
+  "{→}"           => ["kVK_Control", "kVK_ANSI_P"],
+  "{改行 2}"       => ["kVK_Return"] * 2,
+  "{改行}"         => ["kVK_Return"],
+ }
+ 
 qwerty    = %w(Q W E R T  Y U I O P  A S D F G  H J K L Semicolon  Z X C V B  N M Comma Period Slash)
 
 mode1l = mode1l.split("|").map{|x| x.strip}
@@ -397,6 +348,61 @@ $hmac = []
 $uwin = []
 $umac = []
 $htate = []
+
+
+$hcase = []
+$hkey = []
+
+def outputHenshu(pk, m, k)
+  v = m.scan(/((?:\^?\+?{.+?})|(?:\^.)|(?:[^{}\^\+]+))/).flatten
+  d = []
+  uc = false
+  v.each do |i|
+    if $henshu.key? i
+      if i == "{改行}" && uc
+        uc = false
+        next
+      end
+      $henshu[i].each do |h|
+        d << "[NSNumber numberWithInt:#{h}]"
+      end
+    else
+      d << "@\"#{i}\""
+      uc = true
+    end
+  end
+  as = (["kVK_ANSI_#{k}"] + pk).map{|k| "[NSNumber numberWithInt:#{k}]"}.join(", ")
+  bs = d.join(", ")
+  $hcase << "[NSArray arrayWithObjects: #{bs}, nil], [NSSet setWithObjects: #{as}, nil], // #{m}"
+end
+
+qwerty.each_with_index do |k, i|
+  m =  mode1l[i]
+  pk = ["kVK_ANSI_J", "kVK_ANSI_K"]
+  outputHenshu(pk, m, k) unless m == ""
+end
+
+qwerty.each_with_index do |k, i|
+  m =  mode1r[i]
+  pk = ["kVK_ANSI_D", "kVK_ANSI_F"]
+  outputHenshu(pk, m, k) unless m == ""
+end
+
+qwerty.each_with_index do |k, i|
+  m =  mode2l[i]
+  pk = ["kVK_ANSI_M", "kVK_ANSI_Comma"]
+  outputHenshu(pk, m, k) unless m == ""
+end
+
+qwerty.each_with_index do |k, i|
+  m =  mode2r[i]
+  pk = ["kVK_ANSI_C", "kVK_ANSI_V"]
+  outputHenshu(pk, m, k) unless m == ""
+end
+
+puts "// 編集モード"
+puts $hkey
+puts $hcase
 
 # def teigi(a, b, c, prefix="", suffix="")
 # puts teigi(eiji[j], r_kana[i], k, "kVK_Space")

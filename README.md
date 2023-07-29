@@ -4,8 +4,8 @@ Benkeiは、MacOSで薙刀式かな入力を行うためのソフトです。薙
 
 #### 薙刀式とは
 
-【薙刀式】v15fix版（仮2/13版）: 大岡俊彦の作品置き場
-http://oookaworks.seesaa.net/article/498162337.html
+【薙刀式】v15fix版、発表: 大岡俊彦の作品置き場
+http://oookaworks.seesaa.net/article/500180437.html
 
 # 目標
 
