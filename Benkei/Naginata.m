@@ -157,7 +157,7 @@ NSMutableDictionary *ngdic; // CGKeycodeからNGKeyへの辞書。同時にこ�
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Space], [NSNumber numberWithInt:kVK_ANSI_C], nil], // を
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_W], [NSNumber numberWithInt:kVK_ANSI_O], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_Return], [NSNumber numberWithInt:kVK_ANSI_C], nil], // を
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_N], [NSNumber numberWithInt:kVK_ANSI_N], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Comma], nil], // ん
-            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_-], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Semicolon], nil], // ー
+            [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_Minus], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_Semicolon], nil], // ー
 
             // 濁音
             [NSArray arrayWithObjects: [NSNumber numberWithInt:kVK_ANSI_G], [NSNumber numberWithInt:kVK_ANSI_A], nil], [NSSet setWithObjects: [NSNumber numberWithInt:kVK_ANSI_J], [NSNumber numberWithInt:kVK_ANSI_F], nil], // が
