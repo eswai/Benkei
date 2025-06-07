@@ -1487,6 +1487,11 @@ static CGEventRef keyUpDownEventCallback(CGEventTapProxy proxy, CGEventType type
         } else if (type == kCGEventKeyUp) {
             kana = [naginata releaseKey:keycode];
         }
+        // Google日本語入力で英数に切り替えてもかな入力される
+        if (kana != nil && [kana containsObject:@(kVK_JIS_Eisu)]) {
+            gKanaMethod = NO;
+            [self_ updateSbIcon];
+        }
 //        CGEventFlags flag = (CGEventFlags)0;
 //        for (NSNumber *k in kana) {
 //            if ([k intValue] == kVK_Shift) {
