@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 #import <Carbon/Carbon.h>
 
-@interface KeyTransformer : NSObject
+@interface KeyTransformer : NSValueTransformer
 
 + (Class)transformedValueClass;
 + (BOOL)allowsReverseTransformation;

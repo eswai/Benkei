@@ -26,6 +26,7 @@
 #include <unistd.h>
 #include <string.h>
 #import "ViewDataModel.h"
+#import "KeyTransformer.h"
 
 // from ApplicationServices.framework/HIServices.framework/AXUIElement.h
 extern Boolean AXIsProcessTrustedWithOptions(CFDictionaryRef options) __attribute__((weak_import));
