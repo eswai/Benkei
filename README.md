@@ -2,6 +2,8 @@
 
 Benkeiは、MacOSで薙刀式かな入力を行うためのソフトです。薙刀使いである弁慶から名前を採用しました。
 
+[Benkei2](https://github.com/eswai/Benkei2)を開発中です。
+
 #### 薙刀式とは
 
 【薙刀式】v15fix版、発表: 大岡俊彦の作品置き場
@@ -14,6 +16,8 @@ http://oookaworks.seesaa.net/article/500180437.html
  * 設定変更やカスタマイズがGUIでできる
 
 # 開発ロードマップ
+
+[Benkei2](https://github.com/eswai/Benkei2)へ引き継ぎました。
 
  * ~~Version alpha : 親指シフトLacailleをベースに、基本的なかな入力の実装~~
  * ~~Version beta 1 : 編集モードの実装~~
